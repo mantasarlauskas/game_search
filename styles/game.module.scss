@@ -1,0 +1,91 @@
+@use 'fonts';
+@use 'spacing';
+@use 'colors';
+
+.root {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info {
+    margin-right: spacing.$medium;
+}
+
+.image {
+    max-width: 384px;
+
+    img {
+        border-radius: 6px;
+        width: 100%;
+        box-shadow: 0 0 6px colors.$black;
+    }
+}
+
+.releaseDate {
+    flex: 0 0 auto;
+    display: inline-block;
+    @extend %font-size-xsmall;
+    color: colors.$black;
+    background-color: colors.$white;
+    padding: spacing.$xxsmall spacing.$small;
+    margin-right: spacing.$medium;
+    border-radius: 4px;
+}
+
+.title {
+    @extend %font-size-xxxlarge;
+    margin-bottom: spacing.$xsmall;
+}
+
+.meta {
+    display: flex;
+    align-items: center;
+    margin-bottom: spacing.$medium;
+}
+
+.platforms {
+    @extend %font-size-small;
+}
+
+.totalRating {
+    display: inline-block;
+    border: 1px solid colors.$white;
+    background-color: colors.$white;
+    color: colors.$black;
+    padding: spacing.$small;
+    border-radius: 4px;
+    margin: spacing.$medium 0;
+    @extend %font-size-xlarge;
+    @extend %font-bold;
+}
+
+.ratings {
+    display: flex;
+    flex-direction: column;
+}
+
+.rating {
+    margin-bottom: spacing.$small;
+    text-transform: capitalize;
+    display: flex;
+}
+
+.count {
+    @extend %font-bold;
+    margin-left: spacing.$xsmall;
+}
+
+.about {
+    margin: spacing.$medium 0;
+    @extend %font-size-xlarge;
+    @extend %font-bold;
+}
+
+.metaInfo {
+    margin-top: spacing.$large;
+}

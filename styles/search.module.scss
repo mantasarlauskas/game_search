@@ -1,0 +1,111 @@
+@use 'colors';
+@use 'spacing';
+@use 'fonts';
+
+.root {
+    position: relative;
+    margin-bottom: spacing.$large;
+}
+
+.icon {
+    position: absolute;
+    height: 44px;
+    width: 16px;
+    z-index: 2;
+    fill: darken(colors.$white, 40%);
+    transition: all 0.4s ease;
+    left: 22px;
+}
+
+.inputWrapper {
+    position: relative;
+    height: 44px;
+}
+
+.input {
+    position: absolute;
+    height: 100%;
+    display: flex;
+    width: 100%;
+    color: darken(colors.$white, 40%);
+    padding: 0 spacing.$xxlarge 0 spacing.$xxxlarge;
+    border-radius: 24px;
+    border: 1px solid transparent;
+    background-color: hsla(0, 0%, 100%, .16);
+    transition: all 0.4s ease;
+
+    &:focus {
+        background-color: colors.$black;
+        border: 1px solid colors.$white;
+        color: colors.$white;
+
+        &::placeholder {
+            color: colors.$white;
+        }
+
+        + .icon {
+            fill: colors.$white;
+        }
+    }
+
+    &::placeholder {
+        color: darken(colors.$white, 40%);
+    }
+}
+
+.results {
+    position: absolute;
+    top: 50px;
+    z-index: 1;
+    background-color: colors.$black;
+    padding: spacing.$large spacing.$xxlarge;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 24px;
+    border: 1px solid colors.$white;
+}
+
+.result {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    &:not(:last-of-type) {
+        margin-bottom: spacing.$large;
+    }
+
+    &:hover .name {
+        color: hsla(0, 0%, 100%, .4);
+    }
+}
+
+.image {
+    width: 36px;
+    height: 48px;
+    margin-right: spacing.$small;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 6px;
+}
+
+.name {
+    margin-bottom: spacing.$xsmall;
+    transition: color 0.4s ease;
+}
+
+.rating {
+    @extend %font-size-small;
+    border-radius: 6px;
+    background-color: colors.$white;
+    color: colors.$black;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: spacing.$xxsmall spacing.$xsmall;
+}

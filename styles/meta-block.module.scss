@@ -1,0 +1,12 @@
+@use 'colors';
+@use 'spacing';
+@use 'fonts';
+
+.root {
+    @extend %font-size-small;
+}
+
+.title {
+    margin-bottom: spacing.$small;
+    color: hsla(0, 0%, 100%, .2);
+}

@@ -1,0 +1,22 @@
+@use 'colors';
+@use 'spacing';
+
+.root {
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+        margin: spacing.$medium 0;
+    }
+}
+
+.button {
+    width: 150px;
+    margin-top: spacing.$medium;
+    cursor: pointer;
+    color: colors.$black;
+    background-color: colors.$white;
+    border: none;
+    border-radius: 6px;
+    padding: spacing.$xxsmall;
+}

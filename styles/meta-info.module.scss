@@ -1,0 +1,23 @@
+@use 'spacing';
+@use 'colors';
+@use 'fonts';
+
+.root {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item {
+    flex: 0 0 50%;
+    padding-right: spacing.$large;
+    margin-bottom: spacing.$small;
+}
+
+.score {
+    color: colors.$white;
+    border: 1px solid colors.$white;
+    display: inline-block;
+    border-radius: 6px;
+    padding: spacing.$xsmall;
+    @extend %font-bold;
+}

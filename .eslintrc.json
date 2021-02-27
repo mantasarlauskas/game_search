@@ -1,0 +1,61 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "jest": true
+    },
+    "extends": [
+        "airbnb"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint",
+        "react",
+        "react-hooks"
+    ],
+    "rules": {
+        "quotes": ["error", "single"],
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4],
+        "indent": ["error", 4, {"SwitchCase": 1}],
+        "react/jsx-props-no-spreading": "off",
+        "react/jsx-filename-extension": "off",
+        "react/destructuring-assignment": "off",
+        "react/prop-types": "off",
+        "no-param-reassign": "off",
+        "no-use-before-define": "off",
+        "object-curly-newline": "off",
+        "import/prefer-default-export": "off",
+        "react/require-default-props": "off",
+        "react/react-in-jsx-scope": "off",
+        "prefer-template": "off",
+        "max-len": [2, 120, 4],
+        "react-hooks/rules-of-hooks": "error",
+        "import/no-extraneous-dependencies": ["error", { "devDependencies": true } ],
+        "react-hooks/exhaustive-deps": "warn",
+        "no-shadow": "off",
+        "no-unused-vars": "off",
+        "react/no-danger": "off",
+        "camelcase": "off",
+        "@typescript-eslint/no-shadow": ["error"],
+        "@typescript-eslint/no-unused-vars": ["error"],
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "js": "never",
+                "jsx": "never",
+                "ts": "never",
+                "tsx": "never"
+            }
+        ]
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"],
+                "paths": ["."]
+            }
+        }
+    }
+}
