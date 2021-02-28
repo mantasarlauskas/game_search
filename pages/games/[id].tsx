@@ -4,13 +4,12 @@ import styles from 'styles/game.module.scss';
 import useBackgroundImage from 'hooks/useBackgroundImage';
 import { roundNumber } from 'utils/number';
 import Description from 'components/Description';
-import MetaInfo from 'components/MetaInfo';
+import GameMetaInfo from 'components/GameMetaInfo';
 import InfoList from 'components/InfoList';
-import { Game, Info, NextPageContextWithID } from 'utils/types';
+import { Game, NextPageContextWithID } from 'utils/types';
+import SuggestedGames, { suggestGamesPageSize } from 'components/SuggestedGames';
 
-function Games({
-    game,
-}: { game: Game }) {
+function Games({ game, suggestedGames, suggestedGameCount }: GameProps) {
     const {
         background_image,
         released,
@@ -19,8 +18,9 @@ function Games({
         rating,
         ratings,
         description,
-        background_image_additional,
         ratings_count,
+        clip,
+        slug,
     } = game;
     useBackgroundImage(background_image);
     return (
@@ -33,7 +33,7 @@ function Games({
                 )}
                 <div className={styles.platforms}>
                     {'Platforms: '}
-                    <InfoList list={platforms} />
+                    <InfoList list={platforms.map(({ platform }) => platform)} />
                 </div>
             </div>
             <h1 className={styles.title}>{name}</h1>
@@ -59,13 +59,16 @@ function Games({
                         </div>
                     </div>
                 </div>
-                {background_image_additional && (
-                    <div className={styles.image}>
-                        <img
-                            src={background_image_additional}
-                            alt={name}
-                        />
-                    </div>
+                {clip?.clip && (
+                    <video
+                        className={styles.video}
+                        src={clip.clip}
+                        controls
+                        loop
+                        playsInline
+                        autoPlay
+                        muted
+                    />
                 )}
             </div>
             {description && (
@@ -79,14 +82,30 @@ function Games({
                 </>
             )}
             <div className={styles.metaInfo}>
-                <MetaInfo game={game} />
+                <GameMetaInfo game={game} />
             </div>
+            <SuggestedGames
+                name={name}
+                slug={slug}
+                initialGames={suggestedGames}
+                count={suggestedGameCount}
+            />
         </div>
     );
 }
 
+interface GameProps {
+    game: Game;
+    suggestedGames: Game[];
+    suggestedGameCount: number;
+}
+
 export async function getServerSideProps({ params: { id } }: NextPageContextWithID) {
-    const game = await fetchData(`${API_PATH.GAMES}/${id}`);
+    const [game, suggestedGames] = await Promise.all([
+        fetchData(`${API_PATH.GAMES}/${id}`),
+        fetchData(`${API_PATH.GAMES}/${id}/suggested`, `page=1&page_size=${suggestGamesPageSize}`),
+    ]);
+
     if (!game) {
         return {
             redirect: {
@@ -98,10 +117,9 @@ export async function getServerSideProps({ params: { id } }: NextPageContextWith
 
     return {
         props: {
-            game: {
-                ...game,
-                platforms: game.platforms.map(({ platform }: { platform: Info }) => platform),
-            },
+            game,
+            suggestedGames: suggestedGames.results,
+            suggestedGameCount: suggestedGames.count,
         },
     };
 }

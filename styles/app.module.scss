@@ -1,5 +1,21 @@
 @use 'spacing';
 
 .root {
-    margin: spacing.$large;
+    margin: spacing.$xlarge;
+}
+
+.header {
+    display: flex;
+    margin-bottom: spacing.$large;
+}
+
+.home {
+    margin-right: spacing.$large;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.search {
+    width: 100%;
 }

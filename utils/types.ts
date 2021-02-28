@@ -7,9 +7,11 @@ export interface Info {
 
 export interface Game {
     name: string;
+    slug: string;
+    website?: string;
     background_image?: string;
     released?: string;
-    platforms: Info[];
+    platforms: { platform: Info }[];
     genres: Info[];
     rating: number;
     ratings: { title: string, count: number }[];
@@ -21,6 +23,7 @@ export interface Game {
     publishers: Info[];
     tags: Info[];
     esrb_rating?: Info;
+    clip?: { clip: string };
 }
 
 export interface SearchResult {

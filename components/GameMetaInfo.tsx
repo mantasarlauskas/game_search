@@ -1,10 +1,11 @@
 import React from 'react';
+import Link from 'next/link';
 import MetaBlock from 'components/MetaBlock';
 import styles from 'styles/meta-info.module.scss';
 import InfoList from 'components/InfoList';
 import { Game } from 'utils/types';
 
-function MetaInfo({
+function GameMetaInfo({
     game: {
         platforms,
         metacritic,
@@ -14,14 +15,15 @@ function MetaInfo({
         publishers,
         esrb_rating,
         tags,
+        website,
     },
-}: MetaInfoProps) {
+}: GameMetaInfoProps) {
     return (
         <div className={styles.root}>
             <div className={styles.item}>
                 <MetaBlock
                     title="Platforms"
-                    content={<InfoList list={platforms} />}
+                    content={<InfoList list={platforms.map(({ platform }) => platform)} />}
                 />
             </div>
             {typeof metacritic === 'number' && (
@@ -82,12 +84,24 @@ function MetaInfo({
                     content={esrb_rating?.name || 'Not rated'}
                 />
             </div>
+            {website && (
+                <div className={styles.item}>
+                    <MetaBlock
+                        title="Website"
+                        content={(
+                            <Link href={website} passHref>
+                                {website}
+                            </Link>
+                        )}
+                    />
+                </div>
+            )}
         </div>
     );
 }
 
-interface MetaInfoProps {
+interface GameMetaInfoProps {
     game: Game;
 }
 
-export default MetaInfo;
+export default GameMetaInfo;
