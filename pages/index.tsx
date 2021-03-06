@@ -2,34 +2,32 @@ import styles from 'styles/index.module.scss';
 import { Game } from 'utils/types';
 import { API_PATH, fetchData } from 'utils/fetch';
 import GameCard from 'components/GameCard';
-import usePaginator from 'hooks/usePaginator';
 import useAppendableResults from 'hooks/useAppendableResults';
-import PaginatorButton from '../components/PaginatorButton';
+import PaginatorButton from 'components/PaginatorButton';
 
 const pageSize = 20;
 
 function Home({ initialGames, count }: HomeProps) {
-    const { componentRef, pageNumber, visible, pageChanged } = usePaginator({ pageSize, count });
-    const [games, loading] = useAppendableResults<Game>({
+    const { results, loading, paginatorRef, paginatorVisible } = useAppendableResults<Game>({
         initialResults: initialGames,
         path: API_PATH.GAMES,
-        query: `page=${pageNumber}&page_size=${pageSize}`,
-        shouldAppend: pageChanged,
+        pageSize,
+        count,
     });
 
     return (
         <div className={styles.root}>
             <div className={styles.cards}>
-                {games.map((game) => (
+                {results.map((game) => (
                     <div key={game.name} className={styles.card}>
                         <GameCard game={game} />
                     </div>
                 ))}
             </div>
             <PaginatorButton
-                ref={componentRef}
+                ref={paginatorRef}
                 loading={loading}
-                visible={visible}
+                visible={paginatorVisible}
             />
         </div>
     );

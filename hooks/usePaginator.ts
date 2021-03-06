@@ -1,34 +1,24 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import useValueChanged from 'hooks/useValueChanged';
 
 function usePaginator({
     pageSize,
     count,
-    reset,
     useIntersectionObserver = true,
     initialPageNumber = 1,
 }: UsePaginatorProps) {
-    const componentRef = useRef<HTMLButtonElement>(null);
+    const paginatorRef = useRef<HTMLButtonElement>(null);
     const [pageNumber, setPageNumber] = useState(initialPageNumber);
-    const pageNumberChanged = useValueChanged(pageNumber);
-    const visible = pageSize * pageNumber < count;
-    const pageChanged = pageNumberChanged && visible && pageNumber !== initialPageNumber;
-
-    useEffect(() => {
-        if (reset) {
-            setPageNumber(initialPageNumber);
-        }
-    }, [initialPageNumber, reset]);
+    const paginatorVisible = pageSize * pageNumber < count;
 
     useEffect(() => {
         let intersectionObserver: IntersectionObserver;
-        if (componentRef.current && useIntersectionObserver) {
+        if (paginatorRef.current && useIntersectionObserver) {
             intersectionObserver = new IntersectionObserver((entries) => {
                 if (entries?.some(({ isIntersecting }) => isIntersecting)) {
                     setPageNumber((number) => number + 1);
                 }
             }, { threshold: 1.0 });
-            intersectionObserver.observe(componentRef.current);
+            intersectionObserver.observe(paginatorRef.current);
         }
 
         return () => intersectionObserver?.disconnect();
@@ -39,19 +29,18 @@ function usePaginator({
     }, []);
 
     return {
-        componentRef,
+        paginatorRef,
         pageNumber,
-        visible,
-        pageChanged,
+        paginatorVisible,
         incrementNumber,
+        setPageNumber,
     };
 }
 
-interface UsePaginatorProps {
+export interface UsePaginatorProps {
     pageSize: number;
     count: number;
     useIntersectionObserver?: boolean;
-    reset?: boolean;
     initialPageNumber?: number;
 }
 

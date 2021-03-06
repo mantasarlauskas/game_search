@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
-import styles from 'styles/meta-block.module.scss';
+import styles from 'styles/game-meta-block.module.scss';
 
-function MetaBlock({ title, content }: MetaBlockProps) {
+function GameMetaBlock({ title, content }: GameMetaBlockProps) {
     return (
         <div className={styles.root}>
             <div className={styles.title}>
@@ -12,9 +12,9 @@ function MetaBlock({ title, content }: MetaBlockProps) {
     );
 }
 
-interface MetaBlockProps {
+interface GameMetaBlockProps {
     title: string;
     content: ReactNode;
 }
 
-export default MetaBlock;
+export default GameMetaBlock;

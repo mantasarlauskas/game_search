@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import styles from 'styles/description.module.scss';
+import styles from 'styles/game-description.module.scss';
 
-function Description({ description, letterCount = 500 }: DescriptionProps) {
+function GameDescription({ description, letterCount = 500 }: GameDescriptionProps) {
     const [expanded, setExpanded] = useState(false);
     const isOverLimit = description.length > letterCount;
     return (
@@ -22,9 +22,9 @@ function Description({ description, letterCount = 500 }: DescriptionProps) {
     );
 }
 
-interface DescriptionProps {
+interface GameDescriptionProps {
     description: string;
     letterCount?: number
 }
 
-export default Description;
+export default GameDescription;

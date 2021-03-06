@@ -11,7 +11,7 @@ export interface Game {
     website?: string;
     background_image?: string;
     released?: string;
-    platforms: { platform: Info }[];
+    platforms?: { platform: Info }[];
     genres: Info[];
     rating: number;
     ratings: { title: string, count: number }[];

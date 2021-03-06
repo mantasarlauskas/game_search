@@ -3,13 +3,13 @@ import { API_PATH, fetchData } from 'utils/fetch';
 import styles from 'styles/game.module.scss';
 import useBackgroundImage from 'hooks/useBackgroundImage';
 import { roundNumber } from 'utils/number';
-import Description from 'components/Description';
+import GameDescription from 'components/GameDescription';
 import GameMetaInfo from 'components/GameMetaInfo';
 import InfoList from 'components/InfoList';
 import { Game, NextPageContextWithID } from 'utils/types';
 import SuggestedGames, { suggestGamesPageSize } from 'components/SuggestedGames';
 
-function Games({ game, suggestedGames, suggestedGameCount }: GameProps) {
+function GamePage({ game, suggestedGames, suggestedGameCount }: GamePageProps) {
     const {
         background_image,
         released,
@@ -31,10 +31,12 @@ function Games({ game, suggestedGames, suggestedGameCount }: GameProps) {
                         {released}
                     </div>
                 )}
-                <div className={styles.platforms}>
-                    {'Platforms: '}
-                    <InfoList list={platforms.map(({ platform }) => platform)} />
-                </div>
+                {!!platforms?.length && (
+                    <div className={styles.platforms}>
+                        {'Platforms: '}
+                        <InfoList list={platforms.map(({ platform }) => platform)} />
+                    </div>
+                )}
             </div>
             <h1 className={styles.title}>{name}</h1>
             <div className={styles.main}>
@@ -77,7 +79,7 @@ function Games({ game, suggestedGames, suggestedGameCount }: GameProps) {
                         About
                     </div>
                     <div className={styles.description}>
-                        <Description description={description} />
+                        <GameDescription description={description} />
                     </div>
                 </>
             )}
@@ -94,7 +96,7 @@ function Games({ game, suggestedGames, suggestedGameCount }: GameProps) {
     );
 }
 
-interface GameProps {
+interface GamePageProps {
     game: Game;
     suggestedGames: Game[];
     suggestedGameCount: number;
@@ -124,4 +126,4 @@ export async function getServerSideProps({ params: { id } }: NextPageContextWith
     };
 }
 
-export default Games;
+export default GamePage;

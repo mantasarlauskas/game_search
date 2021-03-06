@@ -1,14 +1,16 @@
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState, KeyboardEvent } from 'react';
 import debounce from 'debounce';
 import Link from 'next/link';
-import styles from 'styles/search.module.scss';
+import { useRouter } from 'next/router';
+import styles from 'styles/search-bar.module.scss';
 import { API_PATH, fetchData } from 'utils/fetch';
 import { roundNumber } from 'utils/number';
 import Spinner from 'components/Spinner';
 import SearchIcon from 'assets/search.svg';
 import { SearchResult } from 'utils/types';
 
-function Search() {
+function SearchBar() {
+    const router = useRouter();
     const ref = useRef<HTMLInputElement>(null);
     const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -18,6 +20,7 @@ function Search() {
         function handleClick({ target }: MouseEvent) {
             if (!ref.current?.contains(target as HTMLElement)) {
                 setIsOpen(false);
+                ref.current?.blur();
             }
         }
 
@@ -34,6 +37,15 @@ function Search() {
         setLoading(false);
     }, 200);
 
+    function handleKeyDown(e: KeyboardEvent<HTMLInputElement>) {
+        if (e.key === 'Enter') {
+            const target = e.target as HTMLInputElement;
+            router.push(`/search/${target.value}`);
+            setIsOpen(false);
+            ref.current?.blur();
+        }
+    }
+
     return (
         <div className={styles.root}>
             <div className={styles.inputWrapper}>
@@ -41,6 +53,7 @@ function Search() {
                     ref={ref}
                     className={styles.input}
                     onChange={handleChange}
+                    onKeyDown={handleKeyDown}
                     onFocus={() => setIsOpen(true)}
                     placeholder="Search games"
                 />
@@ -73,4 +86,4 @@ function Search() {
     );
 }
 
-export default Search;
+export default SearchBar;

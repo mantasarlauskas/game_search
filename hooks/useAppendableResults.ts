@@ -1,26 +1,43 @@
 import { useEffect, useState } from 'react';
 import { fetchData } from 'utils/fetch';
+import usePaginator, { UsePaginatorProps } from 'hooks/usePaginator';
+import useValueChanged from 'hooks/useValueChanged';
 
 function useAppendableResults<T>({
     initialResults,
-    shouldAppend,
     path,
     query,
-    reset,
-}: UseAppendableResultsProps<T>): [T[], boolean] {
+    initialPageNumber = 1,
+    ...paginatorProps
+}: UseAppendableResultsProps<T>) {
     const [loading, setLoading] = useState(false);
     const [results, setResults] = useState(initialResults);
+    const {
+        pageNumber,
+        paginatorVisible,
+        incrementNumber,
+        paginatorRef,
+        setPageNumber,
+    } = usePaginator({ ...paginatorProps, initialPageNumber });
+    const pageNumberChanged = useValueChanged(pageNumber);
+    const { pageSize } = paginatorProps;
+    const shouldAppend = pageNumberChanged && pageNumber !== initialPageNumber;
+    const initialResultsChanged = useValueChanged(initialResults);
 
     useEffect(() => {
-        if (reset) {
+        if (initialResultsChanged) {
             setResults(initialResults);
+            setPageNumber(initialPageNumber);
         }
-    }, [initialResults, reset]);
+    }, [initialPageNumber, initialResults, initialResultsChanged, setPageNumber]);
 
     useEffect(() => {
         if (shouldAppend) {
             setLoading(true);
-            fetchData(path, query).then((response) => {
+            fetchData(
+                path,
+                `page=${pageNumber}&page_size=${pageSize}${query ? `&${query}` : ''}`,
+            ).then((response) => {
                 setResults((prevResults) => [
                     ...prevResults,
                     ...response.results,
@@ -29,17 +46,22 @@ function useAppendableResults<T>({
                 setLoading(false);
             });
         }
-    }, [path, query, shouldAppend]);
+    }, [pageNumber, pageSize, path, query, shouldAppend]);
 
-    return [results, loading];
+    return {
+        results,
+        loading,
+        pageNumber,
+        paginatorVisible,
+        incrementNumber,
+        paginatorRef,
+    };
 }
 
-interface UseAppendableResultsProps<T> {
+interface UseAppendableResultsProps<T> extends UsePaginatorProps {
     initialResults: T[];
-    shouldAppend: boolean;
     path: string;
     query?: string;
-    reset?: boolean;
 }
 
 export default useAppendableResults;

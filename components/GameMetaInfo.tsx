@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import MetaBlock from 'components/MetaBlock';
-import styles from 'styles/meta-info.module.scss';
+import GameMetaBlock from 'components/GameMetaBlock';
+import styles from 'styles/game-meta-info.module.scss';
 import InfoList from 'components/InfoList';
 import { Game } from 'utils/types';
 
@@ -20,15 +20,17 @@ function GameMetaInfo({
 }: GameMetaInfoProps) {
     return (
         <div className={styles.root}>
-            <div className={styles.item}>
-                <MetaBlock
-                    title="Platforms"
-                    content={<InfoList list={platforms.map(({ platform }) => platform)} />}
-                />
-            </div>
+            {!!platforms?.length && (
+                <div className={styles.item}>
+                    <GameMetaBlock
+                        title="Platforms"
+                        content={<InfoList list={platforms.map(({ platform }) => platform)} />}
+                    />
+                </div>
+            )}
             {typeof metacritic === 'number' && (
                 <div className={styles.item}>
-                    <MetaBlock
+                    <GameMetaBlock
                         title="Metascore"
                         content={(
                             <div className={styles.score}>
@@ -40,7 +42,7 @@ function GameMetaInfo({
             )}
             {genres?.length > 0 && (
                 <div className={styles.item}>
-                    <MetaBlock
+                    <GameMetaBlock
                         title="Genres"
                         content={<InfoList list={genres} />}
                     />
@@ -48,7 +50,7 @@ function GameMetaInfo({
             )}
             {released && (
                 <div className={styles.item}>
-                    <MetaBlock
+                    <GameMetaBlock
                         title="Release date"
                         content={released}
                     />
@@ -56,7 +58,7 @@ function GameMetaInfo({
             )}
             {developers?.length > 0 && (
                 <div className={styles.item}>
-                    <MetaBlock
+                    <GameMetaBlock
                         title="Developers"
                         content={<InfoList list={developers} />}
                     />
@@ -64,7 +66,7 @@ function GameMetaInfo({
             )}
             {publishers?.length > 0 && (
                 <div className={styles.item}>
-                    <MetaBlock
+                    <GameMetaBlock
                         title="Publishers"
                         content={<InfoList list={publishers} />}
                     />
@@ -72,21 +74,21 @@ function GameMetaInfo({
             )}
             {tags?.length > 0 && (
                 <div className={styles.item}>
-                    <MetaBlock
+                    <GameMetaBlock
                         title="Tags"
                         content={<InfoList list={tags} />}
                     />
                 </div>
             )}
             <div className={styles.item}>
-                <MetaBlock
+                <GameMetaBlock
                     title="Age rating"
                     content={esrb_rating?.name || 'Not rated'}
                 />
             </div>
             {website && (
                 <div className={styles.item}>
-                    <MetaBlock
+                    <GameMetaBlock
                         title="Website"
                         content={(
                             <Link href={website} passHref>

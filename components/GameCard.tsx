@@ -26,7 +26,6 @@ function GameCard({
 
     function onMouseLeave() {
         setShowVideo(false);
-        setMediaHeight('auto');
     }
 
     return (
@@ -67,10 +66,12 @@ function GameCard({
                             </div>
                         )}
                     </div>
-                    <div className={styles.platforms}>
-                        {'Platforms: '}
-                        <InfoList list={platforms.map(({ platform }) => platform)} />
-                    </div>
+                    {!!platforms?.length && (
+                        <div className={styles.platforms}>
+                            {'Platforms: '}
+                            <InfoList list={platforms.map(({ platform }) => platform)} />
+                        </div>
+                    )}
                 </div>
             </div>
         </Link>

@@ -2,32 +2,27 @@ import React from 'react';
 import { Game } from 'utils/types';
 import styles from 'styles/suggested-games.module.scss';
 import GameCard from 'components/GameCard';
-import usePaginator from 'hooks/usePaginator';
 import PaginatorButton from 'components/PaginatorButton';
 import useAppendableResults from 'hooks/useAppendableResults';
 import { API_PATH } from 'utils/fetch';
-import useValueChanged from '../hooks/useValueChanged';
 
 export const suggestGamesPageSize = 6;
 
 function SuggestedGames({ initialGames, count, name, slug }: SuggestedGamesProps) {
-    const slugChanged = useValueChanged(slug);
-    const { pageNumber, visible, pageChanged, incrementNumber } = usePaginator({
-        pageSize: suggestGamesPageSize,
+    const {
+        results,
+        loading,
+        paginatorVisible,
+        incrementNumber,
+    } = useAppendableResults<Game>({
+        initialResults: initialGames,
+        path: `${API_PATH.GAMES}/${slug}/suggested`,
         count,
-        reset: slugChanged,
+        pageSize: suggestGamesPageSize,
         useIntersectionObserver: false,
     });
 
-    const [games, loading] = useAppendableResults<Game>({
-        initialResults: initialGames,
-        path: `${API_PATH.GAMES}/${slug}/suggested`,
-        query: `page=${pageNumber}&page_size=${suggestGamesPageSize}`,
-        shouldAppend: pageChanged,
-        reset: slugChanged,
-    });
-
-    if (!games.length) {
+    if (!results.length) {
         return null;
     }
 
@@ -37,7 +32,7 @@ function SuggestedGames({ initialGames, count, name, slug }: SuggestedGamesProps
                 {`Games like ${name}`}
             </div>
             <div className={styles.cards}>
-                {games.map((game) => (
+                {results.map((game) => (
                     <div key={game.slug} className={styles.card}>
                         <GameCard game={game} />
                     </div>
@@ -45,7 +40,7 @@ function SuggestedGames({ initialGames, count, name, slug }: SuggestedGamesProps
             </div>
             <div className={styles.button}>
                 <PaginatorButton
-                    visible={visible}
+                    visible={paginatorVisible}
                     loading={loading}
                     onClick={incrementNumber}
                 />

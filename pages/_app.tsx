@@ -1,10 +1,10 @@
 import { AppProps } from 'next/app';
 import Link from 'next/link';
 import 'styles/globals.scss';
-import Search from 'components/Search';
+import SearchBar from 'components/SearchBar';
 import styles from 'styles/app.module.scss';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
     return (
         <div className={styles.root}>
             <div className={styles.header}>
@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                     </div>
                 </Link>
                 <div className={styles.search}>
-                    <Search />
+                    <SearchBar />
                 </div>
             </div>
             <Component {...pageProps} />
@@ -22,4 +22,4 @@ function MyApp({ Component, pageProps }: AppProps) {
     );
 }
 
-export default MyApp;
+export default App;

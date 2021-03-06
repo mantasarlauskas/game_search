@@ -1,4 +1,5 @@
 @use 'spacing';
+@use 'breakpoints';
 
 .root {
     margin: spacing.$xlarge;
@@ -7,6 +8,10 @@
 .header {
     display: flex;
     margin-bottom: spacing.$large;
+
+    @media (max-width: breakpoints.$s) {
+        flex-wrap: wrap;
+    }
 }
 
 .home {
@@ -14,6 +19,10 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+
+    @media (max-width: breakpoints.$s) {
+        margin-bottom: spacing.$medium;
+    }
 }
 
 .search {
