@@ -12,7 +12,7 @@ function SearchPage({ initialResults, count, id }: SearchPageProps) {
     const { results, loading, paginatorRef, paginatorVisible } = useAppendableResults<Game>({
         initialResults,
         path: API_PATH.GAMES,
-        query: `search=${id}`,
+        query: { search: id },
         pageSize,
         count,
     });
@@ -49,7 +49,12 @@ interface SearchPageProps {
 export async function getServerSideProps({
     params: { id },
 }: NextPageContextWithID): Promise<{ props: SearchPageProps }> {
-    const data = await fetchData(API_PATH.GAMES, `search=${id}&page=1&page_size=${pageSize}`);
+    const data = await fetchData(API_PATH.GAMES, {
+        search: id,
+        page: 1,
+        page_size: pageSize,
+    });
+
     return {
         props: {
             id,

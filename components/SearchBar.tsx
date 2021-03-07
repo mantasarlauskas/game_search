@@ -32,7 +32,12 @@ function SearchBar() {
 
     const handleChange = debounce(async ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
         setLoading(true);
-        const data = await fetchData(API_PATH.GAMES, `search=${value}&page=1&page_size=5`);
+        const data = await fetchData(API_PATH.GAMES, {
+            search: value,
+            page: 1,
+            page_size: 5,
+        });
+
         setResults(data.results);
         setLoading(false);
     }, 200);

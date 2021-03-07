@@ -6,7 +6,7 @@ import PaginatorButton from 'components/PaginatorButton';
 import useAppendableResults from 'hooks/useAppendableResults';
 import { API_PATH } from 'utils/fetch';
 
-export const suggestGamesPageSize = 6;
+export const suggestedGamesPageSize = 6;
 
 function SuggestedGames({ initialGames, count, name, slug }: SuggestedGamesProps) {
     const {
@@ -18,7 +18,7 @@ function SuggestedGames({ initialGames, count, name, slug }: SuggestedGamesProps
         initialResults: initialGames,
         path: `${API_PATH.GAMES}/${slug}/suggested`,
         count,
-        pageSize: suggestGamesPageSize,
+        pageSize: suggestedGamesPageSize,
         useIntersectionObserver: false,
     });
 

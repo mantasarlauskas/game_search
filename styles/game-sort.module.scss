@@ -1,0 +1,46 @@
+@use 'spacing';
+@use 'colors';
+@use 'fonts';
+
+.root {
+    background-color: hsla(0, 0%, 100%, .07);
+    color: colors.$white;
+    border: none;
+    border-radius: 8px;
+    padding: spacing.$medium spacing.$large;
+    cursor: pointer;
+    display: flex;
+}
+
+.title {
+    margin-left: spacing.$xsmall;
+    @extend %font-bold;
+}
+
+.options {
+    background-color: colors.$white;
+    color: colors.$black;
+    border-radius: 8px;
+    padding: spacing.$small;
+    min-width: 200px;
+}
+
+.option {
+    display: block;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    padding: spacing.$xsmall spacing.$small;
+    transition: background-color .3s;
+    background-color: colors.$white;
+    border-radius: 8px;
+    text-align: start;
+
+    &:not(:last-of-type) {
+        margin-bottom: spacing.$small;
+    }
+
+    &:hover {
+        background-color: darken(colors.$white, 10%);
+    }
+}

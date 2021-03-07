@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { fetchData } from 'utils/fetch';
 import usePaginator, { UsePaginatorProps } from 'hooks/usePaginator';
 import useValueChanged from 'hooks/useValueChanged';
+import useFetch from 'hooks/useFetch';
+import { QueryParams } from 'utils/fetch';
 
 function useAppendableResults<T>({
     initialResults,
@@ -10,8 +11,8 @@ function useAppendableResults<T>({
     initialPageNumber = 1,
     ...paginatorProps
 }: UseAppendableResultsProps<T>) {
-    const [loading, setLoading] = useState(false);
     const [results, setResults] = useState(initialResults);
+    const [fetch, loading] = useFetch<{ results: T[] }>();
     const {
         pageNumber,
         paginatorVisible,
@@ -33,20 +34,19 @@ function useAppendableResults<T>({
 
     useEffect(() => {
         if (shouldAppend) {
-            setLoading(true);
-            fetchData(
+            fetch(
                 path,
-                `page=${pageNumber}&page_size=${pageSize}${query ? `&${query}` : ''}`,
+                { page: pageNumber, page_size: pageSize, ...(query || {}) },
             ).then((response) => {
-                setResults((prevResults) => [
-                    ...prevResults,
-                    ...response.results,
-                ]);
-
-                setLoading(false);
+                if (response) {
+                    setResults((prevResults) => [
+                        ...prevResults,
+                        ...response.results,
+                    ]);
+                }
             });
         }
-    }, [pageNumber, pageSize, path, query, shouldAppend]);
+    }, [fetch, pageNumber, pageSize, path, query, shouldAppend]);
 
     return {
         results,
@@ -61,7 +61,7 @@ function useAppendableResults<T>({
 interface UseAppendableResultsProps<T> extends UsePaginatorProps {
     initialResults: T[];
     path: string;
-    query?: string;
+    query?: QueryParams;
 }
 
 export default useAppendableResults;

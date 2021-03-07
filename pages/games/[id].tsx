@@ -7,7 +7,7 @@ import GameDescription from 'components/GameDescription';
 import GameMetaInfo from 'components/GameMetaInfo';
 import InfoList from 'components/InfoList';
 import { Game, NextPageContextWithID } from 'utils/types';
-import SuggestedGames, { suggestGamesPageSize } from 'components/SuggestedGames';
+import SuggestedGames, { suggestedGamesPageSize } from 'components/SuggestedGames';
 
 function GamePage({ game, suggestedGames, suggestedGameCount }: GamePageProps) {
     const {
@@ -105,7 +105,10 @@ interface GamePageProps {
 export async function getServerSideProps({ params: { id } }: NextPageContextWithID) {
     const [game, suggestedGames] = await Promise.all([
         fetchData(`${API_PATH.GAMES}/${id}`),
-        fetchData(`${API_PATH.GAMES}/${id}/suggested`, `page=1&page_size=${suggestGamesPageSize}`),
+        fetchData(`${API_PATH.GAMES}/${id}/suggested`, {
+            page: 1,
+            page_size: suggestedGamesPageSize,
+        }),
     ]);
 
     if (!game) {
