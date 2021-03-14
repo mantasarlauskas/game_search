@@ -3,7 +3,7 @@
 @use 'fonts';
 
 .root {
-    background-color: hsla(0, 0%, 100%, .07);
+    background-color: hsla(0, 0%, 100%, 0.07);
     color: colors.$white;
     border: none;
     border-radius: 8px;
@@ -13,8 +13,8 @@
 }
 
 .title {
-    margin-left: spacing.$xsmall;
     @extend %font-bold;
+    margin-left: spacing.$xsmall;
 }
 
 .options {
@@ -31,7 +31,7 @@
     border: none;
     cursor: pointer;
     padding: spacing.$xsmall spacing.$small;
-    transition: background-color .3s;
+    transition: background-color 0.3s;
     background-color: colors.$white;
     border-radius: 8px;
     text-align: start;

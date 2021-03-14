@@ -1,26 +1,26 @@
-import React from 'react';
 import { Game, NextPageContextWithID } from 'utils/types';
 import { API_PATH, fetchData } from 'utils/fetch';
-import styles from 'styles/search-page.module.scss';
 import useAppendableResults from 'hooks/useAppendableResults';
+import styles from 'styles/genre.module.scss';
 import GameCard from 'components/GameCard';
 import PaginatorButton from 'components/PaginatorButton';
+import { Route } from 'utils/routes';
 
 const pageSize = 20;
 
-function SearchPage({ initialResults, count, id }: SearchPageProps) {
+function Genre({ games, count, id }: GenreProps) {
     const { results, loading, paginatorRef, paginatorVisible } = useAppendableResults<Game>({
-        initialResults,
+        initialResults: games,
         path: API_PATH.GAMES,
-        query: { search: id },
+        query: { genres: id },
         pageSize,
         count,
     });
 
     return (
         <div className={styles.root}>
-            <div className={styles.info}>
-                {`${count} games found`}
+            <div className={styles.count}>
+                {`Total ${count} games`}
             </div>
             <div className={styles.cards}>
                 {results.map((game) => (
@@ -38,28 +38,35 @@ function SearchPage({ initialResults, count, id }: SearchPageProps) {
     );
 }
 
-interface SearchPageProps {
+interface GenreProps {
     id: string;
-    initialResults: Game[];
+    games: Game[];
     count: number;
 }
 
-export async function getServerSideProps({
-    params: { id },
-}: NextPageContextWithID): Promise<{ props: SearchPageProps }> {
+export async function getServerSideProps({ params: { id } }: NextPageContextWithID) {
     const data = await fetchData(API_PATH.GAMES, {
-        search: id,
+        genres: id,
         page: 1,
         page_size: pageSize,
     });
 
+    if (!data?.count || !data?.results) {
+        return {
+            redirect: {
+                destination: Route.NOT_FOUND,
+                permanent: false,
+            },
+        };
+    }
+
     return {
         props: {
             id,
-            initialResults: data?.results || [],
-            count: data?.count || 0,
+            count: data.count,
+            games: data.results,
         },
     };
 }
 
-export default SearchPage;
+export default Genre;

@@ -1,0 +1,67 @@
+@use 'colors';
+@use 'spacing';
+@use 'fonts';
+
+.root {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    @extend %font-size-large;
+    @extend %font-bold;
+    margin-bottom: spacing.$medium;
+    cursor: pointer;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &:not(:last-of-type) {
+        margin-bottom: spacing.$xsmall;
+    }
+}
+
+.background {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.name {
+    @extend %font-size-medium;
+    margin-left: spacing.$small;
+}
+
+.toggle {
+    opacity: 0.4;
+
+    &.expanded .icon {
+        transform: rotate(-90deg);
+    }
+
+    .background {
+        transition: background-color 0.4s;
+        background-color: hsla(0, 0%, 100%, 0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .icon {
+        transform: rotate(90deg);
+    }
+
+    &:hover {
+        .background {
+            background-color: colors.$white;
+        }
+
+        .icon {
+            color: colors.$black;
+        }
+    }
+}

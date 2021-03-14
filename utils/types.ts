@@ -1,4 +1,5 @@
 import { NextPageContext } from 'next';
+import { AppProps } from 'next/app';
 
 export interface Info {
     name: string;
@@ -35,4 +36,16 @@ export interface SearchResult {
 
 export interface NextPageContextWithID extends NextPageContext {
     params: { id: string }
+}
+
+export interface Genre {
+    name: string;
+    slug: string;
+    image_background: string;
+    games_count: number;
+    games: { name: string; slug: string; }[];
+}
+
+export interface PageAppProps extends AppProps {
+    genres: Genre[];
 }

@@ -10,22 +10,16 @@
 
 .info {
     @extend %font-size-large;
+    margin-bottom: spacing.$medium;
 }
 
 .cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-gap: spacing.$large;
 
-.card {
-    align-self: stretch;
-    margin: spacing.$large;
-    width: 380px;
-
-    @media (max-width: breakpoints.$m) {
-        width: 100%;
-        margin: spacing.$large 0;
+    @media (max-width: breakpoints.$s) {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     }
 }
 

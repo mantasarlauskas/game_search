@@ -9,16 +9,22 @@
     background-color: colors.$light-black;
     cursor: pointer;
     transform: scale(1);
-    transition: all .3s;
+    transition: all 0.3s;
 
     &:hover {
         transform: scale(1.02);
     }
 }
 
-.image, .video {
+.image,
+.video {
     border-top-left-radius: 24px;
     border-top-right-radius: 24px;
+}
+
+.media {
+    max-height: 250px;
+    overflow: hidden;
 }
 
 .image {
@@ -31,11 +37,11 @@
 }
 
 .title {
+    @extend %font-size-xlarge;
+    @extend %font-bold;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    @extend %font-size-xlarge;
-    @extend %font-bold;
 }
 
 .content {
@@ -43,6 +49,7 @@
 }
 
 .score {
+    @extend %font-bold;
     height: 32px;
     width: 32px;
     display: flex;
@@ -53,7 +60,6 @@
     border-radius: 6px;
     padding: spacing.$xsmall;
     margin-left: spacing.$medium;
-    @extend %font-bold;
 }
 
 .video {
@@ -61,7 +67,8 @@
     height: 100%;
     width: 100%;
 }
+
 .platforms {
-    margin-top: spacing.$small;
     @extend %font-size-xsmall;
+    margin-top: spacing.$small;
 }

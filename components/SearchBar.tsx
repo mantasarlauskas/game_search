@@ -8,6 +8,7 @@ import { roundNumber } from 'utils/number';
 import Spinner from 'components/Spinner';
 import SearchIcon from 'assets/search.svg';
 import { SearchResult } from 'utils/types';
+import { Route } from 'utils/routes';
 
 function SearchBar() {
     const router = useRouter();
@@ -72,7 +73,7 @@ function SearchBar() {
                         background_image,
                         rating,
                     }) => (
-                        <Link key={slug} href={`/games/${slug}`}>
+                        <Link key={slug} href={`${Route.GAMES}/${slug}`}>
                             <div className={styles.result}>
                                 <div
                                     className={styles.image}

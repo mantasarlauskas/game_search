@@ -8,6 +8,7 @@ import GameMetaInfo from 'components/GameMetaInfo';
 import InfoList from 'components/InfoList';
 import { Game, NextPageContextWithID } from 'utils/types';
 import SuggestedGames, { suggestedGamesPageSize } from 'components/SuggestedGames';
+import { Route } from 'utils/routes';
 
 function GamePage({ game, suggestedGames, suggestedGameCount }: GamePageProps) {
     const {
@@ -114,7 +115,7 @@ export async function getServerSideProps({ params: { id } }: NextPageContextWith
     if (!game) {
         return {
             redirect: {
-                destination: '/not-found',
+                destination: Route.NOT_FOUND,
                 permanent: false,
             },
         };
@@ -123,8 +124,8 @@ export async function getServerSideProps({ params: { id } }: NextPageContextWith
     return {
         props: {
             game,
-            suggestedGames: suggestedGames.results,
-            suggestedGameCount: suggestedGames.count,
+            suggestedGames: suggestedGames?.results || [],
+            suggestedGameCount: suggestedGames?.count || 0,
         },
     };
 }

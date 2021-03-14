@@ -1,0 +1,48 @@
+@use 'spacing';
+@use 'colors';
+@use 'fonts';
+
+.root {
+    background-color: colors.$black;
+    padding: spacing.$xxlarge spacing.$xlarge;
+    background-size: cover;
+    border-radius: 6px;
+}
+
+.name {
+    @extend %font-bold;
+    @extend %font-size-xlarge;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: spacing.$xlarge;
+}
+
+.name,
+.row {
+    color: colors.$white;
+    transition: color 0.2s;
+
+    &:hover {
+        color: hsla(0, 0%, 100%, 0.4);
+    }
+}
+
+.row {
+    @extend %font-size-small;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: spacing.$xsmall;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+    padding-bottom: spacing.$xsmall;
+    margin-bottom: spacing.$small;
+}
+
+.title {
+    @extend %font-bold;
+}

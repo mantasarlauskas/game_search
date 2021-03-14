@@ -1,0 +1,59 @@
+@use 'breakpoints';
+@use 'spacing';
+@use 'fonts';
+@use 'colors';
+
+.root {
+    display: flex;
+    flex-direction: column;
+
+    .icon {
+        display: none;
+
+        @media (max-width: breakpoints.$m) {
+            display: block;
+        }
+    }
+}
+
+.portal {
+    z-index: 10000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: spacing.$xlarge;
+    background-color: colors.$black;
+    overflow-y: auto;
+
+    @media (max-width: breakpoints.$s) {
+        padding: spacing.$medium;
+    }
+
+    .icon {
+        margin-bottom: spacing.$large;
+    }
+}
+
+.content {
+    width: 200px;
+
+    @media (max-width: breakpoints.$m) {
+        display: none;
+    }
+}
+
+.icon {
+    width: 28px;
+    height: 28px;
+    color: colors.$white;
+    cursor: pointer;
+}
+
+.item {
+    @extend %font-size-large;
+    @extend %font-bold;
+    margin-bottom: spacing.$medium;
+    cursor: pointer;
+}

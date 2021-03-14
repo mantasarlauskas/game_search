@@ -50,10 +50,12 @@ function Home({ games, count }: HomeProps) {
 
     return (
         <div className={styles.root}>
-            <GameSort
-                activeSortMode={ordering}
-                onSortModeChange={fetchInitialGames}
-            />
+            <div className={styles.sort}>
+                <GameSort
+                    activeSortMode={ordering}
+                    onSortModeChange={fetchInitialGames}
+                />
+            </div>
             {gamesLoading && (
                 <div className={styles.spinner}>
                     <Spinner />
@@ -62,9 +64,7 @@ function Home({ games, count }: HomeProps) {
             <div className={styles.content} style={{ display: gamesLoading ? 'none' : 'flex' }}>
                 <div className={styles.cards}>
                     {results.map((game) => (
-                        <div key={game.name} className={styles.card}>
-                            <GameCard game={game} />
-                        </div>
+                        <GameCard key={game.name} game={game} />
                     ))}
                 </div>
                 <PaginatorButton
@@ -83,7 +83,7 @@ interface HomeProps {
 }
 
 export async function getServerSideProps({ query }: NextPageContext): Promise<{ props: HomeProps }> {
-    const { results, count } = await fetchData(
+    const data = await fetchData(
         API_PATH.GAMES,
         {
             page: 1,
@@ -94,8 +94,8 @@ export async function getServerSideProps({ query }: NextPageContext): Promise<{ 
 
     return {
         props: {
-            count,
-            games: results,
+            count: data?.count || 0,
+            games: data?.results || [],
         },
     };
 }

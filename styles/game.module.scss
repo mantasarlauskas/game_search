@@ -12,7 +12,6 @@
     display: flex;
     justify-content: space-between;
 
-
     @media (max-width: breakpoints.$s) {
         flex-direction: column;
     }
@@ -33,9 +32,9 @@
 }
 
 .releaseDate {
+    @extend %font-size-xsmall;
     flex: 0 0 auto;
     display: inline-block;
-    @extend %font-size-xsmall;
     color: colors.$black;
     background-color: colors.$white;
     padding: spacing.$xxsmall spacing.$small;
@@ -68,6 +67,8 @@
 }
 
 .totalRating {
+    @extend %font-size-xlarge;
+    @extend %font-bold;
     display: inline-block;
     border: 1px solid colors.$white;
     background-color: colors.$white;
@@ -75,8 +76,6 @@
     padding: spacing.$small;
     border-radius: 4px;
     margin: spacing.$medium 0;
-    @extend %font-size-xlarge;
-    @extend %font-bold;
 }
 
 .ratings {
@@ -96,9 +95,9 @@
 }
 
 .about {
-    margin: spacing.$medium 0;
     @extend %font-size-xlarge;
     @extend %font-bold;
+    margin: spacing.$medium 0;
 }
 
 .metaInfo {

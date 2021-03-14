@@ -3,16 +3,16 @@
 @use 'fonts';
 
 .root {
+    @extend %font-size-medium;
     margin-top: spacing.$large;
     width: 200px;
     height: 48px;
     color: colors.$white;
-    background-color: hsla(0, 0%, 100%, .1);
+    background-color: hsla(0, 0%, 100%, 0.1);
     border-radius: 4px;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    @extend %font-size-medium;
 }

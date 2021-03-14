@@ -1,33 +1,13 @@
 @use 'spacing';
-@use 'colors';
 @use 'breakpoints';
 
 .root {
-    width: 100%;
-}
-
-.sort {
-    margin-bottom: spacing.$medium;
-}
-
-.cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     grid-gap: spacing.$large;
+    width: 100%;
 
     @media (max-width: breakpoints.$s) {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     }
-}
-
-.content {
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.spinner {
-    margin-top: spacing.$xlarge;
-    display: flex;
-    justify-content: center;
 }

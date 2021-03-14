@@ -14,10 +14,10 @@
 }
 
 .score {
+    @extend %font-bold;
     color: colors.$white;
     border: 1px solid colors.$white;
     display: inline-block;
     border-radius: 6px;
     padding: spacing.$xsmall;
-    @extend %font-bold;
 }

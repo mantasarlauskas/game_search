@@ -1,8 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import debounce from 'debounce';
 import Link from 'next/link';
 import styles from 'styles/game-card.module.scss';
 import { Game } from 'utils/types';
 import InfoList from 'components/InfoList';
+import { Route } from 'utils/routes';
 
 function GameCard({
     game: {
@@ -18,6 +20,18 @@ function GameCard({
     const imageRef = useRef<HTMLImageElement>(null);
     const [mediaHeight, setMediaHeight] = useState('auto');
 
+    useEffect(() => {
+        const handleResize = debounce(() => {
+            const height = imageRef.current?.height;
+            setMediaHeight(height ? `${height}px` : 'auto');
+        }, 10);
+
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     function onMouseEnter() {
         setShowVideo(true);
         const height = imageRef.current?.height;
@@ -29,13 +43,13 @@ function GameCard({
     }
 
     return (
-        <Link href={`/games/${slug}`}>
+        <Link href={`${Route.GAMES}/${slug}`}>
             <div
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
                 className={styles.root}
             >
-                <div style={{ height: mediaHeight }}>
+                <div className={styles.media} style={{ height: mediaHeight }}>
                     {showVideo && clip?.clip ? (
                         <video
                             className={styles.video}
