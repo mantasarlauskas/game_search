@@ -6,9 +6,15 @@ import styles from 'styles/menu.module.scss';
 import { Route } from 'utils/routes';
 import Link from 'next/link';
 import MenuIcon from 'assets/menu.svg';
+import { useRouter } from 'next/router';
 
 function Menu({ genres }: MenuProps) {
     const [fullscreenVisible, setFullscreenVisible] = useState(false);
+    const { asPath } = useRouter();
+
+    useEffect(() => {
+        setFullscreenVisible(false);
+    }, [asPath]);
 
     useEffect(() => {
         document.body.style.overflow = fullscreenVisible ? 'hidden' : 'unset';
@@ -29,7 +35,6 @@ function Menu({ genres }: MenuProps) {
                 <MenuItemList
                     title="Genres"
                     items={genres}
-                    onItemClick={() => setFullscreenVisible(false)}
                 />
             </div>,
             document.body,

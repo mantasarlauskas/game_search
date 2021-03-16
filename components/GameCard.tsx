@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, MouseEvent } from 'react';
 import debounce from 'debounce';
 import Link from 'next/link';
 import styles from 'styles/game-card.module.scss';
 import { Game } from 'utils/types';
 import InfoList from 'components/InfoList';
 import { Route } from 'utils/routes';
+import DivButton from 'components/DivButton';
 
 function GameCard({
     game: {
@@ -32,7 +33,7 @@ function GameCard({
         };
     }, []);
 
-    function onMouseEnter() {
+    function startVideo() {
         setShowVideo(true);
         const height = imageRef.current?.height;
         setMediaHeight(height ? `${height}px` : 'auto');
@@ -42,14 +43,28 @@ function GameCard({
         setShowVideo(false);
     }
 
+    function onMediaClick(e: MouseEvent) {
+        if (clip?.clip) {
+            e.stopPropagation();
+
+            if (!showVideo) {
+                startVideo();
+            }
+        }
+    }
+
     return (
         <Link href={`${Route.GAMES}/${slug}`}>
             <div
-                onMouseEnter={onMouseEnter}
+                onMouseEnter={startVideo}
                 onMouseLeave={onMouseLeave}
                 className={styles.root}
             >
-                <div className={styles.media} style={{ height: mediaHeight }}>
+                <DivButton
+                    className={styles.media}
+                    style={{ height: mediaHeight }}
+                    onClick={onMediaClick}
+                >
                     {showVideo && clip?.clip ? (
                         <video
                             className={styles.video}
@@ -68,7 +83,7 @@ function GameCard({
                             alt={name}
                         />
                     )}
-                </div>
+                </DivButton>
                 <div className={styles.content}>
                     <div className={styles.header}>
                         <div className={styles.title}>

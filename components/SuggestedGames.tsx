@@ -33,9 +33,7 @@ function SuggestedGames({ initialGames, count, name, slug }: SuggestedGamesProps
             </div>
             <div className={styles.cards}>
                 {results.map((game) => (
-                    <div key={game.slug} className={styles.card}>
-                        <GameCard game={game} />
-                    </div>
+                    <GameCard key={game.slug} game={game} />
                 ))}
             </div>
             <div className={styles.button}>

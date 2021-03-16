@@ -79,9 +79,7 @@ function GamePage({ game, suggestedGames, suggestedGameCount }: GamePageProps) {
                     <div className={styles.about}>
                         About
                     </div>
-                    <div className={styles.description}>
-                        <GameDescription description={description} />
-                    </div>
+                    <GameDescription slug={slug} description={description} />
                 </>
             )}
             <div className={styles.metaInfo}>

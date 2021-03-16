@@ -6,7 +6,7 @@ import ChevronRight from 'assets/chevron-right.svg';
 import { Route } from 'utils/routes';
 import DivButton from 'components/DivButton';
 
-function MenuItemList({ items, title, visibleCount = 5, onItemClick }: MenuItemListProps) {
+function MenuItemList({ items, title, visibleCount = 5 }: MenuItemListProps) {
     const [expanded, setExpanded] = useState(false);
     const visibleItems = items.length > visibleCount && !expanded ? items.slice(0, visibleCount) : items;
     return (
@@ -18,12 +18,12 @@ function MenuItemList({ items, title, visibleCount = 5, onItemClick }: MenuItemL
             </Link>
             {visibleItems.map(({ name, slug, image_background }) => (
                 <Link key={slug} href={`${Route.GENRES}/${slug}`}>
-                    <DivButton onClick={onItemClick} className={styles.item}>
+                    <div className={styles.item}>
                         <img className={styles.background} src={image_background} alt={name} />
                         <div className={styles.name}>
                             {name}
                         </div>
-                    </DivButton>
+                    </div>
                 </Link>
             ))}
             <DivButton
@@ -51,7 +51,6 @@ interface MenuItemListProps {
     title: string;
     items: MenuItem[];
     visibleCount?: number;
-    onItemClick?: () => void;
 }
 
 export default MenuItemList;

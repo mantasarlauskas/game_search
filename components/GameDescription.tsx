@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from 'styles/game-description.module.scss';
 
-function GameDescription({ description, letterCount = 500 }: GameDescriptionProps) {
+function GameDescription({ description, slug, letterCount = 500 }: GameDescriptionProps) {
     const [expanded, setExpanded] = useState(false);
     const isOverLimit = description.length > letterCount;
+
+    useEffect(() => {
+        setExpanded(false);
+    }, [slug]);
+
     return (
         <div className={styles.root}>
             <div dangerouslySetInnerHTML={{ __html: isOverLimit && !expanded
@@ -25,6 +30,7 @@ function GameDescription({ description, letterCount = 500 }: GameDescriptionProp
 interface GameDescriptionProps {
     description: string;
     letterCount?: number
+    slug: string;
 }
 
 export default GameDescription;
