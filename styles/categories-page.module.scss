@@ -1,5 +1,4 @@
 @use 'spacing';
-@use 'fonts';
 @use 'breakpoints';
 
 .root {
@@ -7,22 +6,17 @@
     flex-direction: column;
 }
 
-.count {
-    @extend %font-bold;
-    @extend %font-size-large;
-    margin-bottom: spacing.$medium;
+.title {
+    margin-bottom: spacing.$large;
 }
 
-.cards {
+.categories {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     grid-gap: spacing.$large;
+    width: 100%;
 
     @media (max-width: breakpoints.$s) {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     }
-}
-
-.button {
-    margin: 0 auto;
 }

@@ -1,20 +1,10 @@
-import React from 'react';
 import { useAppContext } from 'pages/_app';
-import GenreCard from 'components/GenreCard';
-import styles from 'styles/genres.module.scss';
+import CategoriesPage from 'components/CategoriesPage';
+import { PageTitle } from 'utils/page';
 
-function Genres() {
+function GenresPage() {
     const { genres } = useAppContext();
-    return (
-        <div className={styles.root}>
-            {genres.map((genre) => (
-                <GenreCard
-                    key={genre.slug}
-                    genre={genre}
-                />
-            ))}
-        </div>
-    );
+    return <CategoriesPage title={PageTitle.GENRES} categories={genres} />;
 }
 
-export default Genres;
+export default GenresPage;

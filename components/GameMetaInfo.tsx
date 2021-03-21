@@ -1,9 +1,9 @@
-import React from 'react';
 import Link from 'next/link';
 import GameMetaBlock from 'components/GameMetaBlock';
 import styles from 'styles/game-meta-info.module.scss';
 import InfoList from 'components/InfoList';
 import { Game } from 'utils/types';
+import { Route } from 'utils/routes';
 
 function GameMetaInfo({
     game: {
@@ -22,80 +22,82 @@ function GameMetaInfo({
         <div className={styles.root}>
             {!!platforms?.length && (
                 <div className={styles.item}>
-                    <GameMetaBlock
-                        title="Platforms"
-                        content={<InfoList list={platforms.map(({ platform }) => platform)} />}
-                    />
+                    <GameMetaBlock title="Platforms">
+                        <InfoList
+                            list={platforms.map(({ platform }) => ({
+                                ...platform,
+                                url: `${Route.PLATFORMS}/${platform.id}`,
+                            }))}
+                        />
+                    </GameMetaBlock>
                 </div>
             )}
             {typeof metacritic === 'number' && (
                 <div className={styles.item}>
-                    <GameMetaBlock
-                        title="Metascore"
-                        content={(
-                            <div className={styles.score}>
-                                {metacritic}
-                            </div>
-                        )}
-                    />
+                    <GameMetaBlock title="Metascore">
+                        <div className={styles.score}>
+                            {metacritic}
+                        </div>
+                    </GameMetaBlock>
                 </div>
             )}
             {genres?.length > 0 && (
                 <div className={styles.item}>
-                    <GameMetaBlock
-                        title="Genres"
-                        content={<InfoList list={genres} />}
-                    />
+                    <GameMetaBlock title="Genres">
+                        <InfoList
+                            list={genres.map((genre) => ({
+                                ...genre,
+                                url: `${Route.GENRES}/${genre.id}`,
+                            }))}
+                        />
+                    </GameMetaBlock>
                 </div>
             )}
             {released && (
                 <div className={styles.item}>
-                    <GameMetaBlock
-                        title="Release date"
-                        content={released}
-                    />
+                    <GameMetaBlock title="Release date">
+                        {released}
+                    </GameMetaBlock>
                 </div>
             )}
             {developers?.length > 0 && (
                 <div className={styles.item}>
-                    <GameMetaBlock
-                        title="Developers"
-                        content={<InfoList list={developers} />}
-                    />
+                    <GameMetaBlock title="Developers">
+                        <InfoList list={developers} />
+                    </GameMetaBlock>
                 </div>
             )}
             {publishers?.length > 0 && (
                 <div className={styles.item}>
-                    <GameMetaBlock
-                        title="Publishers"
-                        content={<InfoList list={publishers} />}
-                    />
+                    <GameMetaBlock title="Publishers">
+                        <InfoList list={publishers} />
+                    </GameMetaBlock>
                 </div>
             )}
             {tags?.length > 0 && (
                 <div className={styles.item}>
-                    <GameMetaBlock
-                        title="Tags"
-                        content={<InfoList list={tags} />}
-                    />
+                    <GameMetaBlock title="Tags">
+                        <InfoList
+                            list={tags.map((tag) => ({
+                                ...tag,
+                                url: `${Route.TAGS}/${tag.id}`,
+                            }))}
+                        />
+                    </GameMetaBlock>
                 </div>
             )}
             <div className={styles.item}>
-                <GameMetaBlock
-                    title="Age rating"
-                    content={esrb_rating?.name || 'Not rated'}
-                />
+                <GameMetaBlock title="Age rating">
+                    {esrb_rating?.name || 'Not rated'}
+                </GameMetaBlock>
             </div>
             {website && (
                 <div className={styles.item}>
-                    <GameMetaBlock
-                        title="Website"
-                        content={(
-                            <Link href={website} passHref>
-                                {website}
-                            </Link>
-                        )}
-                    />
+                    <GameMetaBlock title="Website">
+                        <Link href={website} passHref>
+                            {website}
+                        </Link>
+                    </GameMetaBlock>
                 </div>
             )}
         </div>

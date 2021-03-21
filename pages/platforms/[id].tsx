@@ -5,28 +5,28 @@ import { getCategoriesServerSideProps, getCategoryTitle } from 'utils/categories
 
 const pageSize = 20;
 
-function GenrePage({ games, count, id }: GenrePageProps) {
-    const { genres } = useAppContext();
-    const title = getCategoryTitle(genres, id);
+function PlatformPage({ games, count, id }: PlatformPageProps) {
+    const { platforms } = useAppContext();
+    const title = getCategoryTitle(platforms, id);
     return (
         <CategoryPage
             games={games}
             count={count}
-            query={{ genres: id }}
+            query={{ platforms: id }}
             pageSize={pageSize}
-            title={`${title} Games`}
+            title={`Games for ${title}`}
         />
     );
 }
 
-interface GenrePageProps {
+interface PlatformPageProps {
     id: string;
     games: Game[];
     count: number;
 }
 
 export async function getServerSideProps({ params: { id } }: NextPageContextWithID) {
-    return getCategoriesServerSideProps(id, pageSize, { genres: id });
+    return getCategoriesServerSideProps(id, pageSize, { platforms: id });
 }
 
-export default GenrePage;
+export default PlatformPage;

@@ -1,20 +1,19 @@
-import React from 'react';
 import Link from 'next/link';
-import { Genre } from 'utils/types';
-import styles from 'styles/genre-card.module.scss';
+import { Category } from 'utils/types';
+import styles from 'styles/category-card.module.scss';
 import { Route } from 'utils/routes';
 
-function GenreCard({
-    genre: { image_background, name, slug, games_count, games },
+function CategoryCard({
+    category: { image_background, name, id, games_count, games },
     visibleGameCount = 3,
-}: GenreCardProps) {
+}: CategoryCardProps) {
     const backgroundImage = `linear-gradient(rgba(32, 32, 32, 0.5), rgb(32, 32, 32) 70%), url(${image_background})`;
     return (
         <div
             className={styles.root}
             style={{ backgroundImage }}
         >
-            <Link href={`${Route.GENRES}/${slug}`}>
+            <Link href={`${Route.GENRES}/${id}`}>
                 <div className={styles.name}>
                     {name}
                 </div>
@@ -38,9 +37,9 @@ function GenreCard({
     );
 }
 
-interface GenreCardProps {
-    genre: Genre;
+interface CategoryCardProps {
+    category: Category;
     visibleGameCount?: number;
 }
 
-export default GenreCard;
+export default CategoryCard;

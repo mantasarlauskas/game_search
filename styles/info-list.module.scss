@@ -1,0 +1,10 @@
+@use 'colors';
+
+.item {
+    cursor: pointer;
+    transition: color 0.2s;
+
+    &:hover {
+        color: hsla(0, 0%, 100%, 0.4);
+    }
+}

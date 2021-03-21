@@ -1,11 +1,9 @@
-import React from 'react';
 import { API_PATH, fetchData } from 'utils/fetch';
 import styles from 'styles/game.module.scss';
 import useBackgroundImage from 'hooks/useBackgroundImage';
 import { roundNumber } from 'utils/number';
 import GameDescription from 'components/GameDescription';
 import GameMetaInfo from 'components/GameMetaInfo';
-import InfoList from 'components/InfoList';
 import { Game, NextPageContextWithID } from 'utils/types';
 import SuggestedGames, { suggestedGamesPageSize } from 'components/SuggestedGames';
 import { Route } from 'utils/routes';
@@ -15,7 +13,6 @@ function GamePage({ game, suggestedGames, suggestedGameCount }: GamePageProps) {
         background_image,
         released,
         name,
-        platforms,
         rating,
         ratings,
         description,
@@ -26,19 +23,11 @@ function GamePage({ game, suggestedGames, suggestedGameCount }: GamePageProps) {
     useBackgroundImage(background_image);
     return (
         <div className={styles.root}>
-            <div className={styles.meta}>
-                {released && (
-                    <div className={styles.releaseDate}>
-                        {released}
-                    </div>
-                )}
-                {!!platforms?.length && (
-                    <div className={styles.platforms}>
-                        {'Platforms: '}
-                        <InfoList list={platforms.map(({ platform }) => platform)} />
-                    </div>
-                )}
-            </div>
+            {released && (
+                <div className={styles.releaseDate}>
+                    {released}
+                </div>
+            )}
             <h1 className={styles.title}>{name}</h1>
             <div className={styles.main}>
                 <div className={styles.info}>

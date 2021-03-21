@@ -48,25 +48,6 @@
     margin-bottom: spacing.$xsmall;
 }
 
-.meta {
-    display: flex;
-    align-items: center;
-    margin-bottom: spacing.$medium;
-
-    @media (max-width: breakpoints.$s) {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
-
-.platforms {
-    @extend %font-size-small;
-
-    @media (max-width: breakpoints.$s) {
-        margin-top: spacing.$medium;
-    }
-}
-
 .totalRating {
     @extend %font-size-xlarge;
     @extend %font-bold;

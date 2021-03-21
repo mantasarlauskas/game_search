@@ -1,14 +1,21 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import Link from 'next/link';
 import { Info } from 'utils/types';
+import styles from 'styles/info-list.module.scss';
 
 function InfoList({ list }: InfoListProps) {
     return (
         <>
-            {list.map(({ name, slug }, idx) => (
-                <Fragment key={slug}>
-                    {idx < list.length - 1 ? `${name}, ` : name}
-                </Fragment>
-            ))}
+            {list.map(({ name, id, url }, idx) => {
+                const content = idx < list.length - 1 ? `${name}, ` : name;
+                return !url ? content : (
+                    <Link href={url}>
+                        <span className={styles.item} key={id}>
+                            {content}
+                        </span>
+                    </Link>
+                );
+            })}
         </>
     );
 }

@@ -2,5 +2,7 @@ export enum Route {
     HOME = '/',
     GAMES = '/games',
     GENRES = '/genres',
-    NOT_FOUND = '/not-found'
+    PLATFORMS = '/platforms',
+    NOT_FOUND = '/not-found',
+    TAGS = '/tags'
 }

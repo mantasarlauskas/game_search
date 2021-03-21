@@ -2,7 +2,9 @@ import { SortMode } from 'components/GameSort';
 
 export enum API_PATH {
     GAMES = 'games',
-    GENRES = 'genres'
+    GENRES = 'genres',
+    PLATFORMS = 'platforms',
+    TAGS = 'tags'
 }
 
 export interface QueryParams {
@@ -11,6 +13,8 @@ export interface QueryParams {
     search?: string;
     ordering?: SortMode;
     genres?: string;
+    platforms?: string;
+    tags?: string;
 }
 
 export function fetchData(path: string, query?: QueryParams) {

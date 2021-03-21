@@ -1,4 +1,3 @@
-import React from 'react';
 import { Game } from 'utils/types';
 import styles from 'styles/suggested-games.module.scss';
 import GameCard from 'components/GameCard';

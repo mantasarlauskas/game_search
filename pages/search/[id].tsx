@@ -1,4 +1,3 @@
-import React from 'react';
 import { Game, NextPageContextWithID } from 'utils/types';
 import { API_PATH, fetchData } from 'utils/fetch';
 import styles from 'styles/search-page.module.scss';

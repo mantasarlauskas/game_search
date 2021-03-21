@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Genre } from 'utils/types';
+import { Category } from 'utils/types';
 import MenuItemList from 'components/MenuItemList';
 import styles from 'styles/menu.module.scss';
 import { Route } from 'utils/routes';
 import Link from 'next/link';
 import MenuIcon from 'assets/menu.svg';
 import { useRouter } from 'next/router';
+import { PageTitle } from 'utils/page';
 
-function Menu({ genres }: MenuProps) {
+function Menu({ genres, platforms }: MenuProps) {
     const [fullscreenVisible, setFullscreenVisible] = useState(false);
     const { asPath } = useRouter();
 
@@ -20,6 +21,31 @@ function Menu({ genres }: MenuProps) {
         document.body.style.overflow = fullscreenVisible ? 'hidden' : 'unset';
     }, [fullscreenVisible]);
 
+    const menu = (
+        <>
+            <Link href={Route.HOME}>
+                <div className={styles.item}>
+                    Home
+                </div>
+            </Link>
+            <div className={styles.list}>
+                <MenuItemList
+                    title={PageTitle.GENRES}
+                    items={genres}
+                    route={Route.GENRES}
+                />
+            </div>
+            <div className={styles.list}>
+                <MenuItemList
+                    title={PageTitle.PLATFORMS}
+                    items={platforms}
+                    expandedCount={8}
+                    route={Route.PLATFORMS}
+                />
+            </div>
+        </>
+    );
+
     if (fullscreenVisible) {
         return createPortal(
             <div className={styles.portal}>
@@ -27,15 +53,7 @@ function Menu({ genres }: MenuProps) {
                     onClick={() => setFullscreenVisible(false)}
                     className={styles.icon}
                 />
-                <Link href={Route.HOME}>
-                    <div className={styles.item}>
-                        Home
-                    </div>
-                </Link>
-                <MenuItemList
-                    title="Genres"
-                    items={genres}
-                />
+                {menu}
             </div>,
             document.body,
         );
@@ -48,22 +66,15 @@ function Menu({ genres }: MenuProps) {
                 className={styles.icon}
             />
             <div className={styles.content}>
-                <Link href={Route.HOME}>
-                    <div className={styles.item}>
-                        Home
-                    </div>
-                </Link>
-                <MenuItemList
-                    title="Genres"
-                    items={genres}
-                />
+                {menu}
             </div>
         </div>
     );
 }
 
 interface MenuProps {
-    genres: Genre[],
+    genres: Category[],
+    platforms: Category[],
 }
 
 export default Menu;

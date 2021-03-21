@@ -14,7 +14,7 @@ import { getOrdering } from 'utils/ordering';
 
 const pageSize = 20;
 
-function Home({ games, count }: HomeProps) {
+function HomePage({ games, count }: HomePageProps) {
     const router = useRouter();
     const [fetch, gamesLoading] = useFetch<{ results: Game[] }>();
     const [initialGames, setInitialGames] = useState(games);
@@ -77,12 +77,12 @@ function Home({ games, count }: HomeProps) {
     );
 }
 
-interface HomeProps {
+interface HomePageProps {
     games: Game[];
     count: number;
 }
 
-export async function getServerSideProps({ query }: NextPageContext): Promise<{ props: HomeProps }> {
+export async function getServerSideProps({ query }: NextPageContext): Promise<{ props: HomePageProps }> {
     const data = await fetchData(
         API_PATH.GAMES,
         {
@@ -100,4 +100,4 @@ export async function getServerSideProps({ query }: NextPageContext): Promise<{ 
     };
 }
 
-export default Home;
+export default HomePage;

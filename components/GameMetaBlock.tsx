@@ -1,20 +1,20 @@
 import React, { ReactNode } from 'react';
 import styles from 'styles/game-meta-block.module.scss';
 
-function GameMetaBlock({ title, content }: GameMetaBlockProps) {
+function GameMetaBlock({ title, children }: GameMetaBlockProps) {
     return (
         <div className={styles.root}>
             <div className={styles.title}>
                 {title}
             </div>
-            {content}
+            {children}
         </div>
     );
 }
 
 interface GameMetaBlockProps {
     title: string;
-    content: ReactNode;
+    children: ReactNode;
 }
 
 export default GameMetaBlock;

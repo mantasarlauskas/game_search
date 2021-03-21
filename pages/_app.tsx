@@ -4,28 +4,37 @@ import Head from 'next/head';
 import SearchBar from 'components/SearchBar';
 import styles from 'styles/app.module.scss';
 import { API_PATH, fetchData } from 'utils/fetch';
-import { Genre, PageAppProps } from 'utils/types';
+import { Category } from 'utils/types';
 import Menu from 'components/Menu';
 import useScrollToTop from 'hooks/useScrollToTop';
+import { AppProps } from 'next/app';
 
-const AppContext = createContext<{ genres: Genre[] }>({ genres: [] });
+interface AppContextTypes {
+    genres: Category[];
+    platforms: Category[];
+}
 
-function App({ Component, pageProps, genres }: PageAppProps) {
+const AppContext = createContext<AppContextTypes>({ genres: [], platforms: [] });
+
+function App({ Component, pageProps, genres, platforms }: PageAppProps) {
     useScrollToTop();
     return (
         <div className={styles.root}>
             <Head>
                 <title>Game search</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
             </Head>
             <div className={styles.menu}>
-                <Menu genres={genres} />
+                <Menu
+                    genres={genres}
+                    platforms={platforms}
+                />
             </div>
             <div className={styles.content}>
                 <div className={styles.search}>
                     <SearchBar />
                 </div>
-                <AppContext.Provider value={{ genres }}>
+                <AppContext.Provider value={{ genres, platforms }}>
                     <Component {...pageProps} />
                 </AppContext.Provider>
             </div>
@@ -33,14 +42,24 @@ function App({ Component, pageProps, genres }: PageAppProps) {
     );
 }
 
+interface PageAppProps extends AppProps {
+    genres: Category[];
+    platforms: Category[];
+}
+
 export function useAppContext() {
     return useContext(AppContext);
 }
 
 App.getInitialProps = async () => {
-    const response = await fetchData(API_PATH.GENRES);
+    const [genres, platforms] = await Promise.all([
+        await fetchData(API_PATH.GENRES),
+        await fetchData(API_PATH.PLATFORMS),
+    ]);
+
     return {
-        genres: response?.results || [],
+        genres: genres?.results || [],
+        platforms: platforms?.results || [],
     };
 };
 
