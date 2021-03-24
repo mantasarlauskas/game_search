@@ -49,7 +49,7 @@ function MenuItemList({ items, title, visibleCount = 5, expandedCount, route }: 
 
 interface MenuItem {
     name: string;
-    id: string;
+    id: number;
     image_background: string;
 }
 
