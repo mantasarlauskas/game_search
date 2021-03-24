@@ -9,6 +9,7 @@ import Spinner from 'components/Spinner';
 import SearchIcon from 'assets/search.svg';
 import { SearchResult } from 'utils/types';
 import { Route } from 'utils/routes';
+import { cropImageUrl } from 'utils/image';
 
 function SearchBar() {
     const router = useRouter();
@@ -77,7 +78,7 @@ function SearchBar() {
                             <div className={styles.result}>
                                 <div
                                     className={styles.image}
-                                    style={{ backgroundImage: `url(${background_image})` }}
+                                    style={{ backgroundImage: `url(${cropImageUrl(background_image)})` }}
                                 />
                                 <div>
                                     <div className={styles.name}>{name}</div>

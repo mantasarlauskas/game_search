@@ -2,18 +2,21 @@ import Link from 'next/link';
 import { Category } from 'utils/types';
 import styles from 'styles/category-card.module.scss';
 import { Route } from 'utils/routes';
+import { cropImageUrl } from 'utils/image';
 
 function CategoryCard({
+    route,
     category: { image_background, name, id, games_count, games },
     visibleGameCount = 3,
 }: CategoryCardProps) {
-    const backgroundImage = `linear-gradient(rgba(32, 32, 32, 0.5), rgb(32, 32, 32) 70%), url(${image_background})`;
+    const imageUrl = cropImageUrl(image_background);
+    const backgroundImage = `linear-gradient(rgba(32, 32, 32, 0.5), rgb(32, 32, 32) 70%), url(${imageUrl})`;
     return (
         <div
             className={styles.root}
             style={{ backgroundImage }}
         >
-            <Link href={`${Route.GENRES}/${id}`}>
+            <Link href={`${route}/${id}`}>
                 <div className={styles.name}>
                     {name}
                 </div>
@@ -40,6 +43,7 @@ function CategoryCard({
 interface CategoryCardProps {
     category: Category;
     visibleGameCount?: number;
+    route: Route;
 }
 
 export default CategoryCard;

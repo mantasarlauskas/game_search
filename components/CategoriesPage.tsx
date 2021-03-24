@@ -1,8 +1,9 @@
 import CategoryCard from 'components/CategoryCard';
 import styles from 'styles/categories-page.module.scss';
 import { Category } from 'utils/types';
+import { Route } from 'utils/routes';
 
-function CategoriesPage({ categories, title }: CategoryPageProps) {
+function CategoriesPage({ categories, title, route }: CategoryPageProps) {
     return (
         <div className={styles.root}>
             <h1 className={styles.title}>{title}</h1>
@@ -11,6 +12,7 @@ function CategoriesPage({ categories, title }: CategoryPageProps) {
                     <CategoryCard
                         key={category.slug}
                         category={category}
+                        route={route}
                     />
                 ))}
             </div>
@@ -21,6 +23,7 @@ function CategoriesPage({ categories, title }: CategoryPageProps) {
 interface CategoryPageProps {
     categories: Category[];
     title: string;
+    route: Route;
 }
 
 export default CategoriesPage;

@@ -5,6 +5,7 @@ import styles from 'styles/menu-item-list.module.scss';
 import ChevronRight from 'assets/chevron-right.svg';
 import { Route } from 'utils/routes';
 import DivButton from 'components/DivButton';
+import { cropImageUrl } from 'utils/image';
 
 function MenuItemList({ items, title, visibleCount = 5, expandedCount, route }: MenuItemListProps) {
     const [expanded, setExpanded] = useState(false);
@@ -20,7 +21,11 @@ function MenuItemList({ items, title, visibleCount = 5, expandedCount, route }: 
                 .map(({ name, id, image_background }) => (
                     <Link key={id} href={`${route}/${id}`}>
                         <div className={styles.item}>
-                            <img className={styles.background} src={image_background} alt={name} />
+                            <img
+                                className={styles.background}
+                                src={cropImageUrl(image_background)}
+                                alt={name}
+                            />
                             <div className={styles.name}>
                                 {name}
                             </div>

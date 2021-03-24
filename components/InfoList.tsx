@@ -9,8 +9,8 @@ function InfoList({ list }: InfoListProps) {
             {list.map(({ name, id, url }, idx) => {
                 const content = idx < list.length - 1 ? `${name}, ` : name;
                 return !url ? content : (
-                    <Link href={url}>
-                        <span className={styles.item} key={id}>
+                    <Link key={id} href={url}>
+                        <span className={styles.item}>
                             {content}
                         </span>
                     </Link>

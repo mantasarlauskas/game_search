@@ -6,6 +6,7 @@ import { Game } from 'utils/types';
 import InfoList from 'components/InfoList';
 import { Route } from 'utils/routes';
 import DivButton from 'components/DivButton';
+import { cropImageUrl } from 'utils/image';
 
 function GameCard({
     game: {
@@ -17,6 +18,7 @@ function GameCard({
         platforms,
     },
 }: GameCardProps) {
+    const imageUrl = cropImageUrl(background_image);
     const [showVideo, setShowVideo] = useState(false);
     const imageRef = useRef<HTMLImageElement>(null);
     const [mediaHeight, setMediaHeight] = useState('auto');
@@ -75,11 +77,11 @@ function GameCard({
                             autoPlay
                             muted
                         />
-                    ) : background_image && (
+                    ) : imageUrl && (
                         <img
                             ref={imageRef}
                             className={styles.image}
-                            src={background_image}
+                            src={imageUrl}
                             alt={name}
                         />
                     )}
