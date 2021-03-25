@@ -4,7 +4,10 @@ export enum API_PATH {
     GAMES = 'games',
     GENRES = 'genres',
     PLATFORMS = 'platforms',
-    TAGS = 'tags'
+    TAGS = 'tags',
+    DEVELOPERS = 'developers',
+    PUBLISHERS = 'publishers',
+    STORES = 'stores',
 }
 
 export interface QueryParams {
@@ -15,6 +18,9 @@ export interface QueryParams {
     genres?: string;
     platforms?: string;
     tags?: string;
+    developers?: string;
+    publishers?: string;
+    stores?: string;
 }
 
 export function fetchData(path: string, query?: QueryParams) {
@@ -26,7 +32,7 @@ export function fetchData(path: string, query?: QueryParams) {
         }
 
         return res.json();
-    });
+    }).catch(() => null);
 }
 
 function getQueryParams(query?: QueryParams) {

@@ -25,7 +25,22 @@ function Menu({ genres, platforms }: MenuProps) {
         <>
             <Link href={Route.HOME}>
                 <div className={styles.item}>
-                    Home
+                    {PageTitle.HOME}
+                </div>
+            </Link>
+            <Link href={Route.DEVELOPERS}>
+                <div className={styles.item}>
+                    {PageTitle.DEVELOPERS}
+                </div>
+            </Link>
+            <Link href={Route.PUBLISHERS}>
+                <div className={styles.item}>
+                    {PageTitle.PUBLISHERS}
+                </div>
+            </Link>
+            <Link href={Route.STORES}>
+                <div className={styles.item}>
+                    {PageTitle.STORES}
                 </div>
             </Link>
             <div className={styles.list}>

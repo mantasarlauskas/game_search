@@ -5,6 +5,8 @@
 .root {
     @extend %font-size-medium;
     margin-top: spacing.$large;
+    margin-left: auto;
+    margin-right: auto;
     width: 200px;
     height: 48px;
     color: colors.$white;

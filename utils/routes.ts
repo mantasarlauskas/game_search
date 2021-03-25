@@ -4,5 +4,8 @@ export enum Route {
     GENRES = '/genres',
     PLATFORMS = '/platforms',
     NOT_FOUND = '/not-found',
-    TAGS = '/tags'
+    TAGS = '/tags',
+    DEVELOPERS = '/developers',
+    PUBLISHERS = '/publishers',
+    STORES = '/stores',
 }

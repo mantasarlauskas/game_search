@@ -30,3 +30,37 @@ export async function getCategoriesServerSideProps(id: string, pageSize: number,
         },
     };
 }
+
+export async function getCategoryAndGamesServerSideProps(
+    path: API_PATH,
+    id: string,
+    pageSize: number,
+    query: QueryParams,
+) {
+    const [data, category] = await Promise.all([
+        fetchData(API_PATH.GAMES, {
+            page: 1,
+            page_size: pageSize,
+            ...query,
+        }),
+        fetchData(`${path}/${id}`),
+    ]);
+
+    if (!data?.count || !data?.results || !category?.name) {
+        return {
+            redirect: {
+                destination: Route.NOT_FOUND,
+                permanent: false,
+            },
+        };
+    }
+
+    return {
+        props: {
+            id,
+            count: data.count,
+            games: data.results,
+            name: category.name,
+        },
+    };
+}

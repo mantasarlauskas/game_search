@@ -12,12 +12,22 @@
     @extend %font-bold;
     margin-bottom: spacing.$medium;
     cursor: pointer;
+    transition: color 0.2s;
+
+    &:hover {
+        color: hsla(0, 0%, 100%, 0.4);
+    }
 }
 
 .item {
     display: flex;
     align-items: center;
     cursor: pointer;
+    transition: color 0.2s;
+
+    &:hover {
+        color: hsla(0, 0%, 100%, 0.4);
+    }
 
     &:not(:last-of-type) {
         margin-bottom: spacing.$xsmall;
