@@ -2,8 +2,8 @@ import { ChangeEvent, useEffect, useRef, useState, KeyboardEvent } from 'react';
 import debounce from 'debounce';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import styles from 'styles/search-bar.module.scss';
-import { API_PATH, fetchData } from 'utils/fetch';
+import styles from 'components/SearchBar.module.scss';
+import { ApiPath, fetchData } from 'utils/fetch';
 import { roundNumber } from 'utils/number';
 import Spinner from 'components/Spinner';
 import SearchIcon from 'assets/search.svg';
@@ -34,7 +34,7 @@ function SearchBar() {
 
     const handleChange = debounce(async ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
         setLoading(true);
-        const data = await fetchData(API_PATH.GAMES, {
+        const data = await fetchData(ApiPath.GAMES, {
             search: value,
             page: 1,
             page_size: 5,

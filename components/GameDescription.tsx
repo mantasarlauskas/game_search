@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from 'styles/game-description.module.scss';
+import styles from 'components/GameDescription.module.scss';
 
 function GameDescription({ description, slug, letterCount = 500 }: GameDescriptionProps) {
     const [expanded, setExpanded] = useState(false);

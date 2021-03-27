@@ -1,4 +1,4 @@
-import { API_PATH, fetchData } from 'utils/fetch';
+import { ApiPath, fetchData } from 'utils/fetch';
 import styles from 'styles/game.module.scss';
 import useBackgroundImage from 'hooks/useBackgroundImage';
 import { roundNumber } from 'utils/number';
@@ -92,8 +92,8 @@ interface GamePageProps {
 
 export async function getServerSideProps({ params: { id } }: NextPageContextWithID) {
     const [game, suggestedGames] = await Promise.all([
-        fetchData(`${API_PATH.GAMES}/${id}`),
-        fetchData(`${API_PATH.GAMES}/${id}/suggested`, {
+        fetchData(`${ApiPath.GAMES}/${id}`),
+        fetchData(`${ApiPath.GAMES}/${id}/suggested`, {
             page: 1,
             page_size: suggestedGamesPageSize,
         }),

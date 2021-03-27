@@ -3,7 +3,7 @@ import 'styles/globals.scss';
 import Head from 'next/head';
 import SearchBar from 'components/SearchBar';
 import styles from 'styles/app.module.scss';
-import { API_PATH, fetchData } from 'utils/fetch';
+import { ApiPath, fetchData } from 'utils/fetch';
 import { Category } from 'utils/types';
 import Menu from 'components/Menu';
 import useScrollToTop from 'hooks/useScrollToTop';
@@ -12,11 +12,16 @@ import { AppProps } from 'next/app';
 interface AppContextTypes {
     genres: Category[];
     platforms: Category[];
+    stores: Category[];
 }
 
-const AppContext = createContext<AppContextTypes>({ genres: [], platforms: [] });
+const AppContext = createContext<AppContextTypes>({
+    genres: [],
+    platforms: [],
+    stores: [],
+});
 
-function App({ Component, pageProps, genres, platforms }: PageAppProps) {
+function App({ Component, pageProps, genres, platforms, stores }: AppProps & AppContextTypes) {
     useScrollToTop();
     return (
         <div className={styles.root}>
@@ -24,27 +29,19 @@ function App({ Component, pageProps, genres, platforms }: PageAppProps) {
                 <title>Game search</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
             </Head>
-            <div className={styles.menu}>
-                <Menu
-                    genres={genres}
-                    platforms={platforms}
-                />
-            </div>
-            <div className={styles.content}>
-                <div className={styles.search}>
-                    <SearchBar />
+            <AppContext.Provider value={{ genres, platforms, stores }}>
+                <div className={styles.menu}>
+                    <Menu />
                 </div>
-                <AppContext.Provider value={{ genres, platforms }}>
+                <div className={styles.content}>
+                    <div className={styles.search}>
+                        <SearchBar />
+                    </div>
                     <Component {...pageProps} />
-                </AppContext.Provider>
-            </div>
+                </div>
+            </AppContext.Provider>
         </div>
     );
-}
-
-interface PageAppProps extends AppProps {
-    genres: Category[];
-    platforms: Category[];
 }
 
 export function useAppContext() {
@@ -52,14 +49,16 @@ export function useAppContext() {
 }
 
 App.getInitialProps = async () => {
-    const [genres, platforms] = await Promise.all([
-        await fetchData(API_PATH.GENRES),
-        await fetchData(API_PATH.PLATFORMS),
+    const [genres, platforms, stores] = await Promise.all([
+        await fetchData(ApiPath.GENRES),
+        await fetchData(ApiPath.PLATFORMS),
+        await fetchData(ApiPath.STORES),
     ]);
 
     return {
         genres: genres?.results || [],
         platforms: platforms?.results || [],
+        stores: stores?.results || [],
     };
 };
 

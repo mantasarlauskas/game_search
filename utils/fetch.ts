@@ -1,6 +1,6 @@
 import { SortMode } from 'components/GameSort';
 
-export enum API_PATH {
+export enum ApiPath {
     GAMES = 'games',
     GENRES = 'genres',
     PLATFORMS = 'platforms',

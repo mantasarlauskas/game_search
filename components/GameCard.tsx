@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, MouseEvent } from 'react';
 import debounce from 'debounce';
 import Link from 'next/link';
-import styles from 'styles/game-card.module.scss';
+import styles from 'components/GameCard.module.scss';
 import { Game } from 'utils/types';
 import InfoList from 'components/InfoList';
 import { Route } from 'utils/routes';

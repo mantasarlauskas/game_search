@@ -1,14 +1,14 @@
 import useAppendableResults from 'hooks/useAppendableResults';
 import { Game } from 'utils/types';
-import { API_PATH, QueryParams } from 'utils/fetch';
-import styles from 'styles/category-page.module.scss';
+import { ApiPath, QueryParams } from 'utils/fetch';
+import styles from 'components/CategoryPage.module.scss';
 import GameCard from 'components/GameCard';
 import PaginatorButton from 'components/PaginatorButton';
 
 function CategoryPage({ games, query, pageSize, count, title }: CategoryPageProps) {
     const { results, loading, paginatorRef, paginatorVisible } = useAppendableResults<Game>({
         initialResults: games,
-        path: API_PATH.GAMES,
+        path: ApiPath.GAMES,
         query,
         pageSize,
         count,

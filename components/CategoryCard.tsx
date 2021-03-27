@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Category } from 'utils/types';
-import styles from 'styles/category-card.module.scss';
+import styles from 'components/CategoryCard.module.scss';
 import { Route } from 'utils/routes';
 import { cropImageUrl } from 'utils/image';
 

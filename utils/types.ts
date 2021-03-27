@@ -46,3 +46,15 @@ export interface Category {
     games_count: number;
     games: { name: string; slug: string; }[];
 }
+
+export interface CategoriesPageProps {
+    categories: Category[];
+    count: number;
+}
+
+export interface CategoryPageProps {
+    id: string;
+    games: Game[];
+    count: number;
+    name: string;
+}

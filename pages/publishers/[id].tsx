@@ -1,31 +1,23 @@
-import { Game, NextPageContextWithID } from 'utils/types';
+import { CategoryPageProps, NextPageContextWithID } from 'utils/types';
 import CategoryPage from 'components/CategoryPage';
 import { getCategoryAndGamesServerSideProps } from 'utils/categories';
-import { API_PATH } from 'utils/fetch';
+import { ApiPath } from 'utils/fetch';
+import { DEFAULT_PAGE_SIZE } from 'utils/page';
 
-const pageSize = 20;
-
-function PublisherPage({ games, count, id, name }: PublisherPageProps) {
+function PublisherPage({ games, count, id, name }: CategoryPageProps) {
     return (
         <CategoryPage
             games={games}
             count={count}
             query={{ publishers: id }}
-            pageSize={pageSize}
+            pageSize={DEFAULT_PAGE_SIZE}
             title={`Published by ${name}`}
         />
     );
 }
 
-interface PublisherPageProps {
-    id: string;
-    games: Game[];
-    count: number;
-    name: string;
-}
-
 export async function getServerSideProps({ params: { id } }: NextPageContextWithID) {
-    return getCategoryAndGamesServerSideProps(API_PATH.PUBLISHERS, id, pageSize, { publishers: id });
+    return getCategoryAndGamesServerSideProps(ApiPath.PUBLISHERS, id, DEFAULT_PAGE_SIZE, { publishers: id });
 }
 
 export default PublisherPage;

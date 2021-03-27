@@ -1,31 +1,23 @@
-import { Game, NextPageContextWithID } from 'utils/types';
+import { CategoryPageProps, NextPageContextWithID } from 'utils/types';
 import CategoryPage from 'components/CategoryPage';
-import { API_PATH } from 'utils/fetch';
+import { ApiPath } from 'utils/fetch';
 import { getCategoryAndGamesServerSideProps } from 'utils/categories';
+import { DEFAULT_PAGE_SIZE } from 'utils/page';
 
-const pageSize = 20;
-
-function TagPage({ games, count, id, name }: TagPageProps) {
+function TagPage({ games, count, id, name }: CategoryPageProps) {
     return (
         <CategoryPage
             games={games}
             count={count}
             query={{ tags: id }}
-            pageSize={pageSize}
+            pageSize={DEFAULT_PAGE_SIZE}
             title={`${name} Games`}
         />
     );
 }
 
-interface TagPageProps {
-    id: string;
-    games: Game[];
-    count: number;
-    name: string;
-}
-
 export async function getServerSideProps({ params: { id } }: NextPageContextWithID) {
-    return getCategoryAndGamesServerSideProps(API_PATH.TAGS, id, pageSize, { tags: id });
+    return getCategoryAndGamesServerSideProps(ApiPath.TAGS, id, DEFAULT_PAGE_SIZE, { tags: id });
 }
 
 export default TagPage;

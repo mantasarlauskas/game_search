@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import styles from 'styles/game-meta-block.module.scss';
+import styles from 'components/GameMetaBlock.module.scss';
 
 function GameMetaBlock({ title, children }: GameMetaBlockProps) {
     return (

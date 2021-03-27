@@ -6,20 +6,20 @@ import { Route } from 'utils/routes';
 import PaginatedCategoriesPage from 'components/PaginatedCategoriesPage';
 import { getCategoriesPageServerSideProps } from 'utils/categories';
 
-function PublishersPage({ categories, count }: CategoriesPageProps) {
+function TagsPage({ categories, count }: CategoriesPageProps) {
     return (
         <PaginatedCategoriesPage
             count={count}
-            path={ApiPath.PUBLISHERS}
+            path={ApiPath.TAGS}
             categories={categories}
-            title={PageTitle.PUBLISHERS}
-            route={Route.PUBLISHERS}
+            title={PageTitle.TAGS}
+            route={Route.TAGS}
         />
     );
 }
 
 export async function getServerSideProps(): Promise<{ props: CategoriesPageProps }> {
-    return getCategoriesPageServerSideProps(ApiPath.PUBLISHERS);
+    return getCategoriesPageServerSideProps(ApiPath.TAGS);
 }
 
-export default PublishersPage;
+export default TagsPage;

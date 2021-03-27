@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Popover } from 'react-tiny-popover';
-import styles from 'styles/game-sort.module.scss';
+import styles from 'components/GameSort.module.scss';
 
 export enum SortMode {
     RELEVANCE = '',

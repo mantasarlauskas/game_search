@@ -1,7 +1,7 @@
-@use 'breakpoints';
-@use 'spacing';
-@use 'fonts';
-@use 'colors';
+@use 'styles/breakpoints';
+@use 'styles/spacing';
+@use 'styles/fonts';
+@use 'styles/colors';
 
 .root {
     display: flex;

@@ -1,21 +1,25 @@
-@use 'colors';
-@use 'fonts';
-@use 'spacing';
-@use 'breakpoints';
-@use 'grid';
+@use 'styles/spacing';
+@use 'styles/fonts';
+@use 'styles/breakpoints';
+@use 'styles/grid';
 
 .root {
     display: flex;
     flex-direction: column;
 }
 
-.info {
+.count {
+    @extend %font-bold;
     @extend %font-size-large;
     margin-bottom: spacing.$medium;
 }
 
 .cards {
     @extend %responsive-card-grid;
+}
+
+.title {
+    margin-bottom: spacing.$large;
 }
 
 .button {

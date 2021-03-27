@@ -5,4 +5,7 @@ export enum PageTitle {
     DEVELOPERS = 'Developers',
     PUBLISHERS = 'Publishers',
     STORES = 'Stores',
+    TAGS = 'Tags',
 }
+
+export const DEFAULT_PAGE_SIZE = 20;

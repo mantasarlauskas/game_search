@@ -1,5 +1,5 @@
 import React, { forwardRef, RefObject } from 'react';
-import styles from 'styles/paginator-button.module.scss';
+import styles from 'components/PaginatorButton.module.scss';
 import Spinner from 'components/Spinner';
 
 function PaginatorButton({ loading, visible, onClick }: PaginatorButtonProps, ref: RefObject<HTMLButtonElement>) {

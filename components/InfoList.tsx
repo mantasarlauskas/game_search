@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Info } from 'utils/types';
-import styles from 'styles/info-list.module.scss';
+import styles from 'components/InfoList.module.scss';
 
 function InfoList({ list }: InfoListProps) {
     return (

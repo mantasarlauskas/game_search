@@ -1,11 +1,10 @@
-import { Game, NextPageContextWithID } from 'utils/types';
+import { CategoryPageProps, NextPageContextWithID } from 'utils/types';
 import CategoryPage from 'components/CategoryPage';
 import { useAppContext } from 'pages/_app';
-import { getCategoriesServerSideProps, getCategoryTitle } from 'utils/categories';
+import { getCategoryPageServerSideProps, getCategoryTitle } from 'utils/categories';
+import { DEFAULT_PAGE_SIZE } from 'utils/page';
 
-const pageSize = 20;
-
-function PlatformPage({ games, count, id }: PlatformPageProps) {
+function PlatformPage({ games, count, id }: CategoryPageProps) {
     const { platforms } = useAppContext();
     const title = getCategoryTitle(platforms, id);
     return (
@@ -13,20 +12,14 @@ function PlatformPage({ games, count, id }: PlatformPageProps) {
             games={games}
             count={count}
             query={{ platforms: id }}
-            pageSize={pageSize}
+            pageSize={DEFAULT_PAGE_SIZE}
             title={`Games for ${title}`}
         />
     );
 }
 
-interface PlatformPageProps {
-    id: string;
-    games: Game[];
-    count: number;
-}
-
 export async function getServerSideProps({ params: { id } }: NextPageContextWithID) {
-    return getCategoriesServerSideProps(id, pageSize, { platforms: id });
+    return getCategoryPageServerSideProps(id, DEFAULT_PAGE_SIZE, { platforms: id });
 }
 
 export default PlatformPage;

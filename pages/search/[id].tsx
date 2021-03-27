@@ -1,18 +1,17 @@
 import { Game, NextPageContextWithID } from 'utils/types';
-import { API_PATH, fetchData } from 'utils/fetch';
+import { ApiPath, fetchData } from 'utils/fetch';
 import styles from 'styles/search-page.module.scss';
 import useAppendableResults from 'hooks/useAppendableResults';
 import GameCard from 'components/GameCard';
 import PaginatorButton from 'components/PaginatorButton';
-
-const pageSize = 20;
+import { DEFAULT_PAGE_SIZE } from 'utils/page';
 
 function SearchPage({ initialResults, count, id }: SearchPageProps) {
     const { results, loading, paginatorRef, paginatorVisible } = useAppendableResults<Game>({
         initialResults,
-        path: API_PATH.GAMES,
+        path: ApiPath.GAMES,
         query: { search: id },
-        pageSize,
+        pageSize: DEFAULT_PAGE_SIZE,
         count,
     });
 
@@ -46,10 +45,10 @@ interface SearchPageProps {
 export async function getServerSideProps({
     params: { id },
 }: NextPageContextWithID): Promise<{ props: SearchPageProps }> {
-    const data = await fetchData(API_PATH.GAMES, {
+    const data = await fetchData(ApiPath.GAMES, {
         search: id,
         page: 1,
-        page_size: pageSize,
+        page_size: DEFAULT_PAGE_SIZE,
     });
 
     return {

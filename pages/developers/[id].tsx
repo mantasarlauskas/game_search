@@ -1,31 +1,23 @@
-import { Game, NextPageContextWithID } from 'utils/types';
+import { CategoryPageProps, NextPageContextWithID } from 'utils/types';
 import CategoryPage from 'components/CategoryPage';
 import { getCategoryAndGamesServerSideProps } from 'utils/categories';
-import { API_PATH } from 'utils/fetch';
+import { ApiPath } from 'utils/fetch';
+import { DEFAULT_PAGE_SIZE } from 'utils/page';
 
-const pageSize = 20;
-
-function DeveloperPage({ games, count, id, name }: DeveloperPageProps) {
+function DeveloperPage({ games, count, id, name }: CategoryPageProps) {
     return (
         <CategoryPage
             games={games}
             count={count}
             query={{ developers: id }}
-            pageSize={pageSize}
+            pageSize={DEFAULT_PAGE_SIZE}
             title={`Developed by ${name}`}
         />
     );
 }
 
-interface DeveloperPageProps {
-    id: string;
-    games: Game[];
-    count: number;
-    name: string;
-}
-
 export async function getServerSideProps({ params: { id } }: NextPageContextWithID) {
-    return getCategoryAndGamesServerSideProps(API_PATH.DEVELOPERS, id, pageSize, { developers: id });
+    return getCategoryAndGamesServerSideProps(ApiPath.DEVELOPERS, id, DEFAULT_PAGE_SIZE, { developers: id });
 }
 
 export default DeveloperPage;

@@ -1,6 +1,6 @@
 import styles from 'styles/index.module.scss';
 import { Game } from 'utils/types';
-import { API_PATH, fetchData } from 'utils/fetch';
+import { ApiPath, fetchData } from 'utils/fetch';
 import GameCard from 'components/GameCard';
 import useAppendableResults from 'hooks/useAppendableResults';
 import PaginatorButton from 'components/PaginatorButton';
@@ -11,8 +11,7 @@ import Spinner from 'components/Spinner';
 import { useRouter } from 'next/router';
 import { NextPageContext } from 'next';
 import { getOrdering } from 'utils/ordering';
-
-const pageSize = 20;
+import { DEFAULT_PAGE_SIZE } from 'utils/page';
 
 function HomePage({ games, count }: HomePageProps) {
     const router = useRouter();
@@ -21,9 +20,9 @@ function HomePage({ games, count }: HomePageProps) {
     const ordering = getOrdering(router.query);
     const { results, loading: paginatorLoading, paginatorRef, paginatorVisible } = useAppendableResults<Game>({
         initialResults: initialGames,
-        path: API_PATH.GAMES,
+        path: ApiPath.GAMES,
         query: { ordering },
-        pageSize,
+        pageSize: DEFAULT_PAGE_SIZE,
         count,
     });
 
@@ -35,10 +34,10 @@ function HomePage({ games, count }: HomePageProps) {
         }, undefined, { shallow: true });
 
         const data = await fetch(
-            API_PATH.GAMES,
+            ApiPath.GAMES,
             {
                 page: 1,
-                page_size: pageSize,
+                page_size: DEFAULT_PAGE_SIZE,
                 ordering: sortMode,
             },
         );
@@ -84,10 +83,10 @@ interface HomePageProps {
 
 export async function getServerSideProps({ query }: NextPageContext): Promise<{ props: HomePageProps }> {
     const data = await fetchData(
-        API_PATH.GAMES,
+        ApiPath.GAMES,
         {
             page: 1,
-            page_size: pageSize,
+            page_size: DEFAULT_PAGE_SIZE,
             ordering: getOrdering(query),
         },
     );

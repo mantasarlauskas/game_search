@@ -1,0 +1,16 @@
+@use 'styles/spacing';
+@use 'styles/breakpoints';
+@use 'styles/grid';
+
+.root {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    margin-bottom: spacing.$large;
+}
+
+.categories {
+    @extend %responsive-card-grid;
+}

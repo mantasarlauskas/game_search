@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React, { useState } from 'react';
 import Link from 'next/link';
-import styles from 'styles/menu-item-list.module.scss';
+import styles from 'components/MenuItemList.module.scss';
 import ChevronRight from 'assets/chevron-right.svg';
 import { Route } from 'utils/routes';
 import DivButton from 'components/DivButton';

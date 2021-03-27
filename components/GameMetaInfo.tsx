@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import GameMetaBlock from 'components/GameMetaBlock';
-import styles from 'styles/game-meta-info.module.scss';
+import styles from 'components/GameMetaInfo.module.scss';
 import InfoList from 'components/InfoList';
 import { Game } from 'utils/types';
 import { Route } from 'utils/routes';

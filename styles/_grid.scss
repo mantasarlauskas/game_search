@@ -1,16 +1,7 @@
 @use 'spacing';
 @use 'breakpoints';
 
-.root {
-    display: flex;
-    flex-direction: column;
-}
-
-.title {
-    margin-bottom: spacing.$large;
-}
-
-.categories {
+%responsive-card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     grid-gap: spacing.$large;

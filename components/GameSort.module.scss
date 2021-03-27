@@ -1,6 +1,6 @@
-@use 'spacing';
-@use 'colors';
-@use 'fonts';
+@use 'styles/spacing';
+@use 'styles/colors';
+@use 'styles/fonts';
 
 .root {
     background-color: hsla(0, 0%, 100%, 0.07);

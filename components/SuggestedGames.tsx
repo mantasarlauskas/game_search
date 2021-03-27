@@ -1,9 +1,9 @@
 import { Game } from 'utils/types';
-import styles from 'styles/suggested-games.module.scss';
+import styles from 'components/SuggestedGames.module.scss';
 import GameCard from 'components/GameCard';
 import PaginatorButton from 'components/PaginatorButton';
 import useAppendableResults from 'hooks/useAppendableResults';
-import { API_PATH } from 'utils/fetch';
+import { ApiPath } from 'utils/fetch';
 
 export const suggestedGamesPageSize = 6;
 
@@ -15,7 +15,7 @@ function SuggestedGames({ initialGames, count, name, slug }: SuggestedGamesProps
         incrementNumber,
     } = useAppendableResults<Game>({
         initialResults: initialGames,
-        path: `${API_PATH.GAMES}/${slug}/suggested`,
+        path: `${ApiPath.GAMES}/${slug}/suggested`,
         count,
         pageSize: suggestedGamesPageSize,
         useIntersectionObserver: false,
