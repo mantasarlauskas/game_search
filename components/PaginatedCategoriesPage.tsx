@@ -1,38 +1,36 @@
-import useAppendableResults from 'hooks/useAppendableResults';
+import usePaginatedQuery from 'hooks/usePaginatedQuery';
 import { Category } from 'utils/types';
 import { ApiPath } from 'utils/fetch';
-import { DEFAULT_PAGE_SIZE } from 'utils/page';
 import CategoriesPage, { CategoriesPageProps } from 'components/CategoriesPage';
 import PaginatorButton from 'components/PaginatorButton';
 import React from 'react';
 
-function PaginatedCategoriesPage({ categories, title, route, count, path }: PaginatedCategoriesPageProps) {
-    const { results, loading, paginatorRef, paginatorVisible } = useAppendableResults<Category>({
-        initialResults: categories,
-        pageSize: DEFAULT_PAGE_SIZE,
+function PaginatedCategoriesPage({ categories, title, route, path, nextPage }: PaginatedCategoriesPageProps) {
+    const { data, isFetching, paginatorRef, hasNextPage } = usePaginatedQuery<Category, HTMLButtonElement>({
+        initialData: categories,
+        initialNextPage: nextPage,
         path,
-        count,
     });
 
     return (
         <>
             <CategoriesPage
-                categories={results}
+                categories={data}
                 title={title}
                 route={route}
             />
             <PaginatorButton
                 ref={paginatorRef}
-                loading={loading}
-                visible={paginatorVisible}
+                isFetching={isFetching}
+                isVisible={!!hasNextPage}
             />
         </>
     );
 }
 
 interface PaginatedCategoriesPageProps extends CategoriesPageProps {
-    count: number;
     path: ApiPath;
+    nextPage?: string;
 }
 
 export default PaginatedCategoriesPage;

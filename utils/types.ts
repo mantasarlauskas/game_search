@@ -27,13 +27,6 @@ export interface Game {
     clip?: { clip: string };
 }
 
-export interface SearchResult {
-    background_image: string;
-    name: string;
-    rating: number;
-    slug: string;
-}
-
 export interface NextPageContextWithID extends NextPageContext {
     params: { id: string }
 }
@@ -49,7 +42,7 @@ export interface Category {
 
 export interface CategoriesPageProps {
     categories: Category[];
-    count: number;
+    nextPage?: string;
 }
 
 export interface CategoryPageProps {
@@ -57,4 +50,5 @@ export interface CategoryPageProps {
     games: Game[];
     count: number;
     name: string;
+    nextPage?: string;
 }

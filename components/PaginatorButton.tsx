@@ -2,8 +2,8 @@ import React, { forwardRef, RefObject } from 'react';
 import styles from 'components/PaginatorButton.module.scss';
 import Spinner from 'components/Spinner';
 
-function PaginatorButton({ loading, visible, onClick }: PaginatorButtonProps, ref: RefObject<HTMLButtonElement>) {
-    if (!visible) {
+function PaginatorButton({ isFetching, isVisible, onClick }: PaginatorButtonProps, ref: RefObject<HTMLButtonElement>) {
+    if (!isVisible) {
         return null;
     }
 
@@ -14,14 +14,14 @@ function PaginatorButton({ loading, visible, onClick }: PaginatorButtonProps, re
             className={styles.root}
             onClick={() => onClick?.()}
         >
-            {loading ? <Spinner /> : 'Load more'}
+            {isFetching ? <Spinner /> : 'Load more'}
         </button>
     );
 }
 
 interface PaginatorButtonProps {
-    loading: boolean;
-    visible: boolean;
+    isFetching: boolean;
+    isVisible: boolean;
     onClick?: () => void;
 }
 

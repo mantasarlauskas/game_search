@@ -6,8 +6,8 @@ import styles from 'styles/app.module.scss';
 import { ApiPath, fetchData } from 'utils/fetch';
 import { Category } from 'utils/types';
 import Menu from 'components/Menu';
-import useScrollToTop from 'hooks/useScrollToTop';
 import { AppProps } from 'next/app';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 interface AppContextTypes {
     genres: Category[];
@@ -21,8 +21,9 @@ const AppContext = createContext<AppContextTypes>({
     stores: [],
 });
 
+const queryClient = new QueryClient();
+
 function App({ Component, pageProps, genres, platforms, stores }: AppProps & AppContextTypes) {
-    useScrollToTop();
     return (
         <div className={styles.root}>
             <Head>
@@ -33,12 +34,14 @@ function App({ Component, pageProps, genres, platforms, stores }: AppProps & App
                 <div className={styles.menu}>
                     <Menu />
                 </div>
-                <div className={styles.content}>
-                    <div className={styles.search}>
-                        <SearchBar />
+                <QueryClientProvider client={queryClient}>
+                    <div className={styles.content}>
+                        <div className={styles.search}>
+                            <SearchBar />
+                        </div>
+                        <Component {...pageProps} />
                     </div>
-                    <Component {...pageProps} />
-                </div>
+                </QueryClientProvider>
             </AppContext.Provider>
         </div>
     );

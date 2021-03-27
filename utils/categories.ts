@@ -7,10 +7,10 @@ export function getCategoryTitle(categories: Category[], id: string) {
     return categories.find((category) => category.id === parseInt(id, 10))?.name;
 }
 
-export async function getCategoryPageServerSideProps(id: string, pageSize: number, query: QueryParams) {
+export async function getCategoryPageServerSideProps(id: string, query: QueryParams) {
     const data = await fetchData(ApiPath.GAMES, {
         page: 1,
-        page_size: pageSize,
+        page_size: DEFAULT_PAGE_SIZE,
         ...query,
     });
 
@@ -28,6 +28,7 @@ export async function getCategoryPageServerSideProps(id: string, pageSize: numbe
             id,
             count: data.count,
             games: data.results,
+            nextPage: data.next,
         },
     };
 }
@@ -35,13 +36,12 @@ export async function getCategoryPageServerSideProps(id: string, pageSize: numbe
 export async function getCategoryAndGamesServerSideProps(
     path: ApiPath,
     id: string,
-    pageSize: number,
     query: QueryParams,
 ) {
     const [data, category] = await Promise.all([
         fetchData(ApiPath.GAMES, {
             page: 1,
-            page_size: pageSize,
+            page_size: DEFAULT_PAGE_SIZE,
             ...query,
         }),
         fetchData(`${path}/${id}`),
@@ -62,23 +62,24 @@ export async function getCategoryAndGamesServerSideProps(
             count: data.count,
             games: data.results,
             name: category.name,
+            nextPage: data.next,
         },
     };
 }
 
-export async function getCategoriesPageServerSideProps(path: ApiPath, pageSize = DEFAULT_PAGE_SIZE) {
+export async function getCategoriesPageServerSideProps(path: ApiPath) {
     const data = await fetchData(
         path,
         {
             page: 1,
-            page_size: pageSize,
+            page_size: DEFAULT_PAGE_SIZE,
         },
     );
 
     return {
         props: {
-            count: data?.count || 0,
             categories: data?.results || [],
+            nextPage: data?.next,
         },
     };
 }

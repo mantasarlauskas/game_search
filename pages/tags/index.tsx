@@ -6,10 +6,10 @@ import { Route } from 'utils/routes';
 import PaginatedCategoriesPage from 'components/PaginatedCategoriesPage';
 import { getCategoriesPageServerSideProps } from 'utils/categories';
 
-function TagsPage({ categories, count }: CategoriesPageProps) {
+function TagsPage({ categories, nextPage }: CategoriesPageProps) {
     return (
         <PaginatedCategoriesPage
-            count={count}
+            nextPage={nextPage}
             path={ApiPath.TAGS}
             categories={categories}
             title={PageTitle.TAGS}

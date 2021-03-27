@@ -2,22 +2,21 @@ import { CategoryPageProps, NextPageContextWithID } from 'utils/types';
 import CategoryPage from 'components/CategoryPage';
 import { getCategoryAndGamesServerSideProps } from 'utils/categories';
 import { ApiPath } from 'utils/fetch';
-import { DEFAULT_PAGE_SIZE } from 'utils/page';
 
-function StorePage({ games, count, id, name }: CategoryPageProps) {
+function StorePage({ games, count, id, name, nextPage }: CategoryPageProps) {
     return (
         <CategoryPage
             games={games}
             count={count}
-            query={{ stores: id }}
-            pageSize={DEFAULT_PAGE_SIZE}
+            nextPage={nextPage}
+            queryParams={{ stores: id }}
             title={`Games available on ${name}`}
         />
     );
 }
 
 export async function getServerSideProps({ params: { id } }: NextPageContextWithID) {
-    return getCategoryAndGamesServerSideProps(ApiPath.STORES, id, DEFAULT_PAGE_SIZE, { stores: id });
+    return getCategoryAndGamesServerSideProps(ApiPath.STORES, id, { stores: id });
 }
 
 export default StorePage;

@@ -1,17 +1,16 @@
-import useAppendableResults from 'hooks/useAppendableResults';
+import usePaginatedQuery from 'hooks/usePaginatedQuery';
 import { Game } from 'utils/types';
 import { ApiPath, QueryParams } from 'utils/fetch';
 import styles from 'components/CategoryPage.module.scss';
 import GameCard from 'components/GameCard';
 import PaginatorButton from 'components/PaginatorButton';
 
-function CategoryPage({ games, query, pageSize, count, title }: CategoryPageProps) {
-    const { results, loading, paginatorRef, paginatorVisible } = useAppendableResults<Game>({
-        initialResults: games,
+function CategoryPage({ games, queryParams, count, title, nextPage }: CategoryPageProps) {
+    const { data, isFetching, paginatorRef, hasNextPage } = usePaginatedQuery<Game, HTMLButtonElement>({
+        initialData: games,
         path: ApiPath.GAMES,
-        query,
-        pageSize,
-        count,
+        queryParams,
+        initialNextPage: nextPage,
     });
 
     return (
@@ -21,15 +20,15 @@ function CategoryPage({ games, query, pageSize, count, title }: CategoryPageProp
                 {`Total ${count} games`}
             </div>
             <div className={styles.cards}>
-                {results.map((game) => (
+                {data.map((game) => (
                     <GameCard key={game.name} game={game} />
                 ))}
             </div>
             <div className={styles.button}>
                 <PaginatorButton
                     ref={paginatorRef}
-                    loading={loading}
-                    visible={paginatorVisible}
+                    isFetching={isFetching}
+                    isVisible={!!hasNextPage}
                 />
             </div>
         </div>
@@ -39,9 +38,9 @@ function CategoryPage({ games, query, pageSize, count, title }: CategoryPageProp
 interface CategoryPageProps {
     games: Game[];
     count: number;
-    query: QueryParams;
-    pageSize: number;
+    queryParams: QueryParams;
     title: string;
+    nextPage?: string;
 }
 
 export default CategoryPage;

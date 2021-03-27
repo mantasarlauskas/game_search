@@ -1,5 +1,4 @@
 import { ChangeEvent, useEffect, useRef, useState, KeyboardEvent } from 'react';
-import debounce from 'debounce';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from 'components/SearchBar.module.scss';
@@ -7,16 +6,26 @@ import { ApiPath, fetchData } from 'utils/fetch';
 import { roundNumber } from 'utils/number';
 import Spinner from 'components/Spinner';
 import SearchIcon from 'assets/search.svg';
-import { SearchResult } from 'utils/types';
+import { Game } from 'utils/types';
 import { Route } from 'utils/routes';
 import { cropImageUrl } from 'utils/image';
+import { useQuery } from 'react-query';
+import useDebouncedValue from 'hooks/useDebouncedValue';
 
 function SearchBar() {
     const router = useRouter();
+    const [value, setValue] = useState('');
+    const debouncedValue = useDebouncedValue(value, 300);
     const ref = useRef<HTMLInputElement>(null);
     const [isOpen, setIsOpen] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const [results, setResults] = useState<SearchResult[]>([]);
+    const { data, isLoading } = useQuery<{ results: Game[] }>(
+        ['search', debouncedValue],
+        () => fetchData(ApiPath.GAMES, {
+            search: value,
+            page: 1,
+            page_size: 5,
+        }),
+    );
 
     useEffect(() => {
         function handleClick({ target }: MouseEvent) {
@@ -32,17 +41,9 @@ function SearchBar() {
         };
     }, []);
 
-    const handleChange = debounce(async ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
-        setLoading(true);
-        const data = await fetchData(ApiPath.GAMES, {
-            search: value,
-            page: 1,
-            page_size: 5,
-        });
-
-        setResults(data.results);
-        setLoading(false);
-    }, 200);
+    function handleChange({ target }: ChangeEvent<HTMLInputElement>) {
+        setValue(target.value);
+    }
 
     function handleKeyDown(e: KeyboardEvent<HTMLInputElement>) {
         if (e.key === 'Enter') {
@@ -53,11 +54,13 @@ function SearchBar() {
         }
     }
 
+    const results = data?.results || [];
     return (
         <div className={styles.root}>
             <div className={styles.inputWrapper}>
                 <input
                     ref={ref}
+                    value={value}
                     className={styles.input}
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}
@@ -66,9 +69,9 @@ function SearchBar() {
                 />
                 <SearchIcon className={styles.icon} />
             </div>
-            {(loading || results.length > 0) && isOpen && (
+            {(isLoading || results.length > 0) && isOpen && (
                 <div className={styles.results}>
-                    {loading ? <Spinner /> : results.map(({
+                    {isLoading ? <Spinner /> : results.map(({
                         name,
                         slug,
                         background_image,

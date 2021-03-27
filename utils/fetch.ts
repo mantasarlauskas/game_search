@@ -23,16 +23,22 @@ export interface QueryParams {
     stores?: string;
 }
 
-export function fetchData(path: string, query?: QueryParams) {
-    return fetch(
-        `https://api.rawg.io/api/${path}?${getQueryParams(query)}`,
-    ).then((res) => {
+export function getFetchUrl(path: string, query?: QueryParams) {
+    return `https://api.rawg.io/api/${path}?${getQueryParams(query)}`;
+}
+
+export function handleServerResponse(response: Promise<Response>) {
+    return response.then((res) => {
         if (!res.ok) {
             return null;
         }
 
         return res.json();
     }).catch(() => null);
+}
+
+export function fetchData(path: string, query?: QueryParams) {
+    return handleServerResponse(fetch(getFetchUrl(path, query)));
 }
 
 function getQueryParams(query?: QueryParams) {

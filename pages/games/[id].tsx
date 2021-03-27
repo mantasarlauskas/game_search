@@ -8,7 +8,7 @@ import { Game, NextPageContextWithID } from 'utils/types';
 import SuggestedGames, { suggestedGamesPageSize } from 'components/SuggestedGames';
 import { Route } from 'utils/routes';
 
-function GamePage({ game, suggestedGames, suggestedGameCount }: GamePageProps) {
+function GamePage({ game, suggestedGames, suggestedGamesNextPage }: GamePageProps) {
     const {
         background_image,
         released,
@@ -78,7 +78,7 @@ function GamePage({ game, suggestedGames, suggestedGameCount }: GamePageProps) {
                 name={name}
                 slug={slug}
                 initialGames={suggestedGames}
-                count={suggestedGameCount}
+                nextPage={suggestedGamesNextPage}
             />
         </div>
     );
@@ -87,7 +87,7 @@ function GamePage({ game, suggestedGames, suggestedGameCount }: GamePageProps) {
 interface GamePageProps {
     game: Game;
     suggestedGames: Game[];
-    suggestedGameCount: number;
+    suggestedGamesNextPage?: string;
 }
 
 export async function getServerSideProps({ params: { id } }: NextPageContextWithID) {
@@ -112,7 +112,7 @@ export async function getServerSideProps({ params: { id } }: NextPageContextWith
         props: {
             game,
             suggestedGames: suggestedGames?.results || [],
-            suggestedGameCount: suggestedGames?.count || 0,
+            suggestedGamesNextPage: suggestedGames?.next,
         },
     };
 }

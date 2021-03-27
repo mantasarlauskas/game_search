@@ -1,18 +1,17 @@
 import { Game, NextPageContextWithID } from 'utils/types';
 import { ApiPath, fetchData } from 'utils/fetch';
 import styles from 'styles/search-page.module.scss';
-import useAppendableResults from 'hooks/useAppendableResults';
+import usePaginatedQuery from 'hooks/usePaginatedQuery';
 import GameCard from 'components/GameCard';
 import PaginatorButton from 'components/PaginatorButton';
 import { DEFAULT_PAGE_SIZE } from 'utils/page';
 
-function SearchPage({ initialResults, count, id }: SearchPageProps) {
-    const { results, loading, paginatorRef, paginatorVisible } = useAppendableResults<Game>({
-        initialResults,
+function SearchPage({ initialResults, count, id, nextPage }: SearchPageProps) {
+    const { data, isLoading, paginatorRef, hasNextPage } = usePaginatedQuery<Game, HTMLButtonElement>({
+        initialData: initialResults,
+        initialNextPage: nextPage,
         path: ApiPath.GAMES,
-        query: { search: id },
-        pageSize: DEFAULT_PAGE_SIZE,
-        count,
+        queryParams: { search: id },
     });
 
     return (
@@ -21,15 +20,15 @@ function SearchPage({ initialResults, count, id }: SearchPageProps) {
                 {`${count} games found`}
             </div>
             <div className={styles.cards}>
-                {results.map((game) => (
+                {data.map((game) => (
                     <GameCard key={game.name} game={game} />
                 ))}
             </div>
             <div className={styles.button}>
                 <PaginatorButton
                     ref={paginatorRef}
-                    loading={loading}
-                    visible={paginatorVisible}
+                    isFetching={isLoading}
+                    isVisible={!!hasNextPage}
                 />
             </div>
         </div>
@@ -40,6 +39,7 @@ interface SearchPageProps {
     id: string;
     initialResults: Game[];
     count: number;
+    nextPage?: string;
 }
 
 export async function getServerSideProps({
@@ -54,6 +54,7 @@ export async function getServerSideProps({
     return {
         props: {
             id,
+            nextPage: data?.next,
             initialResults: data?.results || [],
             count: data?.count || 0,
         },

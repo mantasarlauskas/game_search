@@ -2,28 +2,24 @@ import styles from 'styles/index.module.scss';
 import { Game } from 'utils/types';
 import { ApiPath, fetchData } from 'utils/fetch';
 import GameCard from 'components/GameCard';
-import useAppendableResults from 'hooks/useAppendableResults';
+import usePaginatedQuery from 'hooks/usePaginatedQuery';
 import PaginatorButton from 'components/PaginatorButton';
 import GameSort, { SortMode } from 'components/GameSort';
-import { useState } from 'react';
-import useFetch from 'hooks/useFetch';
 import Spinner from 'components/Spinner';
 import { useRouter } from 'next/router';
 import { NextPageContext } from 'next';
 import { getOrdering } from 'utils/ordering';
 import { DEFAULT_PAGE_SIZE } from 'utils/page';
 
-function HomePage({ games, count }: HomePageProps) {
+function HomePage({ games, nextPage }: HomePageProps) {
     const router = useRouter();
-    const [fetch, gamesLoading] = useFetch<{ results: Game[] }>();
-    const [initialGames, setInitialGames] = useState(games);
     const ordering = getOrdering(router.query);
-    const { results, loading: paginatorLoading, paginatorRef, paginatorVisible } = useAppendableResults<Game>({
-        initialResults: initialGames,
+
+    const { data, isLoading, isFetching, paginatorRef, hasNextPage } = usePaginatedQuery<Game, HTMLButtonElement>({
+        initialData: games,
         path: ApiPath.GAMES,
-        query: { ordering },
-        pageSize: DEFAULT_PAGE_SIZE,
-        count,
+        initialNextPage: nextPage,
+        queryParams: { ordering },
     });
 
     async function fetchInitialGames(sortMode: SortMode) {
@@ -32,19 +28,6 @@ function HomePage({ games, count }: HomePageProps) {
                 ...(sortMode ? { ordering: sortMode || '' } : {}),
             },
         }, undefined, { shallow: true });
-
-        const data = await fetch(
-            ApiPath.GAMES,
-            {
-                page: 1,
-                page_size: DEFAULT_PAGE_SIZE,
-                ordering: sortMode,
-            },
-        );
-
-        if (data) {
-            setInitialGames(data.results);
-        }
     }
 
     return (
@@ -55,21 +38,21 @@ function HomePage({ games, count }: HomePageProps) {
                     onSortModeChange={fetchInitialGames}
                 />
             </div>
-            {gamesLoading && (
+            {isLoading && !data.length && (
                 <div className={styles.spinner}>
                     <Spinner />
                 </div>
             )}
-            <div className={styles.content} style={{ display: gamesLoading ? 'none' : 'flex' }}>
+            <div className={styles.content} style={{ display: isLoading ? 'none' : 'flex' }}>
                 <div className={styles.cards}>
-                    {results.map((game) => (
+                    {data.map((game) => (
                         <GameCard key={game.name} game={game} />
                     ))}
                 </div>
                 <PaginatorButton
                     ref={paginatorRef}
-                    loading={paginatorLoading}
-                    visible={paginatorVisible}
+                    isFetching={isFetching}
+                    isVisible={!!hasNextPage}
                 />
             </div>
         </div>
@@ -78,7 +61,7 @@ function HomePage({ games, count }: HomePageProps) {
 
 interface HomePageProps {
     games: Game[];
-    count: number;
+    nextPage?: string;
 }
 
 export async function getServerSideProps({ query }: NextPageContext): Promise<{ props: HomePageProps }> {
@@ -93,8 +76,8 @@ export async function getServerSideProps({ query }: NextPageContext): Promise<{ 
 
     return {
         props: {
-            count: data?.count || 0,
             games: data?.results || [],
+            nextPage: data?.next,
         },
     };
 }
