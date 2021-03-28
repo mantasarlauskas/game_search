@@ -1,0 +1,18 @@
+@use 'fonts';
+@use 'colors';
+@use 'spacing';
+@use 'breakpoints';
+
+.root {
+    @extend %font-size-large;
+    margin: spacing.$xlarge auto 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.statusCode {
+    @extend %font-size-xxlarge;
+    padding-right: spacing.$medium;
+    margin-right: spacing.$medium;
+    border-right: 1px solid colors.$white;
+}
