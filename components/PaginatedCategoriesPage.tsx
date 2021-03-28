@@ -2,11 +2,16 @@ import usePaginatedQuery from 'hooks/usePaginatedQuery';
 import { Category } from 'utils/types';
 import { ApiPath } from 'utils/fetch';
 import CategoriesPage, { CategoriesPageProps } from 'components/CategoriesPage';
-import PaginatorButton from 'components/PaginatorButton';
-import React from 'react';
+import PaginationButtons from 'components/PaginationButtons';
 
 function PaginatedCategoriesPage({ categories, title, route, path, nextPage }: PaginatedCategoriesPageProps) {
-    const { data, isFetching, paginatorRef, hasNextPage } = usePaginatedQuery<Category, HTMLButtonElement>({
+    const {
+        data,
+        isFetching,
+        paginatorRef,
+        hasNextPage,
+        hasPreviousPage,
+    } = usePaginatedQuery<Category, HTMLButtonElement>({
         initialData: categories,
         initialNextPage: nextPage,
         path,
@@ -19,10 +24,11 @@ function PaginatedCategoriesPage({ categories, title, route, path, nextPage }: P
                 title={title}
                 route={route}
             />
-            <PaginatorButton
-                ref={paginatorRef}
+            <PaginationButtons
+                hasNextPage={!!hasNextPage}
+                hasPreviousPage={!!hasPreviousPage}
                 isFetching={isFetching}
-                isVisible={!!hasNextPage}
+                paginatorRef={paginatorRef}
             />
         </>
     );

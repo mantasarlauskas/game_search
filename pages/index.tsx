@@ -3,26 +3,32 @@ import { Game } from 'utils/types';
 import { ApiPath, fetchData } from 'utils/fetch';
 import GameCard from 'components/GameCard';
 import usePaginatedQuery from 'hooks/usePaginatedQuery';
-import PaginatorButton from 'components/PaginatorButton';
 import GameSort, { SortMode } from 'components/GameSort';
 import Spinner from 'components/Spinner';
 import { useRouter } from 'next/router';
 import { NextPageContext } from 'next';
 import { getOrdering } from 'utils/ordering';
 import { DEFAULT_PAGE_SIZE } from 'utils/page';
+import PaginationButtons from 'components/PaginationButtons';
 
 function HomePage({ games, nextPage }: HomePageProps) {
     const router = useRouter();
     const ordering = getOrdering(router.query);
-
-    const { data, isLoading, isFetching, paginatorRef, hasNextPage } = usePaginatedQuery<Game, HTMLButtonElement>({
+    const {
+        data,
+        isLoading,
+        isFetching,
+        paginatorRef,
+        hasNextPage,
+        hasPreviousPage,
+    } = usePaginatedQuery<Game, HTMLButtonElement>({
         initialData: games,
         path: ApiPath.GAMES,
         initialNextPage: nextPage,
         queryParams: { ordering },
     });
 
-    async function fetchInitialGames(sortMode: SortMode) {
+    function onSortModeChange(sortMode: SortMode) {
         router.push({
             query: {
                 ...(sortMode ? { ordering: sortMode || '' } : {}),
@@ -35,7 +41,7 @@ function HomePage({ games, nextPage }: HomePageProps) {
             <div className={styles.sort}>
                 <GameSort
                     activeSortMode={ordering}
-                    onSortModeChange={fetchInitialGames}
+                    onSortModeChange={onSortModeChange}
                 />
             </div>
             {isLoading && !data.length && (
@@ -49,10 +55,11 @@ function HomePage({ games, nextPage }: HomePageProps) {
                         <GameCard key={game.name} game={game} />
                     ))}
                 </div>
-                <PaginatorButton
-                    ref={paginatorRef}
+                <PaginationButtons
+                    hasNextPage={!!hasNextPage}
+                    hasPreviousPage={!!hasPreviousPage}
                     isFetching={isFetching}
-                    isVisible={!!hasNextPage}
+                    paginatorRef={paginatorRef}
                 />
             </div>
         </div>

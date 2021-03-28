@@ -3,10 +3,16 @@ import { Game } from 'utils/types';
 import { ApiPath, QueryParams } from 'utils/fetch';
 import styles from 'components/CategoryPage.module.scss';
 import GameCard from 'components/GameCard';
-import PaginatorButton from 'components/PaginatorButton';
+import PaginationButtons from 'components/PaginationButtons';
 
 function CategoryPage({ games, queryParams, count, title, nextPage }: CategoryPageProps) {
-    const { data, isFetching, paginatorRef, hasNextPage } = usePaginatedQuery<Game, HTMLButtonElement>({
+    const {
+        data,
+        isFetching,
+        paginatorRef,
+        hasNextPage,
+        hasPreviousPage,
+    } = usePaginatedQuery<Game, HTMLButtonElement>({
         initialData: games,
         path: ApiPath.GAMES,
         queryParams,
@@ -25,10 +31,11 @@ function CategoryPage({ games, queryParams, count, title, nextPage }: CategoryPa
                 ))}
             </div>
             <div className={styles.button}>
-                <PaginatorButton
-                    ref={paginatorRef}
+                <PaginationButtons
+                    hasNextPage={!!hasNextPage}
+                    hasPreviousPage={!!hasPreviousPage}
                     isFetching={isFetching}
-                    isVisible={!!hasNextPage}
+                    paginatorRef={paginatorRef}
                 />
             </div>
         </div>

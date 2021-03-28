@@ -21,7 +21,7 @@ function usePaginatedQuery<T, P extends HTMLElement>({
     }) => handleServerResponse(fetch(pageParam)), {
         refetchOnMount: false,
         refetchOnWindowFocus: false,
-        getPreviousPageParam: (firstPage) => firstPage?.previous ?? undefined,
+        getPreviousPageParam: (firstPage, allPages) => allPages[allPages.length - 1]?.previous ?? undefined,
         getNextPageParam: (lastPage) => lastPage?.next ?? undefined,
         initialData: {
             pageParams: [],
@@ -32,7 +32,7 @@ function usePaginatedQuery<T, P extends HTMLElement>({
         },
     });
 
-    const elementRef = useIntersectionObserver<P>(query.fetchNextPage);
+    const paginatorRef = useIntersectionObserver<P>(query.fetchNextPage);
     const data = useMemo(() => query.data?.pages?.reduce((arr, response) => [
         ...arr,
         ...(response?.results || []),
@@ -41,7 +41,7 @@ function usePaginatedQuery<T, P extends HTMLElement>({
     return {
         ...query,
         data,
-        paginatorRef: elementRef,
+        paginatorRef,
     };
 }
 
@@ -51,7 +51,6 @@ interface UsePaginatedQueryProps<T> {
     queryParams?: QueryParams;
     initialPageNumber?: number;
     pageSize?: number;
-    disableIntersectionObserver?: boolean
     initialNextPage?: string;
 }
 

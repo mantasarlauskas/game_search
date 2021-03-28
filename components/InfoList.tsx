@@ -1,4 +1,3 @@
-import React from 'react';
 import Link from 'next/link';
 import { Info } from 'utils/types';
 import styles from 'components/InfoList.module.scss';

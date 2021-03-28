@@ -3,11 +3,17 @@ import { ApiPath, fetchData } from 'utils/fetch';
 import styles from 'styles/search-page.module.scss';
 import usePaginatedQuery from 'hooks/usePaginatedQuery';
 import GameCard from 'components/GameCard';
-import PaginatorButton from 'components/PaginatorButton';
 import { DEFAULT_PAGE_SIZE } from 'utils/page';
+import PaginationButtons from 'components/PaginationButtons';
 
 function SearchPage({ initialResults, count, id, nextPage }: SearchPageProps) {
-    const { data, isLoading, paginatorRef, hasNextPage } = usePaginatedQuery<Game, HTMLButtonElement>({
+    const {
+        data,
+        isFetching,
+        paginatorRef,
+        hasNextPage,
+        hasPreviousPage,
+    } = usePaginatedQuery<Game, HTMLButtonElement>({
         initialData: initialResults,
         initialNextPage: nextPage,
         path: ApiPath.GAMES,
@@ -25,10 +31,11 @@ function SearchPage({ initialResults, count, id, nextPage }: SearchPageProps) {
                 ))}
             </div>
             <div className={styles.button}>
-                <PaginatorButton
-                    ref={paginatorRef}
-                    isFetching={isLoading}
-                    isVisible={!!hasNextPage}
+                <PaginationButtons
+                    hasNextPage={!!hasNextPage}
+                    hasPreviousPage={!!hasPreviousPage}
+                    isFetching={isFetching}
+                    paginatorRef={paginatorRef}
                 />
             </div>
         </div>

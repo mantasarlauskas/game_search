@@ -1,4 +1,3 @@
-import React from 'react';
 import CategoriesPage from 'components/CategoriesPage';
 import { PageTitle } from 'utils/page';
 import { Route } from 'utils/routes';

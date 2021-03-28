@@ -1,4 +1,3 @@
-import React from 'react';
 import { ApiPath } from 'utils/fetch';
 import { CategoriesPageProps } from 'utils/types';
 import { PageTitle } from 'utils/page';
