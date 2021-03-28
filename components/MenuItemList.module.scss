@@ -8,8 +8,8 @@
 }
 
 .title {
-    @extend %font-size-large;
-    @extend %font-bold;
+    @include fonts.font-size-large;
+    @include fonts.font-bold;
     margin-bottom: spacing.$medium;
     cursor: pointer;
     transition: color 0.2s;
@@ -42,7 +42,7 @@
 }
 
 .name {
-    @extend %font-size-medium;
+    @include fonts.font-size-medium;
     margin-left: spacing.$small;
 }
 

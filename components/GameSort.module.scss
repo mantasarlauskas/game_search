@@ -13,7 +13,7 @@
 }
 
 .title {
-    @extend %font-bold;
+    @include fonts.font-bold;
     margin-left: spacing.$xsmall;
 }
 

@@ -9,13 +9,13 @@
 }
 
 .count {
-    @extend %font-bold;
-    @extend %font-size-large;
+    @include fonts.font-bold;
+    @include fonts.font-size-large;
     margin-bottom: spacing.$medium;
 }
 
 .cards {
-    @extend %responsive-card-grid;
+    @include grid.responsive-card-grid;
 }
 
 .title {

@@ -4,7 +4,7 @@
 @use 'styles/breakpoints';
 
 .root {
-    @extend %font-size-medium;
+    @include fonts.font-size-medium;
     position: fixed;
     bottom: 20px;
     left: calc(50% + (216px / 2));

@@ -98,7 +98,7 @@
 }
 
 .rating {
-    @extend %font-size-small;
+    @include fonts.font-size-small;
     border-radius: 6px;
     background-color: colors.$white;
     color: colors.$black;

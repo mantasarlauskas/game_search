@@ -52,8 +52,8 @@
 }
 
 .item {
-    @extend %font-size-large;
-    @extend %font-bold;
+    @include fonts.font-size-large;
+    @include fonts.font-bold;
     margin-bottom: spacing.$medium;
     cursor: pointer;
     transition: color 0.2s;

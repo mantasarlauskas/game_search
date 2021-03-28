@@ -3,7 +3,7 @@
 @use 'styles/fonts';
 
 .root {
-    @extend %font-size-small;
+    @include fonts.font-size-small;
 }
 
 .title {

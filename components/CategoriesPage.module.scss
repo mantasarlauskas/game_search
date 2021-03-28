@@ -12,5 +12,5 @@
 }
 
 .categories {
-    @extend %responsive-card-grid;
+    @include grid.responsive-card-grid;
 }

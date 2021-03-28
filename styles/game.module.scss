@@ -33,7 +33,7 @@
 }
 
 .releaseDate {
-    @extend %font-size-xsmall;
+    @include fonts.font-size-xsmall;
     flex: 0 0 auto;
     display: inline-block;
     color: colors.$black;
@@ -44,13 +44,13 @@
 }
 
 .title {
-    @extend %font-size-xxxlarge;
+    @include fonts.font-size-xxxlarge;
     margin-bottom: spacing.$xsmall;
 }
 
 .totalRating {
-    @extend %font-size-xlarge;
-    @extend %font-bold;
+    @include fonts.font-size-xlarge;
+    @include fonts.font-bold;
     display: inline-block;
     border: 1px solid colors.$white;
     background-color: colors.$white;
@@ -72,13 +72,13 @@
 }
 
 .count {
-    @extend %font-bold;
+    @include fonts.font-bold;
     margin-left: spacing.$xsmall;
 }
 
 .about {
-    @extend %font-size-xlarge;
-    @extend %font-bold;
+    @include fonts.font-size-xlarge;
+    @include fonts.font-bold;
     margin: spacing.$medium 0;
 }
 

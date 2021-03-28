@@ -3,7 +3,7 @@
 @use 'styles/fonts';
 
 .root {
-    @extend %font-size-medium;
+    @include fonts.font-size-medium;
     margin-top: spacing.$large;
     margin-left: auto;
     margin-right: auto;

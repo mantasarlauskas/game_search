@@ -1,31 +1,31 @@
-%font-bold {
+@mixin font-bold {
     font-weight: bold;
 }
 
-%font-size-xxxlarge {
+@mixin font-size-xxxlarge {
     font-size: 48px;
 }
 
-%font-size-xxlarge {
+@mixin font-size-xxlarge {
     font-size: 32px;
 }
 
-%font-size-xlarge {
+@mixin font-size-xlarge {
     font-size: 24px;
 }
 
-%font-size-large {
+@mixin font-size-large {
     font-size: 20px;
 }
 
-%font-size-medium {
+@mixin font-size-medium {
     font-size: 16px;
 }
 
-%font-size-small {
+@mixin font-size-small {
     font-size: 14px;
 }
 
-%font-size-xsmall {
+@mixin font-size-xsmall {
     font-size: 12px;
 }

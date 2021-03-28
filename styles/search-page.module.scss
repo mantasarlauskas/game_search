@@ -10,12 +10,12 @@
 }
 
 .info {
-    @extend %font-size-large;
+    @include fonts.font-size-large;
     margin-bottom: spacing.$medium;
 }
 
 .cards {
-    @extend %responsive-card-grid;
+    @include grid.responsive-card-grid;
 }
 
 .button {
