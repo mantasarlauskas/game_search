@@ -9,7 +9,7 @@ function BackToTopButton({ isEnabled }: BackToTopButtonProps) {
 
     useEffect(() => {
         function handleScroll() {
-            setIsVisible(!!window.scrollY && window.scrollY < previousScroll.current);
+            setIsVisible(!!window.scrollY && window.scrollY <= previousScroll.current);
             previousScroll.current = window.scrollY;
         }
 

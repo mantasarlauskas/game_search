@@ -7,6 +7,7 @@ import GameMetaInfo from 'components/GameMetaInfo';
 import { Game, NextPageContextWithID } from 'utils/types';
 import SuggestedGames, { suggestedGamesPageSize } from 'components/SuggestedGames';
 import { Route } from 'utils/routes';
+import PageHead from 'components/PageHead';
 
 function GamePage({ game, suggestedGames, suggestedGamesNextPage }: GamePageProps) {
     const {
@@ -23,6 +24,7 @@ function GamePage({ game, suggestedGames, suggestedGamesNextPage }: GamePageProp
     useBackgroundImage(background_image);
     return (
         <div className={styles.root}>
+            <PageHead title={name} />
             {released && (
                 <div className={styles.releaseDate}>
                     {released}

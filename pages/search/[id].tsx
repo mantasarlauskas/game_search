@@ -5,6 +5,7 @@ import usePaginatedQuery from 'hooks/usePaginatedQuery';
 import GameCard from 'components/GameCard';
 import { DEFAULT_PAGE_SIZE } from 'utils/page';
 import PaginationButtons from 'components/PaginationButtons';
+import PageHead from 'components/PageHead';
 
 function SearchPage({ initialResults, count, id, nextPage }: SearchPageProps) {
     const {
@@ -22,6 +23,7 @@ function SearchPage({ initialResults, count, id, nextPage }: SearchPageProps) {
 
     return (
         <div className={styles.root}>
+            <PageHead title="Game search" />
             <div className={styles.info}>
                 {`${count} games found`}
             </div>

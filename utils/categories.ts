@@ -3,7 +3,7 @@ import { Route } from 'utils/routes';
 import { Category } from 'utils/types';
 import { DEFAULT_PAGE_SIZE } from 'utils/page';
 
-export function getCategoryTitle(categories: Category[], id: string) {
+export function getCategoryName(categories: Category[], id: string) {
     return categories.find((category) => category.id === parseInt(id, 10))?.name;
 }
 

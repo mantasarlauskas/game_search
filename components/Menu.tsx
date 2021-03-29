@@ -9,12 +9,12 @@ import { useRouter } from 'next/router';
 import { PageTitle } from 'utils/page';
 import { useAppContext } from 'pages/_app';
 
-const menuItems = [
-    { route: Route.HOME, title: PageTitle.HOME },
-    { route: Route.DEVELOPERS, title: PageTitle.DEVELOPERS },
-    { route: Route.PUBLISHERS, title: PageTitle.PUBLISHERS },
-    { route: Route.STORES, title: PageTitle.STORES },
-    { route: Route.TAGS, title: PageTitle.TAGS },
+const menuRoutes = [
+    Route.HOME,
+    Route.DEVELOPERS,
+    Route.PUBLISHERS,
+    Route.STORES,
+    Route.TAGS,
 ];
 
 function Menu() {
@@ -32,23 +32,21 @@ function Menu() {
 
     const menu = (
         <>
-            {menuItems.map(({ route, title }) => (
-                <Link key={title} href={route}>
+            {menuRoutes.map((route) => (
+                <Link key={route} href={route}>
                     <div className={styles.item}>
-                        {title}
+                        {PageTitle[route]}
                     </div>
                 </Link>
             ))}
             <div className={styles.list}>
                 <MenuItemList
-                    title={PageTitle.GENRES}
                     items={genres}
                     route={Route.GENRES}
                 />
             </div>
             <div className={styles.list}>
                 <MenuItemList
-                    title={PageTitle.PLATFORMS}
                     items={platforms}
                     expandedCount={8}
                     route={Route.PLATFORMS}
@@ -56,7 +54,6 @@ function Menu() {
             </div>
             <div className={styles.list}>
                 <MenuItemList
-                    title={PageTitle.STORES}
                     items={stores}
                     route={Route.STORES}
                 />

@@ -1,18 +1,19 @@
 import { CategoryPageProps, NextPageContextWithID } from 'utils/types';
 import CategoryPage from 'components/CategoryPage';
 import { useAppContext } from 'pages/_app';
-import { getCategoryPageServerSideProps, getCategoryTitle } from 'utils/categories';
+import { getCategoryPageServerSideProps, getCategoryName } from 'utils/categories';
 
 function PlatformPage({ games, count, id, nextPage }: CategoryPageProps) {
     const { platforms } = useAppContext();
-    const title = getCategoryTitle(platforms, id);
+    const name = getCategoryName(platforms, id);
     return (
         <CategoryPage
+            name={name}
             games={games}
             count={count}
             nextPage={nextPage}
             queryParams={{ platforms: id }}
-            title={`Games for ${title}`}
+            title={`Games for ${name}`}
         />
     );
 }

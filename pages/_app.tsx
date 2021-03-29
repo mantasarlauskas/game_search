@@ -8,6 +8,7 @@ import { Category } from 'utils/types';
 import Menu from 'components/Menu';
 import { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import PageHead from 'components/PageHead';
 
 interface AppContextTypes {
     genres: Category[];
@@ -26,10 +27,7 @@ const queryClient = new QueryClient();
 function App({ Component, pageProps, genres, platforms, stores }: AppProps & AppContextTypes) {
     return (
         <div className={styles.root}>
-            <Head>
-                <title>Game search</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-            </Head>
+            <PageHead />
             <AppContext.Provider value={{ genres, platforms, stores }}>
                 <div className={styles.menu}>
                     <Menu />

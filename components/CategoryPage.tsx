@@ -4,8 +4,9 @@ import { ApiPath, QueryParams } from 'utils/fetch';
 import styles from 'components/CategoryPage.module.scss';
 import GameCard from 'components/GameCard';
 import PaginationButtons from 'components/PaginationButtons';
+import PageHead from 'components/PageHead';
 
-function CategoryPage({ games, queryParams, count, title, nextPage }: CategoryPageProps) {
+function CategoryPage({ games, queryParams, count, title, nextPage, name }: CategoryPageProps) {
     const {
         data,
         isFetching,
@@ -21,6 +22,7 @@ function CategoryPage({ games, queryParams, count, title, nextPage }: CategoryPa
 
     return (
         <div className={styles.root}>
+            <PageHead title={name} />
             <h1 className={styles.title}>{title}</h1>
             <div className={styles.count}>
                 {`Total ${count} games`}
@@ -48,6 +50,7 @@ interface CategoryPageProps {
     queryParams: QueryParams;
     title: string;
     nextPage?: string;
+    name?: string;
 }
 
 export default CategoryPage;

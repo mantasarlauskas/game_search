@@ -6,6 +6,7 @@ import { getCategoryAndGamesServerSideProps } from 'utils/categories';
 function TagPage({ games, count, id, name, nextPage }: CategoryPageProps) {
     return (
         <CategoryPage
+            name={name}
             games={games}
             count={count}
             nextPage={nextPage}

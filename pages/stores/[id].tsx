@@ -6,6 +6,7 @@ import { ApiPath } from 'utils/fetch';
 function StorePage({ games, count, id, name, nextPage }: CategoryPageProps) {
     return (
         <CategoryPage
+            name={name}
             games={games}
             count={count}
             nextPage={nextPage}

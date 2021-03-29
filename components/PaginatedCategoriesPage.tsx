@@ -4,7 +4,7 @@ import { ApiPath } from 'utils/fetch';
 import CategoriesPage, { CategoriesPageProps } from 'components/CategoriesPage';
 import PaginationButtons from 'components/PaginationButtons';
 
-function PaginatedCategoriesPage({ categories, title, route, path, nextPage }: PaginatedCategoriesPageProps) {
+function PaginatedCategoriesPage({ categories, route, path, nextPage }: PaginatedCategoriesPageProps) {
     const {
         data,
         isFetching,
@@ -21,7 +21,6 @@ function PaginatedCategoriesPage({ categories, title, route, path, nextPage }: P
         <>
             <CategoriesPage
                 categories={data}
-                title={title}
                 route={route}
             />
             <PaginationButtons

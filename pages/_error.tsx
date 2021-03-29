@@ -3,10 +3,11 @@ import { NextPageContext } from 'next';
 
 function ErrorPage({ statusCode }: ErrorPageProps) {
     const text = statusCode ? 'Server side error' : 'This page could not be found';
+    const status = statusCode || 404;
     return (
         <div className={styles.root}>
             <div className={styles.statusCode}>
-                {statusCode || '404'}
+                {status}
             </div>
             {text}
         </div>

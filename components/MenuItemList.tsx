@@ -6,15 +6,16 @@ import ChevronRight from 'assets/chevron-right.svg';
 import { Route } from 'utils/routes';
 import DivButton from 'components/DivButton';
 import { cropImageUrl } from 'utils/image';
+import { PageTitle } from 'utils/page';
 
-function MenuItemList({ items, title, visibleCount = 5, expandedCount, route }: MenuItemListProps) {
+function MenuItemList({ items, visibleCount = 5, expandedCount, route }: MenuItemListProps) {
     const [expanded, setExpanded] = useState(false);
     const visibleItems = items.length > visibleCount && !expanded ? items.slice(0, visibleCount) : items;
     return (
         <div className={styles.root}>
             <Link href={route}>
                 <div className={styles.title}>
-                    {title}
+                    {PageTitle[route]}
                 </div>
             </Link>
             {(expandedCount ? visibleItems.slice(0, expandedCount) : visibleItems)
@@ -54,7 +55,6 @@ interface MenuItem {
 }
 
 interface MenuItemListProps {
-    title: string;
     items: MenuItem[];
     visibleCount?: number;
     expandedCount?: number;
