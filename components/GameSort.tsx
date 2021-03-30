@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Popover } from 'react-tiny-popover';
 import styles from 'components/GameSort.module.scss';
+import { useRouter } from 'next/router';
+import { getOrdering } from 'utils/ordering';
 
 export enum SortMode {
     RELEVANCE = '',
@@ -26,20 +28,41 @@ const sortOptions = [
     SortMode.RATING,
 ];
 
-function GameSort({ onSortModeChange, activeSortMode }: GameSortProps) {
+function GameSort() {
+    const router = useRouter();
+    const ordering = getOrdering(router.query);
     const [isOpen, setIsOpen] = useState(false);
-    const [sortMode, setSortMode] = useState(activeSortMode);
-
-    if (typeof window === 'undefined') {
-        return null;
-    }
 
     function onOptionClick(value: SortMode) {
         setIsOpen(false);
-        if (value !== sortMode) {
-            setSortMode(value);
-            onSortModeChange(value);
+        if (value !== ordering) {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const { ordering: prevOrdering, ...queryParams } = router.query;
+            router.push({
+                pathname: router.pathname,
+                query: value ? {
+                    ...queryParams,
+                    ordering: value,
+                } : queryParams,
+            }, undefined, { shallow: true });
         }
+    }
+
+    const button = (
+        <button
+            type="button"
+            className={styles.root}
+            onClick={() => setIsOpen(!isOpen)}
+        >
+            Order by:
+            <div className={styles.title}>
+                {titles[ordering]}
+            </div>
+        </button>
+    );
+
+    if (typeof window === 'undefined') {
+        return button;
     }
 
     return (
@@ -64,23 +87,9 @@ function GameSort({ onSortModeChange, activeSortMode }: GameSortProps) {
                 </div>
             )}
         >
-            <button
-                type="button"
-                className={styles.root}
-                onClick={() => setIsOpen(!isOpen)}
-            >
-                Order by:
-                <div className={styles.title}>
-                    {titles[sortMode]}
-                </div>
-            </button>
+            {button}
         </Popover>
     );
-}
-
-interface GameSortProps {
-    activeSortMode: SortMode;
-    onSortModeChange: (sortMode: SortMode) => void;
 }
 
 export default GameSort;

@@ -18,8 +18,8 @@ function GenrePage({ games, count, id, nextPage }: CategoryPageProps) {
     );
 }
 
-export async function getServerSideProps({ params: { id } }: NextPageContextWithID) {
-    return getCategoryPageServerSideProps(id, { genres: id });
+export async function getServerSideProps({ params: { id }, query }: NextPageContextWithID) {
+    return getCategoryPageServerSideProps(query, id, { genres: id });
 }
 
 export default GenrePage;

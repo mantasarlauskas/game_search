@@ -16,8 +16,8 @@ function DeveloperPage({ games, count, id, name, nextPage }: CategoryPageProps) 
     );
 }
 
-export async function getServerSideProps({ params: { id } }: NextPageContextWithID) {
-    return getCategoryAndGamesServerSideProps(ApiPath.DEVELOPERS, id, { developers: id });
+export async function getServerSideProps({ params: { id }, query }: NextPageContextWithID) {
+    return getCategoryAndGamesServerSideProps(query, ApiPath.DEVELOPERS, id, { developers: id });
 }
 
 export default DeveloperPage;

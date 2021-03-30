@@ -18,8 +18,8 @@ function PlatformPage({ games, count, id, nextPage }: CategoryPageProps) {
     );
 }
 
-export async function getServerSideProps({ params: { id } }: NextPageContextWithID) {
-    return getCategoryPageServerSideProps(id, { platforms: id });
+export async function getServerSideProps({ params: { id }, query }: NextPageContextWithID) {
+    return getCategoryPageServerSideProps(query, id, { platforms: id });
 }
 
 export default PlatformPage;

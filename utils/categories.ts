@@ -2,16 +2,19 @@ import { ApiPath, fetchData, QueryParams } from 'utils/fetch';
 import { Route } from 'utils/routes';
 import { Category } from 'utils/types';
 import { DEFAULT_PAGE_SIZE } from 'utils/page';
+import { ParsedUrlQuery } from 'querystring';
+import { getOrdering } from 'utils/ordering';
 
 export function getCategoryName(categories: Category[], id: string) {
     return categories.find((category) => category.id === parseInt(id, 10))?.name;
 }
 
-export async function getCategoryPageServerSideProps(id: string, query: QueryParams) {
+export async function getCategoryPageServerSideProps(query: ParsedUrlQuery, id: string, queryParams: QueryParams) {
     const data = await fetchData(ApiPath.GAMES, {
         page: 1,
         page_size: DEFAULT_PAGE_SIZE,
-        ...query,
+        ordering: getOrdering(query),
+        ...queryParams,
     });
 
     if (!data?.count || !data?.results) {
@@ -34,15 +37,17 @@ export async function getCategoryPageServerSideProps(id: string, query: QueryPar
 }
 
 export async function getCategoryAndGamesServerSideProps(
+    query: ParsedUrlQuery,
     path: ApiPath,
     id: string,
-    query: QueryParams,
+    queryParams: QueryParams,
 ) {
     const [data, category] = await Promise.all([
         fetchData(ApiPath.GAMES, {
             page: 1,
             page_size: DEFAULT_PAGE_SIZE,
-            ...query,
+            ordering: getOrdering(query),
+            ...queryParams,
         }),
         fetchData(`${path}/${id}`),
     ]);

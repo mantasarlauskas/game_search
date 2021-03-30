@@ -1,6 +1,5 @@
 import React, { createContext, useContext } from 'react';
 import 'styles/globals.scss';
-import Head from 'next/head';
 import SearchBar from 'components/SearchBar';
 import styles from 'styles/app.module.scss';
 import { ApiPath, fetchData } from 'utils/fetch';

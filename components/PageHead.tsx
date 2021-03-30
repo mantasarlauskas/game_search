@@ -8,7 +8,7 @@ function PageHead({ title }: PageHeadProps) {
     const { route } = useRouter();
     return (
         <Head>
-            <title>{title || PageTitle[route as Route]}</title>
+            <title key="title">{title || PageTitle[route as Route]}</title>
             <meta key="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         </Head>
     );

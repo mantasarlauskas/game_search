@@ -16,8 +16,8 @@ function TagPage({ games, count, id, name, nextPage }: CategoryPageProps) {
     );
 }
 
-export async function getServerSideProps({ params: { id } }: NextPageContextWithID) {
-    return getCategoryAndGamesServerSideProps(ApiPath.TAGS, id, { tags: id });
+export async function getServerSideProps({ params: { id }, query }: NextPageContextWithID) {
+    return getCategoryAndGamesServerSideProps(query, ApiPath.TAGS, id, { tags: id });
 }
 
 export default TagPage;

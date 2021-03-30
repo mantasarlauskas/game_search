@@ -16,8 +16,8 @@ function PublisherPage({ games, count, id, name, nextPage }: CategoryPageProps) 
     );
 }
 
-export async function getServerSideProps({ params: { id } }: NextPageContextWithID) {
-    return getCategoryAndGamesServerSideProps(ApiPath.PUBLISHERS, id, { publishers: id });
+export async function getServerSideProps({ params: { id }, query }: NextPageContextWithID) {
+    return getCategoryAndGamesServerSideProps(query, ApiPath.PUBLISHERS, id, { publishers: id });
 }
 
 export default PublisherPage;

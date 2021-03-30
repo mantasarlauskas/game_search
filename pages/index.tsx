@@ -3,7 +3,7 @@ import { Game } from 'utils/types';
 import { ApiPath, fetchData } from 'utils/fetch';
 import GameCard from 'components/GameCard';
 import usePaginatedQuery from 'hooks/usePaginatedQuery';
-import GameSort, { SortMode } from 'components/GameSort';
+import GameSort from 'components/GameSort';
 import Spinner from 'components/Spinner';
 import { useRouter } from 'next/router';
 import { NextPageContext } from 'next';
@@ -28,21 +28,10 @@ function HomePage({ games, nextPage }: HomePageProps) {
         queryParams: { ordering },
     });
 
-    function onSortModeChange(sortMode: SortMode) {
-        router.push({
-            query: {
-                ...(sortMode ? { ordering: sortMode || '' } : {}),
-            },
-        }, undefined, { shallow: true });
-    }
-
     return (
         <div className={styles.root}>
             <div className={styles.sort}>
-                <GameSort
-                    activeSortMode={ordering}
-                    onSortModeChange={onSortModeChange}
-                />
+                <GameSort />
             </div>
             {isLoading && !data.length && (
                 <div className={styles.spinner}>

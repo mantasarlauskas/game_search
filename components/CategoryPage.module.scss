@@ -11,7 +11,11 @@
 .count {
     @include fonts.font-bold;
     @include fonts.font-size-large;
-    margin-bottom: spacing.$medium;
+
+    @media (max-width: breakpoints.$s) {
+        margin-bottom: spacing.$medium;
+        order: -1;
+    }
 }
 
 .cards {
@@ -20,6 +24,22 @@
 
 .title {
     margin-bottom: spacing.$large;
+
+    @media (max-width: breakpoints.$s) {
+        text-align: center;
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: spacing.$medium;
+
+    @media (max-width: breakpoints.$s) {
+        align-items: flex-start;
+        flex-direction: column;
+    }
 }
 
 .button {

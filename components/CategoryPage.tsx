@@ -5,8 +5,13 @@ import styles from 'components/CategoryPage.module.scss';
 import GameCard from 'components/GameCard';
 import PaginationButtons from 'components/PaginationButtons';
 import PageHead from 'components/PageHead';
+import GameSort from 'components/GameSort';
+import { useRouter } from 'next/router';
+import { getOrdering } from 'utils/ordering';
 
 function CategoryPage({ games, queryParams, count, title, nextPage, name }: CategoryPageProps) {
+    const router = useRouter();
+    const ordering = getOrdering(router.query);
     const {
         data,
         isFetching,
@@ -16,16 +21,22 @@ function CategoryPage({ games, queryParams, count, title, nextPage, name }: Cate
     } = usePaginatedQuery<Game, HTMLButtonElement>({
         initialData: games,
         path: ApiPath.GAMES,
-        queryParams,
         initialNextPage: nextPage,
+        queryParams: {
+            ...queryParams,
+            ordering,
+        },
     });
 
     return (
         <div className={styles.root}>
             <PageHead title={name} />
             <h1 className={styles.title}>{title}</h1>
-            <div className={styles.count}>
-                {`Total ${count} games`}
+            <div className={styles.header}>
+                <GameSort />
+                <div className={styles.count}>
+                    {`Total ${count} games`}
+                </div>
             </div>
             <div className={styles.cards}>
                 {data.map((game) => (
