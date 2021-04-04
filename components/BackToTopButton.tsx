@@ -23,7 +23,9 @@ function BackToTopButton({ isEnabled }: BackToTopButtonProps) {
     }, [isEnabled]);
 
     function onClick() {
-        window.scrollTo(0, 0);
+        if (!isHidden) {
+            window.scrollTo(0, 0);
+        }
     }
 
     const isHidden = !isEnabled || !isVisible;
