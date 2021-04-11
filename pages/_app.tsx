@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import { createContext, useContext } from 'react';
 import 'styles/globals.scss';
 import SearchBar from 'components/SearchBar';
 import styles from 'styles/app.module.scss';

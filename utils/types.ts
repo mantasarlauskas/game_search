@@ -1,7 +1,7 @@
 import { NextPageContext } from 'next';
 
 export interface Info {
-    id: string;
+    id: number;
     name: string;
     url?: string;
 }

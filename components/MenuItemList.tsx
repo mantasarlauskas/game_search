@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import styles from 'components/MenuItemList.module.scss';
 import ChevronRight from 'assets/chevron-right.svg';

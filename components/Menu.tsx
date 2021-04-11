@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import MenuItemList from 'components/MenuItemList';
 import styles from 'components/Menu.module.scss';

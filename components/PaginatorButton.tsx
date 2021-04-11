@@ -1,4 +1,4 @@
-import React, { forwardRef, RefObject } from 'react';
+import { forwardRef, RefObject } from 'react';
 import styles from 'components/PaginatorButton.module.scss';
 import Spinner from 'components/Spinner';
 

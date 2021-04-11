@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CategoryCard /> matches snapshot 1`] = `
+<div>
+  <div
+    class="root"
+  >
+    <div>
+      <div
+        class="name"
+      >
+        Feral Interactive
+      </div>
+    </div>
+    <div
+      class="heading"
+    >
+      <div
+        class="title"
+      >
+        Games
+      </div>
+      <div
+        class="count"
+      >
+        107
+      </div>
+    </div>
+    <div>
+      <div
+        class="row"
+      >
+        Rise of the Tomb Raider
+      </div>
+    </div>
+    <div>
+      <div
+        class="row"
+      >
+        Middle-earth: Shadow of Mordor
+      </div>
+    </div>
+    <div>
+      <div
+        class="row"
+      >
+        Hitman
+      </div>
+    </div>
+  </div>
+</div>
+`;

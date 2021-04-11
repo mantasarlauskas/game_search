@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, MouseEvent } from 'react';
+import { useEffect, useRef, useState, MouseEvent } from 'react';
 import debounce from 'debounce';
 import Link from 'next/link';
 import styles from 'components/GameCard.module.scss';

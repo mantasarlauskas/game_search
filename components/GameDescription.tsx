@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from 'components/GameDescription.module.scss';
 
 function GameDescription({ description, slug, letterCount = 500 }: GameDescriptionProps) {

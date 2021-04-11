@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import styles from 'components/GameMetaBlock.module.scss';
 
 function GameMetaBlock({ title, children }: GameMetaBlockProps) {
