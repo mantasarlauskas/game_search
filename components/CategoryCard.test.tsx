@@ -30,12 +30,12 @@ describe('<CategoryCard />', () => {
     it('on name click goes to category page', () => {
         render(<CategoryCard {...props} />);
         userEvent.click(screen.getByText('Feral Interactive'));
-        expect(window.open).toBeCalledWith('/developers/18893');
+        expect(window.location.href).toEqual('/developers/18893');
     });
 
     it('on game click goes to game page', () => {
         render(<CategoryCard {...props} />);
         userEvent.click(screen.getByText('Hitman'));
-        expect(window.open).toBeCalledWith('/games/hitman');
+        expect(window.location.href).toEqual('/games/hitman');
     });
 });

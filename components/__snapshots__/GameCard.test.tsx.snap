@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GameCard /> matches snapshot 1`] = `
+<div>
+  <div>
+    <div
+      class="root"
+    >
+      <div
+        class="media"
+        role="button"
+        style="height: auto;"
+        tabindex="0"
+      >
+        <img
+          alt="Portal 2"
+          class="image"
+          src="https://media.rawg.io/media/crop/600/400/games/328/3283617cb7d75d67257fc58339188742.jpg"
+        />
+      </div>
+      <div
+        class="content"
+      >
+        <div
+          class="header"
+        >
+          <div
+            class="title"
+          >
+            Portal 2
+          </div>
+          <div
+            class="score"
+          >
+            95
+          </div>
+        </div>
+        <div
+          class="platforms"
+        >
+          Platforms: 
+          <div>
+            <span
+              class="item"
+            >
+              PC, 
+            </span>
+          </div>
+          <div>
+            <span
+              class="item"
+            >
+              Xbox One
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
