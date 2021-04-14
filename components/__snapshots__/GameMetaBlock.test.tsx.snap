@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GameMetaBlock /> matches snapshot 1`] = `
+<div>
+  <div
+    class="root"
+  >
+    <div
+      class="title"
+    >
+      title
+    </div>
+    <span>
+      children
+    </span>
+  </div>
+</div>
+`;

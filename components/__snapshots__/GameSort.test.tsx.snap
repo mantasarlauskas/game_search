@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GameSort /> matches snapshot 1`] = `
+<div>
+  <button
+    class="root"
+    type="button"
+  >
+    Order by:
+    <div
+      class="title"
+    >
+      Date added
+    </div>
+  </button>
+</div>
+`;

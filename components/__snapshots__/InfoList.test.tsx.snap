@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<InfoList /> matches snapshot 1`] = `
+<div>
+  name1, 
+  <div>
+    <span
+      class="item"
+    >
+      name2
+    </span>
+  </div>
+</div>
+`;

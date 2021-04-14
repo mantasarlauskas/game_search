@@ -10,7 +10,8 @@ import { PageTitle } from 'utils/page';
 
 function MenuItemList({ items, visibleCount = 5, expandedCount, route }: MenuItemListProps) {
     const [expanded, setExpanded] = useState(false);
-    const visibleItems = items.length > visibleCount && !expanded ? items.slice(0, visibleCount) : items;
+    const isOverLimit = items.length > visibleCount;
+    const visibleItems = isOverLimit && !expanded ? items.slice(0, visibleCount) : items;
     return (
         <div className={styles.root}>
             <Link href={route}>
@@ -33,17 +34,19 @@ function MenuItemList({ items, visibleCount = 5, expandedCount, route }: MenuIte
                         </div>
                     </Link>
                 ))}
-            <DivButton
-                onClick={() => setExpanded(!expanded)}
-                className={classNames(styles.item, styles.toggle, expanded && styles.expanded)}
-            >
-                <div className={styles.background}>
-                    <ChevronRight className={styles.icon} />
-                </div>
-                <div className={styles.name}>
-                    {expanded ? 'Hide' : 'Show all'}
-                </div>
-            </DivButton>
+            {isOverLimit && (
+                <DivButton
+                    onClick={() => setExpanded(!expanded)}
+                    className={classNames(styles.item, styles.toggle, expanded && styles.expanded)}
+                >
+                    <div className={styles.background}>
+                        <ChevronRight className={styles.icon} />
+                    </div>
+                    <div className={styles.name}>
+                        {expanded ? 'Hide' : 'Show all'}
+                    </div>
+                </DivButton>
+            )}
         </div>
     );
 }

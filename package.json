@@ -56,7 +56,8 @@
       "."
     ],
     "moduleNameMapper": {
-      "\\.(scss|svg)": "identity-obj-proxy"
+      "\\.scss": "identity-obj-proxy",
+      "\\.svg": "<rootDir>/testing/svgMock.tsx"
     }
   }
 }
