@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PaginationButtons /> matches snapshot 1`] = `
+<div>
+  <button
+    class="root"
+    type="button"
+  >
+    Load more
+  </button>
+  <div
+    class="root hidden"
+    role="button"
+    tabindex="0"
+  >
+    Back to top
+  </div>
+</div>
+`;

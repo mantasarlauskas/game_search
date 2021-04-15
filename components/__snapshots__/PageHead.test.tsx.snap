@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PageHead /> matches snapshot 1`] = `
+<div>
+  <title>
+    Developers
+  </title>
+  <meta
+    content="width=device-width, initial-scale=1, maximum-scale=1"
+    name="viewport"
+  />
+</div>
+`;

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchBar /> matches snapshot 1`] = `
+<div>
+  <div
+    class="root"
+  >
+    <div
+      class="inputWrapper"
+    >
+      <input
+        class="input"
+        placeholder="Search games"
+        value=""
+      />
+      <span />
+    </div>
+  </div>
+</div>
+`;
