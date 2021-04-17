@@ -14,7 +14,7 @@ describe('<GameCard />', () => {
     it('shows game info', () => {
         render(<GameCard game={game} />);
         expect(screen.getByAltText('Portal 2')).toBeInTheDocument();
-        expect(screen.getByText('95')).toBeInTheDocument();
+        expect(screen.getByText('4.6')).toBeInTheDocument();
         expect(screen.getByText(/PC/)).toBeInTheDocument();
         expect(screen.getByText('Xbox One')).toBeInTheDocument();
         expect(screen.getByText('Portal 2')).toBeInTheDocument();

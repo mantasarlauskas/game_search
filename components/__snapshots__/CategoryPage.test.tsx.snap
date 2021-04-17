@@ -63,7 +63,7 @@ exports[`<CategoryPage /> matches snapshot 1`] = `
               <div
                 class="score"
               >
-                95
+                4.6
               </div>
             </div>
             <div
@@ -118,7 +118,7 @@ exports[`<CategoryPage /> matches snapshot 1`] = `
               <div
                 class="score"
               >
-                86
+                4.1
               </div>
             </div>
             <div
