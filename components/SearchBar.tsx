@@ -8,7 +8,7 @@ import Spinner from 'components/Spinner';
 import SearchIcon from 'assets/search.svg';
 import { Game } from 'utils/types';
 import { Route } from 'utils/routes';
-import { cropImageUrl } from 'utils/image';
+import { getCroppedImageUrl } from 'utils/image';
 import { useQuery } from 'react-query';
 import useDebouncedValue from 'hooks/useDebouncedValue';
 
@@ -81,7 +81,7 @@ function SearchBar() {
                             <div className={styles.result}>
                                 <div
                                     className={styles.image}
-                                    style={{ backgroundImage: `url(${cropImageUrl(background_image)})` }}
+                                    style={{ backgroundImage: `url(${getCroppedImageUrl(background_image)})` }}
                                 />
                                 <div>
                                     <div className={styles.name}>{name}</div>

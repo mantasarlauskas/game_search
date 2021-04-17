@@ -1,5 +1,6 @@
 import { LinkProps } from 'next/dist/client/link';
 import { PropsWithChildren } from 'react';
+import IntersectionObserver from 'testing/intersectionObserverMock';
 import '@testing-library/jest-dom/extend-expect';
 
 delete (window as any).location;
@@ -22,4 +23,8 @@ jest.mock('next/link', () => ({ children, href }: PropsWithChildren<LinkProps>) 
 
 Object.defineProperty(HTMLMediaElement.prototype, 'muted', {
     set: () => {},
+});
+
+Object.defineProperty(window, 'IntersectionObserver', {
+    value: IntersectionObserver,
 });

@@ -5,7 +5,7 @@ import styles from 'components/MenuItemList.module.scss';
 import ChevronRight from 'assets/chevron-right.svg';
 import { Route } from 'utils/routes';
 import DivButton from 'components/DivButton';
-import { cropImageUrl } from 'utils/image';
+import { getCroppedImageUrl } from 'utils/image';
 import { PageTitle } from 'utils/page';
 
 function MenuItemList({ items, visibleCount = 5, expandedCount, route }: MenuItemListProps) {
@@ -25,7 +25,7 @@ function MenuItemList({ items, visibleCount = 5, expandedCount, route }: MenuIte
                         <div className={styles.item}>
                             <img
                                 className={styles.background}
-                                src={cropImageUrl(image_background)}
+                                src={getCroppedImageUrl(image_background)}
                                 alt={name}
                             />
                             <div className={styles.name}>

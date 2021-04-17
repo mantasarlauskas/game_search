@@ -24,7 +24,8 @@ export interface QueryParams {
 }
 
 export function getFetchUrl(path: string, query?: QueryParams) {
-    return `https://api.rawg.io/api/${path}?${getQueryParams(query)}`;
+    const params = getQueryParams(query);
+    return `https://api.rawg.io/api/${path}${params ? `?${params}` : ''}`;
 }
 
 export function handleServerResponse(response: Promise<Response>) {
@@ -41,7 +42,7 @@ export function fetchData(path: string, query?: QueryParams) {
     return handleServerResponse(fetch(getFetchUrl(path, query)));
 }
 
-function getQueryParams(query?: QueryParams) {
+export function getQueryParams(query?: QueryParams) {
     if (!query || !Object.keys(query).length) {
         return '';
     }

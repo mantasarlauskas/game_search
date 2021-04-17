@@ -1,5 +1,5 @@
 {
-  "name": "nba-stats",
+  "name": "game-deals",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -53,6 +53,7 @@
     ],
     "moduleDirectories": [
       "node_modules",
+      "<rootDir>/node_modules",
       "."
     ],
     "moduleNameMapper": {

@@ -2,14 +2,14 @@ import Link from 'next/link';
 import { Category } from 'utils/types';
 import styles from 'components/CategoryCard.module.scss';
 import { Route } from 'utils/routes';
-import { cropImageUrl } from 'utils/image';
+import { getCroppedImageUrl } from 'utils/image';
 
 function CategoryCard({
     route,
     category: { image_background, name, id, games_count, games },
     visibleGameCount = 3,
 }: CategoryCardProps) {
-    const imageUrl = cropImageUrl(image_background);
+    const imageUrl = getCroppedImageUrl(image_background);
     const backgroundImage = `linear-gradient(rgba(32, 32, 32, 0.5), rgb(32, 32, 32) 70%), url(${imageUrl})`;
     return (
         <div

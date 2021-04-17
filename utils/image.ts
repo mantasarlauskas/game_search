@@ -1,4 +1,4 @@
-export function cropImageUrl(imageUrl?: string) {
+export function getCroppedImageUrl(imageUrl?: string) {
     if (!imageUrl) {
         return undefined;
     }

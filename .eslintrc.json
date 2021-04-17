@@ -21,6 +21,7 @@
         "react/jsx-props-no-spreading": "off",
         "react/jsx-filename-extension": "off",
         "react/destructuring-assignment": "off",
+        "class-methods-use-this": "off",
         "react/prop-types": "off",
         "no-param-reassign": "off",
         "no-use-before-define": "off",
