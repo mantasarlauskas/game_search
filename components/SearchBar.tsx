@@ -68,6 +68,9 @@ function SearchBar() {
                     placeholder="Search games"
                 />
                 <SearchIcon className={styles.icon} />
+                <div className={styles.enter}>
+                    &#9166;
+                </div>
             </div>
             {(isLoading || results.length > 0) && isOpen && (
                 <div className={styles.results}>

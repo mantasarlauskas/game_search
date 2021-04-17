@@ -24,7 +24,7 @@ function usePaginatedQuery<T, P extends HTMLElement>({
         getPreviousPageParam: (firstPage, allPages) => allPages[allPages.length - 1]?.previous ?? undefined,
         getNextPageParam: (lastPage) => lastPage?.next ?? undefined,
         initialData: {
-            pageParams: [],
+            pageParams: [getFetchUrl(path, { page: initialPageNumber, page_size: pageSize, ...queryParams })],
             pages: [{
                 results: initialData,
                 next: initialNextPage,

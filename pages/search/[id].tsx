@@ -6,8 +6,13 @@ import GameCard from 'components/GameCard';
 import { DEFAULT_PAGE_SIZE } from 'utils/page';
 import PaginationButtons from 'components/PaginationButtons';
 import PageHead from 'components/PageHead';
+import { getOrdering } from 'utils/ordering';
+import { useRouter } from 'next/router';
+import GameSort from 'components/GameSort';
 
 function SearchPage({ initialResults, count, id, nextPage }: SearchPageProps) {
+    const router = useRouter();
+    const ordering = getOrdering(router.query);
     const {
         data,
         isFetching,
@@ -18,7 +23,7 @@ function SearchPage({ initialResults, count, id, nextPage }: SearchPageProps) {
         initialData: initialResults,
         initialNextPage: nextPage,
         path: ApiPath.GAMES,
-        queryParams: { search: id },
+        queryParams: { search: id, ordering },
     });
 
     return (
@@ -26,6 +31,9 @@ function SearchPage({ initialResults, count, id, nextPage }: SearchPageProps) {
             <PageHead title="Game search" />
             <div className={styles.info}>
                 {`${count} games found`}
+            </div>
+            <div className={styles.sort}>
+                <GameSort />
             </div>
             <div className={styles.cards}>
                 {data.map((game) => (
@@ -52,12 +60,13 @@ interface SearchPageProps {
 }
 
 export async function getServerSideProps({
-    params: { id },
+    params: { id }, query,
 }: NextPageContextWithID): Promise<{ props: SearchPageProps }> {
     const data = await fetchData(ApiPath.GAMES, {
         search: id,
         page: 1,
         page_size: DEFAULT_PAGE_SIZE,
+        ordering: getOrdering(query),
     });
 
     return {

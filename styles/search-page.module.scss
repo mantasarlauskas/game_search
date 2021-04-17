@@ -18,6 +18,10 @@
     @include grid.responsive-card-grid;
 }
 
+.sort {
+    margin-bottom: spacing.$medium;
+}
+
 .button {
     margin: 0 auto;
 }

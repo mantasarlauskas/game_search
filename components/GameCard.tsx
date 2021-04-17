@@ -7,15 +7,16 @@ import InfoList from 'components/InfoList';
 import { Route } from 'utils/routes';
 import DivButton from 'components/DivButton';
 import { getCroppedImageUrl } from 'utils/image';
+import { roundNumber } from 'utils/number';
 
 function GameCard({
     game: {
         slug,
         name,
         background_image,
-        metacritic,
         clip,
         platforms,
+        rating,
     },
 }: GameCardProps) {
     const imageUrl = getCroppedImageUrl(background_image);
@@ -91,9 +92,9 @@ function GameCard({
                         <div className={styles.title}>
                             {name}
                         </div>
-                        {metacritic && (
+                        {!!rating && (
                             <div className={styles.score}>
-                                {metacritic}
+                                {roundNumber(rating)}
                             </div>
                         )}
                     </div>
