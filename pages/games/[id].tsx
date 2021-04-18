@@ -1,5 +1,5 @@
 import { ApiPath, fetchData } from 'utils/fetch';
-import styles from 'styles/game.module.scss';
+import styles from 'pageStyles/GamePage.module.scss';
 import useBackgroundImage from 'hooks/useBackgroundImage';
 import { roundNumber } from 'utils/number';
 import GameDescription from 'components/GameDescription';

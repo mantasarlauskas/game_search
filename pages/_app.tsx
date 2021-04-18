@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react';
 import 'styles/globals.scss';
 import SearchBar from 'components/SearchBar';
-import styles from 'styles/app.module.scss';
+import styles from 'pageStyles/App.module.scss';
 import { ApiPath, fetchData } from 'utils/fetch';
 import { Category } from 'utils/types';
 import Menu from 'components/Menu';

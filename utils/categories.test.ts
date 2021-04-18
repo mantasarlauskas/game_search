@@ -8,25 +8,7 @@ import { getCategories, getGames } from 'testing/testFactories';
 import { ApiPath, fetchData } from 'utils/fetch';
 import { Route } from 'utils/routes';
 
-jest.mock('utils/fetch', () => ({
-    fetchData: jest.fn(),
-    ApiPath: {
-        GAMES: 'games',
-        GENRES: 'genres',
-        PLATFORMS: 'platforms',
-        TAGS: 'tags',
-        DEVELOPERS: 'developers',
-        PUBLISHERS: 'publishers',
-        STORES: 'stores',
-    },
-}));
-
-(fetchData as jest.Mock).mockResolvedValue({
-    results: getGames(),
-    count: 100,
-    next: '2',
-    name: 'name',
-});
+jest.mock('utils/fetch');
 
 describe('categories', () => {
     const categories = getCategories();

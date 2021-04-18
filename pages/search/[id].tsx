@@ -1,6 +1,6 @@
 import { Game, NextPageContextWithID } from 'utils/types';
 import { ApiPath, fetchData } from 'utils/fetch';
-import styles from 'styles/search-page.module.scss';
+import styles from 'pageStyles/SearchPage.module.scss';
 import usePaginatedQuery from 'hooks/usePaginatedQuery';
 import GameCard from 'components/GameCard';
 import { DEFAULT_PAGE_SIZE } from 'utils/page';

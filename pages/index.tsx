@@ -1,4 +1,4 @@
-import styles from 'styles/index.module.scss';
+import styles from 'pageStyles/HomePage.module.scss';
 import { Game } from 'utils/types';
 import { ApiPath, fetchData } from 'utils/fetch';
 import GameCard from 'components/GameCard';

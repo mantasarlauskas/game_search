@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DevelopersPage matches snapshot 1`] = `
+<div>
+  <div
+    class="root"
+  >
+    <h1
+      class="title"
+    >
+      Developers
+    </h1>
+    <div
+      class="categories"
+    >
+      <div
+        class="root"
+      >
+        <div>
+          <div
+            class="name"
+          >
+            Feral Interactive
+          </div>
+        </div>
+        <div
+          class="heading"
+        >
+          <div
+            class="title"
+          >
+            Games
+          </div>
+          <div
+            class="count"
+          >
+            107
+          </div>
+        </div>
+        <div>
+          <div
+            class="row"
+          >
+            Rise of the Tomb Raider
+          </div>
+        </div>
+        <div>
+          <div
+            class="row"
+          >
+            Middle-earth: Shadow of Mordor
+          </div>
+        </div>
+        <div>
+          <div
+            class="row"
+          >
+            Hitman
+          </div>
+        </div>
+      </div>
+      <div
+        class="root"
+      >
+        <div>
+          <div
+            class="name"
+          >
+            Ubisoft
+          </div>
+        </div>
+        <div
+          class="heading"
+        >
+          <div
+            class="title"
+          >
+            Games
+          </div>
+          <div
+            class="count"
+          >
+            297
+          </div>
+        </div>
+        <div>
+          <div
+            class="row"
+          >
+            Far Cry 3
+          </div>
+        </div>
+        <div>
+          <div
+            class="row"
+          >
+            For Honor
+          </div>
+        </div>
+        <div>
+          <div
+            class="row"
+          >
+            Watch Dogs
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    class="root"
+    type="button"
+  >
+    Load more
+  </button>
+  <div
+    class="root hidden"
+    role="button"
+    tabindex="0"
+  >
+    Back to top
+  </div>
+</div>
+`;

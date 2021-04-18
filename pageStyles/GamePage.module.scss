@@ -1,7 +1,7 @@
-@use 'fonts';
-@use 'spacing';
-@use 'colors';
-@use 'breakpoints';
+@use 'styles/fonts';
+@use 'styles/spacing';
+@use 'styles/colors';
+@use 'styles/breakpoints';
 
 .root {
     max-width: 960px;

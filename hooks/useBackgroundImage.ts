@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import styles from 'styles/background.module.scss';
+import styles from 'hooks/useBackgroundImage.module.scss';
 
 const imageStyles = 'linear-gradient(rgba(15, 15, 15, 0), rgb(21, 21, 21)),'
     + ' linear-gradient(rgba(21, 21, 21, 0.8), rgba(21, 21, 21, 0.5))';

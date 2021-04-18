@@ -1,7 +1,7 @@
-@use 'spacing';
-@use 'colors';
-@use 'breakpoints';
-@use 'grid';
+@use 'styles/spacing';
+@use 'styles/colors';
+@use 'styles/breakpoints';
+@use 'styles/grid';
 
 .root {
     width: 100%;

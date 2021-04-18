@@ -1,4 +1,4 @@
-import styles from 'styles/error.module.scss';
+import styles from 'pageStyles/ErrorPage.module.scss';
 import { NextPageContext } from 'next';
 
 function ErrorPage({ statusCode }: ErrorPageProps) {

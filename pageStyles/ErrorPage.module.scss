@@ -1,7 +1,7 @@
-@use 'fonts';
-@use 'colors';
-@use 'spacing';
-@use 'breakpoints';
+@use 'styles/fonts';
+@use 'styles/colors';
+@use 'styles/spacing';
+@use 'styles/breakpoints';
 
 .root {
     @include fonts.font-size-large;

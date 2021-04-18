@@ -1,8 +1,8 @@
-@use 'colors';
-@use 'fonts';
-@use 'spacing';
-@use 'breakpoints';
-@use 'grid';
+@use 'styles/colors';
+@use 'styles/fonts';
+@use 'styles/spacing';
+@use 'styles/breakpoints';
+@use 'styles/grid';
 
 .root {
     display: flex;
