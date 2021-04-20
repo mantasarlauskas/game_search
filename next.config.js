@@ -1,5 +1,8 @@
 module.exports = {
     reactStrictMode: true,
+    env: {
+        HOST: process.env.HOST,
+    },
     webpack(config) {
         config.module.rules.push({
             test: /\.svg$/,

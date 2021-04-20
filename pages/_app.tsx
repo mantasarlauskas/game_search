@@ -50,9 +50,9 @@ export function useAppContext() {
 
 App.getInitialProps = async () => {
     const [genres, platforms, stores] = await Promise.all([
-        await fetchData(ApiPath.GENRES),
-        await fetchData(ApiPath.PLATFORMS),
-        await fetchData(ApiPath.STORES),
+        fetchData(ApiPath.GENRES),
+        fetchData(ApiPath.PLATFORMS),
+        fetchData(ApiPath.STORES),
     ]);
 
     return {

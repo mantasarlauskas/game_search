@@ -114,7 +114,7 @@ export async function getServerSideProps({ params: { id } }: NextPageContextWith
         props: {
             game,
             suggestedGames: suggestedGames?.results || [],
-            suggestedGamesNextPage: suggestedGames?.next,
+            suggestedGamesNextPage: suggestedGames?.next || null,
         },
     };
 }

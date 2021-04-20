@@ -73,7 +73,7 @@ export async function getServerSideProps({ query }: NextPageContext): Promise<{ 
     return {
         props: {
             games: data?.results || [],
-            nextPage: data?.next,
+            nextPage: data?.next || null,
         },
     };
 }

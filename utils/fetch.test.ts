@@ -5,13 +5,13 @@ import { getGames } from 'testing/testFactories';
 describe('fetch', () => {
     describe('getFetchUrl', () => {
         it('returns url', () => {
-            expect(getFetchUrl('url')).toEqual('https://api.rawg.io/api/url');
-            expect(getFetchUrl('url', { ordering: SortMode.NAME })).toEqual(
-                'https://api.rawg.io/api/url?ordering=name',
+            expect(getFetchUrl('url')).toContain('/api/url');
+            expect(getFetchUrl('url', { ordering: SortMode.NAME })).toContain(
+                '/api/url?ordering=name',
             );
 
-            expect(getFetchUrl('url', { ordering: SortMode.NAME, genres: '123' })).toEqual(
-                'https://api.rawg.io/api/url?ordering=name&genres=123',
+            expect(getFetchUrl('url', { ordering: SortMode.NAME, genres: '123' })).toContain(
+                '/api/url?ordering=name&genres=123',
             );
         });
     });
@@ -49,7 +49,7 @@ describe('fetch', () => {
             const res = await fetchData('url', { platforms: '123' });
             expect(res).toEqual(getGames());
             expect(window.fetch).toBeCalledTimes(1);
-            expect(window.fetch).toBeCalledWith('https://api.rawg.io/api/url?platforms=123');
+            expect(window.fetch).toBeCalledWith(expect.stringContaining('/api/url?platforms=123'));
         });
     });
 });

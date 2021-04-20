@@ -25,7 +25,7 @@ export interface QueryParams {
 
 export function getFetchUrl(path: string, query?: QueryParams) {
     const params = getQueryParams(query);
-    return `https://api.rawg.io/api/${path}${params ? `?${params}` : ''}`;
+    return `${process.env.HOST}/api/${path}${params ? `?${params}` : ''}`;
 }
 
 export function handleServerResponse(response: Promise<Response>) {

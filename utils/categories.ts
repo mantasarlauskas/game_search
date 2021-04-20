@@ -31,7 +31,7 @@ export async function getCategoryPageServerSideProps(query: ParsedUrlQuery, id: 
             id,
             count: data.count,
             games: data.results,
-            nextPage: data.next,
+            nextPage: data.next || null,
         },
     };
 }
@@ -67,7 +67,7 @@ export async function getCategoryAndGamesServerSideProps(
             count: data.count,
             games: data.results,
             name: category.name,
-            nextPage: data.next,
+            nextPage: data.next || null,
         },
     };
 }
@@ -84,7 +84,7 @@ export async function getCategoriesPageServerSideProps(path: ApiPath) {
     return {
         props: {
             categories: data?.results || [],
-            nextPage: data?.next,
+            nextPage: data?.next || null,
         },
     };
 }

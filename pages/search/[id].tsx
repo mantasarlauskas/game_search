@@ -72,7 +72,7 @@ export async function getServerSideProps({
     return {
         props: {
             id,
-            nextPage: data?.next,
+            nextPage: data?.next || null,
             initialResults: data?.results || [],
             count: data?.count || 0,
         },
