@@ -1,9 +1,11 @@
 import { CategoryPageProps, NextPageContextWithID } from 'utils/types';
 import CategoryPage from 'components/CategoryPage';
-import { getCategoryAndGamesServerSideProps } from 'utils/categories';
-import { ApiPath } from 'utils/fetch';
+import { getCategoryName, getCategoryPageServerSideProps } from 'utils/categories';
+import { useAppContext } from 'pages/_app';
 
-function StorePage({ games, count, id, name, nextPage }: CategoryPageProps) {
+function StorePage({ games, count, id, nextPage }: CategoryPageProps) {
+    const { stores } = useAppContext();
+    const name = getCategoryName(stores, id);
     return (
         <CategoryPage
             name={name}
@@ -17,7 +19,7 @@ function StorePage({ games, count, id, name, nextPage }: CategoryPageProps) {
 }
 
 export async function getServerSideProps({ params: { id }, query }: NextPageContextWithID) {
-    return getCategoryAndGamesServerSideProps(query, ApiPath.STORES, id, { stores: id });
+    return getCategoryPageServerSideProps(query, id, { stores: id });
 }
 
 export default StorePage;

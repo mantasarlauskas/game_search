@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<DevelopersPage /> matches snapshot 1`] = `
+exports[`<StoresPage /> matches snapshot 1`] = `
 <div>
   <div
     class="root"
@@ -8,7 +8,7 @@ exports[`<DevelopersPage /> matches snapshot 1`] = `
     <h1
       class="title"
     >
-      Developers
+      Stores
     </h1>
     <div
       class="categories"
@@ -106,19 +106,6 @@ exports[`<DevelopersPage /> matches snapshot 1`] = `
         </div>
       </div>
     </div>
-  </div>
-  <button
-    class="root"
-    type="button"
-  >
-    Load more
-  </button>
-  <div
-    class="root hidden"
-    role="button"
-    tabindex="0"
-  >
-    Back to top
   </div>
 </div>
 `;

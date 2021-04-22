@@ -1,9 +1,9 @@
-import { CategoryPageProps, NextPageContextWithID } from 'utils/types';
+import { CategoryPageWithNameProps, NextPageContextWithID } from 'utils/types';
 import CategoryPage from 'components/CategoryPage';
 import { getCategoryAndGamesServerSideProps } from 'utils/categories';
 import { ApiPath } from 'utils/fetch';
 
-function PublisherPage({ games, count, id, name, nextPage }: CategoryPageProps) {
+function PublisherPage({ games, count, id, name, nextPage }: CategoryPageWithNameProps) {
     return (
         <CategoryPage
             name={name}

@@ -1,0 +1,166 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<StorePage /> matches snapshot 1`] = `
+<div>
+  <div
+    class="root"
+  >
+    <h1
+      class="title"
+    >
+      Games available on Feral Interactive
+    </h1>
+    <div
+      class="header"
+    >
+      <button
+        class="root"
+        type="button"
+      >
+        Order by:
+        <div
+          class="title"
+        >
+          Relevance
+        </div>
+      </button>
+      <div
+        class="count"
+      >
+        Total 100 games
+      </div>
+    </div>
+    <div
+      class="cards"
+    >
+      <div>
+        <div
+          class="root"
+        >
+          <div
+            class="media"
+            role="button"
+            style="height: auto;"
+            tabindex="0"
+          >
+            <img
+              alt="Portal 2"
+              class="image"
+              src="https://media.rawg.io/media/crop/600/400/games/328/3283617cb7d75d67257fc58339188742.jpg"
+            />
+          </div>
+          <div
+            class="content"
+          >
+            <div
+              class="header"
+            >
+              <div
+                class="title"
+              >
+                Portal 2
+              </div>
+              <div
+                class="score"
+              >
+                4.6
+              </div>
+            </div>
+            <div
+              class="platforms"
+            >
+              Platforms: 
+              <div>
+                <span
+                  class="item"
+                >
+                  PC, 
+                </span>
+              </div>
+              <div>
+                <span
+                  class="item"
+                >
+                  Xbox One
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          class="root"
+        >
+          <div
+            class="media"
+            role="button"
+            style="height: auto;"
+            tabindex="0"
+          >
+            <img
+              alt="Tomb Raider (2013)"
+              class="image"
+              src="https://media.rawg.io/media/crop/600/400/games/ad2/ad2ffdf80ba993654f31da045bc02456.jpg"
+            />
+          </div>
+          <div
+            class="content"
+          >
+            <div
+              class="header"
+            >
+              <div
+                class="title"
+              >
+                Tomb Raider (2013)
+              </div>
+              <div
+                class="score"
+              >
+                4.1
+              </div>
+            </div>
+            <div
+              class="platforms"
+            >
+              Platforms: 
+              <div>
+                <span
+                  class="item"
+                >
+                  PC, 
+                </span>
+              </div>
+              <div>
+                <span
+                  class="item"
+                >
+                  Xbox One
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="button"
+    >
+      <button
+        class="root"
+        type="button"
+      >
+        Load more
+      </button>
+      <div
+        class="root hidden"
+        role="button"
+        tabindex="0"
+      >
+        Back to top
+      </div>
+    </div>
+  </div>
+</div>
+`;

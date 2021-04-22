@@ -1,4 +1,4 @@
-import DevelopersPage, { getServerSideProps } from 'pages/developers';
+import TagsPage, { getServerSideProps } from 'pages/tags';
 import { render, screen } from '@testing-library/react';
 import { getCategories, getGames } from 'testing/testFactories';
 import { fetchData } from 'utils/fetch';
@@ -6,20 +6,20 @@ import { fetchData } from 'utils/fetch';
 jest.mock('hooks/usePaginatedQuery');
 jest.mock('utils/fetch');
 
-describe('<DevelopersPage />', () => {
+describe('<TagsPage />', () => {
     const props = {
         categories: getCategories(),
         nextPage: '2',
     };
 
     it('matches snapshot', () => {
-        const { container } = render(<DevelopersPage {...props} />);
+        const { container } = render(<TagsPage {...props} />);
         expect(container).toMatchSnapshot();
     });
 
     it('renders content', () => {
-        render(<DevelopersPage {...props} />);
-        expect(screen.getByText('Developers')).toBeInTheDocument();
+        render(<TagsPage {...props} />);
+        expect(screen.getByText('Tags')).toBeInTheDocument();
         expect(screen.getByText('Feral Interactive')).toBeInTheDocument();
         expect(screen.getByText('Ubisoft')).toBeInTheDocument();
     });
@@ -35,7 +35,7 @@ describe('<DevelopersPage />', () => {
             });
 
             expect(fetchData).toBeCalledTimes(1);
-            expect(fetchData).toBeCalledWith('developers', { page: 1, page_size: 20 });
+            expect(fetchData).toBeCalledWith('tags', { page: 1, page_size: 20 });
         });
     });
 });

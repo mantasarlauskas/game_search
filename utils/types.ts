@@ -49,6 +49,9 @@ export interface CategoryPageProps {
     id: string;
     games: Game[];
     count: number;
-    name: string;
     nextPage?: string;
+}
+
+export interface CategoryPageWithNameProps extends CategoryPageProps {
+    name: string;
 }
