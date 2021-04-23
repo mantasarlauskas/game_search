@@ -38,10 +38,10 @@ describe('<PlatformPage />', () => {
 
     it('shows content', () => {
         render(<PlatformPage {...props} />);
-        expect(screen.getByText('Games for Feral Interactive'));
-        expect(screen.getByText('Tomb Raider (2013)'));
-        expect(screen.getByText('Portal 2'));
-        expect(screen.getByText('Total 100 games'));
+        expect(screen.getByText('Games for Feral Interactive')).toBeInTheDocument();
+        expect(screen.getByText('Tomb Raider (2013)')).toBeInTheDocument();
+        expect(screen.getByText('Portal 2')).toBeInTheDocument();
+        expect(screen.getByText('Total 100 games')).toBeInTheDocument();
     });
 
     describe('getServerSideProps', () => {

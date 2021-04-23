@@ -30,10 +30,10 @@ describe('<PublisherPage />', () => {
 
     it('shows content', () => {
         render(<PublisherPage {...props} />);
-        expect(screen.getByText('Published by Ubisoft'));
-        expect(screen.getByText('Tomb Raider (2013)'));
-        expect(screen.getByText('Portal 2'));
-        expect(screen.getByText('Total 100 games'));
+        expect(screen.getByText('Published by Ubisoft')).toBeInTheDocument();
+        expect(screen.getByText('Tomb Raider (2013)')).toBeInTheDocument();
+        expect(screen.getByText('Portal 2')).toBeInTheDocument();
+        expect(screen.getByText('Total 100 games')).toBeInTheDocument();
     });
 
     describe('getServerSideProps', () => {

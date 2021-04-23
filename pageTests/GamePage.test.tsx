@@ -28,13 +28,13 @@ describe('<GamePage />', () => {
     it('shows content', () => {
         render(<GamePage {...props} />);
         expect(screen.getAllByText('2011-04-18').length).toEqual(2);
-        expect(screen.getByText('Portal 2'));
-        expect(screen.getByText('Tomb Raider (2013)'));
-        expect(screen.getByText(/Shooter/));
-        expect(screen.getByText('Puzzle'));
-        expect(screen.getByText('Singleplayer'));
-        expect(screen.getByText('Everyone 10+'));
-        expect(screen.getByText('Games like Portal 2'));
+        expect(screen.getByText('Portal 2')).toBeInTheDocument();
+        expect(screen.getByText('Tomb Raider (2013)')).toBeInTheDocument();
+        expect(screen.getByText(/Shooter/)).toBeInTheDocument();
+        expect(screen.getByText('Puzzle')).toBeInTheDocument();
+        expect(screen.getByText('Singleplayer')).toBeInTheDocument();
+        expect(screen.getByText('Everyone 10+')).toBeInTheDocument();
+        expect(screen.getByText('Games like Portal 2')).toBeInTheDocument();
     });
 
     describe('getServerSideProps', () => {

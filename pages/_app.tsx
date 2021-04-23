@@ -9,7 +9,7 @@ import { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import PageHead from 'components/PageHead';
 
-interface AppContextTypes {
+export interface AppContextTypes {
     genres: Category[];
     platforms: Category[];
     stores: Category[];
