@@ -1,6 +1,6 @@
-import { getCroppedImageUrl } from 'utils/image';
+import { getCroppedImageUrl, getMovieUrl } from 'utils/media';
 
-describe('image', () => {
+describe('media', () => {
     describe('getCroppedImageUrl', () => {
         it('returns image url', () => {
             expect(getCroppedImageUrl()).toEqual(undefined);
@@ -15,6 +15,13 @@ describe('image', () => {
             )).toEqual(
                 'https://media.rawg.io/media/crop/600/400/screenshots/a95/a95e293cd9403f3c99666addd3d76341_TkdqnQe.jpg',
             );
+        });
+    });
+
+    describe('getMovieUrl', () => {
+        it('returns movie url', () => {
+            expect(getMovieUrl([])).toBeNull();
+            expect(getMovieUrl([{ data: { 480: '480', max: 'max' } }])).toEqual('480');
         });
     });
 });

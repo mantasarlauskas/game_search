@@ -224,7 +224,7 @@ exports[`<GamePage /> matches snapshot 1`] = `
       <div
         class="title"
       >
-        Games like Portal 2
+        Games from the same series
       </div>
       <div
         class="cards"

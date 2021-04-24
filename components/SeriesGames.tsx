@@ -1,23 +1,23 @@
 import { Game } from 'utils/types';
-import styles from 'components/SuggestedGames.module.scss';
+import styles from 'components/SeriesGames.module.scss';
 import GameCard from 'components/GameCard';
 import PaginatorButton from 'components/PaginatorButton';
 import usePaginatedQuery from 'hooks/usePaginatedQuery';
 import { ApiPath } from 'utils/fetch';
 
-export const suggestedGamesPageSize = 6;
+export const seriesGamesPageSize = 6;
 
-function SuggestedGames({ initialGames, name, slug, nextPage }: SuggestedGamesProps) {
+function SeriesGames({ games, slug, nextPage }: SeriesGamesProps) {
     const {
         data,
         isFetching,
         fetchNextPage,
         hasNextPage,
     } = usePaginatedQuery<Game, HTMLButtonElement>({
-        initialData: initialGames,
+        initialData: games,
         initialNextPage: nextPage,
-        path: `${ApiPath.GAMES}/${slug}/suggested`,
-        pageSize: suggestedGamesPageSize,
+        path: `${ApiPath.GAMES}/${slug}/game-series`,
+        pageSize: seriesGamesPageSize,
     });
 
     if (!data.length) {
@@ -27,7 +27,7 @@ function SuggestedGames({ initialGames, name, slug, nextPage }: SuggestedGamesPr
     return (
         <div className={styles.root}>
             <div className={styles.title}>
-                {`Games like ${name}`}
+                Games from the same series
             </div>
             <div className={styles.cards}>
                 {data.map((game) => (
@@ -45,11 +45,10 @@ function SuggestedGames({ initialGames, name, slug, nextPage }: SuggestedGamesPr
     );
 }
 
-interface SuggestedGamesProps {
-    initialGames: Game[];
-    name: string;
+interface SeriesGamesProps {
+    games: Game[];
     slug: string;
     nextPage?: string;
 }
 
-export default SuggestedGames;
+export default SeriesGames;

@@ -27,6 +27,13 @@ export interface Game {
     clip?: { clip: string };
 }
 
+export interface Movie {
+    data: {
+        480: string,
+        max: string,
+    }
+}
+
 export interface NextPageContextWithID extends NextPageContext {
     params: { id: string }
 }

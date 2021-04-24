@@ -1,24 +1,24 @@
 import { render, screen } from '@testing-library/react';
-import SuggestedGames from 'components/SuggestedGames';
+import SeriesGames from 'components/SeriesGames';
 import { getGames } from 'testing/testFactories';
 import usePaginatedQuery from 'hooks/usePaginatedQuery';
 
 jest.mock('hooks/usePaginatedQuery');
 
-describe('<SuggestedGames />', () => {
+describe('<SeriesGames />', () => {
     const props = {
-        initialGames: getGames(),
+        games: getGames(),
         name: 'Game',
         slug: 'game',
     };
 
     it('matches snapshot', () => {
-        const { container } = render(<SuggestedGames {...props} />);
+        const { container } = render(<SeriesGames {...props} />);
         expect(container).toMatchSnapshot();
     });
 
     it('renders content', () => {
-        render(<SuggestedGames {...props} />);
+        render(<SeriesGames {...props} />);
         expect(screen.getByText('Portal 2')).toBeInTheDocument();
         expect(screen.getByText('Tomb Raider (2013)')).toBeInTheDocument();
         expect(screen.getByText('Load more')).toBeInTheDocument();
@@ -26,7 +26,7 @@ describe('<SuggestedGames />', () => {
 
     it('does not render anything', () => {
         (usePaginatedQuery as jest.Mock).mockReturnValue({ data: [] });
-        const { container } = render(<SuggestedGames {...props} />);
+        const { container } = render(<SeriesGames {...props} />);
         expect(container).toBeEmptyDOMElement();
     });
 });

@@ -5,7 +5,7 @@ import styles from 'components/MenuItemList.module.scss';
 import ChevronRight from 'assets/chevron-right.svg';
 import { Route } from 'utils/routes';
 import DivButton from 'components/DivButton';
-import { getCroppedImageUrl } from 'utils/image';
+import { getCroppedImageUrl } from 'utils/media';
 import { PageTitle } from 'utils/page';
 
 function MenuItemList({ items, visibleCount = 5, expandedCount, route }: MenuItemListProps) {

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Category } from 'utils/types';
 import styles from 'components/CategoryCard.module.scss';
 import { Route } from 'utils/routes';
-import { getCroppedImageUrl } from 'utils/image';
+import { getCroppedImageUrl } from 'utils/media';
 
 function CategoryCard({
     route,

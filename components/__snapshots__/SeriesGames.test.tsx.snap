@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<SuggestedGames /> matches snapshot 1`] = `
+exports[`<SeriesGames /> matches snapshot 1`] = `
 <div>
   <div
     class="root"
@@ -8,7 +8,7 @@ exports[`<SuggestedGames /> matches snapshot 1`] = `
     <div
       class="title"
     >
-      Games like Game
+      Games from the same series
     </div>
     <div
       class="cards"

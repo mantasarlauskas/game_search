@@ -17,6 +17,7 @@ jest.mock('next/router', () => ({
 describe('<GamePage />', () => {
     const props = {
         game: getGames()[0],
+        movie: 'https://media.rawg.io/media/stories-640/fde/fde8aaeeab956f6b705bbb4161b09004.mp4',
         suggestedGames: [getGames()[1]],
     };
 
@@ -34,7 +35,7 @@ describe('<GamePage />', () => {
         expect(screen.getByText('Puzzle')).toBeInTheDocument();
         expect(screen.getByText('Singleplayer')).toBeInTheDocument();
         expect(screen.getByText('Everyone 10+')).toBeInTheDocument();
-        expect(screen.getByText('Games like Portal 2')).toBeInTheDocument();
+        expect(screen.getByText('Games from the same series')).toBeInTheDocument();
     });
 
     describe('getServerSideProps', () => {
@@ -42,15 +43,17 @@ describe('<GamePage />', () => {
             const res = await getServerSideProps({ params: { id: '123' } } as NextPageContextWithID);
             expect(res).toEqual({
                 props: {
+                    movie: null,
                     game: expect.objectContaining({ results: getGames() }),
                     suggestedGames: getGames(),
                     suggestedGamesNextPage: '2',
                 },
             });
 
-            expect(fetchData).toBeCalledTimes(2);
+            expect(fetchData).toBeCalledTimes(3);
             expect(fetchData).toBeCalledWith('games/123');
-            expect(fetchData).toBeCalledWith('games/123/suggested', {
+            expect(fetchData).toBeCalledWith('games/123/movies');
+            expect(fetchData).toBeCalledWith('games/123/game-series', {
                 page: 1,
                 page_size: 6,
             });

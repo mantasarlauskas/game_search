@@ -6,7 +6,7 @@ import { Game } from 'utils/types';
 import InfoList from 'components/InfoList';
 import { Route } from 'utils/routes';
 import DivButton from 'components/DivButton';
-import { getCroppedImageUrl } from 'utils/image';
+import { getCroppedImageUrl } from 'utils/media';
 import { roundNumber } from 'utils/number';
 
 function GameCard({

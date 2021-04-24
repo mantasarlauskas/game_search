@@ -5,11 +5,12 @@ import { roundNumber } from 'utils/number';
 import GameDescription from 'components/GameDescription';
 import GameMetaInfo from 'components/GameMetaInfo';
 import { Game, NextPageContextWithID } from 'utils/types';
-import SuggestedGames, { suggestedGamesPageSize } from 'components/SuggestedGames';
+import SeriesGames, { seriesGamesPageSize } from 'components/SeriesGames';
 import { Route } from 'utils/routes';
 import PageHead from 'components/PageHead';
+import { getMovieUrl } from 'utils/media';
 
-function GamePage({ game, suggestedGames, suggestedGamesNextPage }: GamePageProps) {
+function GamePage({ game, suggestedGames, suggestedGamesNextPage, movie }: GamePageProps) {
     const {
         background_image,
         released,
@@ -18,7 +19,6 @@ function GamePage({ game, suggestedGames, suggestedGamesNextPage }: GamePageProp
         ratings,
         description,
         ratings_count,
-        clip,
         slug,
     } = game;
     useBackgroundImage(background_image);
@@ -53,10 +53,10 @@ function GamePage({ game, suggestedGames, suggestedGamesNextPage }: GamePageProp
                         </div>
                     </div>
                 </div>
-                {clip?.clip && (
+                {!!movie && (
                     <video
                         className={styles.video}
-                        src={clip.clip}
+                        src={movie}
                         controls
                         loop
                         playsInline
@@ -76,10 +76,9 @@ function GamePage({ game, suggestedGames, suggestedGamesNextPage }: GamePageProp
             <div className={styles.metaInfo}>
                 <GameMetaInfo game={game} />
             </div>
-            <SuggestedGames
-                name={name}
+            <SeriesGames
                 slug={slug}
-                initialGames={suggestedGames}
+                games={suggestedGames}
                 nextPage={suggestedGamesNextPage}
             />
         </div>
@@ -88,16 +87,18 @@ function GamePage({ game, suggestedGames, suggestedGamesNextPage }: GamePageProp
 
 interface GamePageProps {
     game: Game;
+    movie?: string,
     suggestedGames: Game[];
     suggestedGamesNextPage?: string;
 }
 
 export async function getServerSideProps({ params: { id } }: NextPageContextWithID) {
-    const [game, suggestedGames] = await Promise.all([
+    const [game, movies, suggestedGames] = await Promise.all([
         fetchData(`${ApiPath.GAMES}/${id}`),
-        fetchData(`${ApiPath.GAMES}/${id}/suggested`, {
+        fetchData(`${ApiPath.GAMES}/${id}/movies`),
+        fetchData(`${ApiPath.GAMES}/${id}/game-series`, {
             page: 1,
-            page_size: suggestedGamesPageSize,
+            page_size: seriesGamesPageSize,
         }),
     ]);
 
@@ -113,6 +114,7 @@ export async function getServerSideProps({ params: { id } }: NextPageContextWith
     return {
         props: {
             game,
+            movie: getMovieUrl(movies?.results || []),
             suggestedGames: suggestedGames?.results || [],
             suggestedGamesNextPage: suggestedGames?.next || null,
         },

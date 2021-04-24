@@ -8,7 +8,7 @@ import Spinner from 'components/Spinner';
 import SearchIcon from 'assets/search.svg';
 import { Game } from 'utils/types';
 import { Route } from 'utils/routes';
-import { getCroppedImageUrl } from 'utils/image';
+import { getCroppedImageUrl } from 'utils/media';
 import { useQuery } from 'react-query';
 import useDebouncedValue from 'hooks/useDebouncedValue';
 
