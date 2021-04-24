@@ -26,14 +26,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     try {
-        const data = await fetch(`https://api.rawg.io/api${formatPath(path as string[])}?${params.toString()}`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Fetch error');
-                }
+        const paramsString = params.toString();
+        const data = await fetch(
+            `https://api.rawg.io/api${formatPath(path as string[])}${paramsString ? `?${paramsString}` : ''}`,
+        ).then((response) => {
+            if (!response.ok) {
+                throw new Error('Fetch error');
+            }
 
-                return response.json();
-            });
+            return response.json();
+        });
+
         const next = data.next ? { next: parseUrl(data.next) } : {};
         const previous = data.previous ? { previous: parseUrl(data.previous) } : {};
         res.status(200).json({
