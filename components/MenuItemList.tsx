@@ -7,6 +7,7 @@ import { Route } from 'utils/routes';
 import DivButton from 'components/DivButton';
 import { getCroppedImageUrl } from 'utils/media';
 import { PageTitle } from 'utils/page';
+import Image from 'next/image';
 
 function MenuItemList({ items, visibleCount = 5, expandedCount, route }: MenuItemListProps) {
     const [expanded, setExpanded] = useState(false);
@@ -23,8 +24,10 @@ function MenuItemList({ items, visibleCount = 5, expandedCount, route }: MenuIte
                 .map(({ name, id, image_background }) => (
                     <Link key={id} href={`${route}/${id}`}>
                         <div className={styles.item}>
-                            <img
+                            <Image
                                 className={styles.background}
+                                height={32}
+                                width={32}
                                 src={getCroppedImageUrl(image_background)}
                                 alt={name}
                             />

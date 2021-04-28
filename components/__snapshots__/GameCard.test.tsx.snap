@@ -12,11 +12,16 @@ exports[`<GameCard /> matches snapshot 1`] = `
         style="height: auto;"
         tabindex="0"
       >
-        <img
-          alt="Portal 2"
-          class="image"
-          src="https://media.rawg.io/media/crop/600/400/games/328/3283617cb7d75d67257fc58339188742.jpg"
-        />
+        <div>
+          <img
+            alt="Portal 2"
+            class="image"
+            height="400"
+            layout="responsive"
+            src="https://media.rawg.io/media/crop/600/400/games/328/3283617cb7d75d67257fc58339188742.jpg"
+            width="600"
+          />
+        </div>
       </div>
       <div
         class="content"

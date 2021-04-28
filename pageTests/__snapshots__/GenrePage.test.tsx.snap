@@ -43,11 +43,16 @@ exports[`<GenrePage /> matches snapshot 1`] = `
             style="height: auto;"
             tabindex="0"
           >
-            <img
-              alt="Portal 2"
-              class="image"
-              src="https://media.rawg.io/media/crop/600/400/games/328/3283617cb7d75d67257fc58339188742.jpg"
-            />
+            <div>
+              <img
+                alt="Portal 2"
+                class="image"
+                height="400"
+                layout="responsive"
+                src="https://media.rawg.io/media/crop/600/400/games/328/3283617cb7d75d67257fc58339188742.jpg"
+                width="600"
+              />
+            </div>
           </div>
           <div
             class="content"
@@ -98,11 +103,16 @@ exports[`<GenrePage /> matches snapshot 1`] = `
             style="height: auto;"
             tabindex="0"
           >
-            <img
-              alt="Tomb Raider (2013)"
-              class="image"
-              src="https://media.rawg.io/media/crop/600/400/games/ad2/ad2ffdf80ba993654f31da045bc02456.jpg"
-            />
+            <div>
+              <img
+                alt="Tomb Raider (2013)"
+                class="image"
+                height="400"
+                layout="responsive"
+                src="https://media.rawg.io/media/crop/600/400/games/ad2/ad2ffdf80ba993654f31da045bc02456.jpg"
+                width="600"
+              />
+            </div>
           </div>
           <div
             class="content"

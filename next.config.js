@@ -3,6 +3,9 @@ module.exports = {
     env: {
         HOST: process.env.HOST,
     },
+    images: {
+        domains: ['media.rawg.io'],
+    },
     webpack(config) {
         config.module.rules.push({
             test: /\.svg$/,

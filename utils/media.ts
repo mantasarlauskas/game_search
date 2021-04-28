@@ -2,7 +2,7 @@ import { Movie } from 'utils/types';
 
 export function getCroppedImageUrl(imageUrl?: string) {
     if (!imageUrl) {
-        return undefined;
+        return '';
     }
 
     const gamesIndex = imageUrl.indexOf('/games');

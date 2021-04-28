@@ -64,7 +64,9 @@ exports[`<Menu /> matches snapshot 1`] = `
               <img
                 alt="Feral Interactive"
                 class="background"
+                height="32"
                 src="https://media.rawg.io/media/crop/600/400/games/157/15742f2f67eacff546738e1ab5c19d20.jpg"
+                width="32"
               />
               <div
                 class="name"
@@ -95,7 +97,9 @@ exports[`<Menu /> matches snapshot 1`] = `
               <img
                 alt="Ubisoft"
                 class="background"
+                height="32"
                 src="https://media.rawg.io/media/crop/600/400/games/5e4/5e4bff02098b2b6f824c68286d5da1a6.jpg"
+                width="32"
               />
               <div
                 class="name"

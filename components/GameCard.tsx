@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, MouseEvent } from 'react';
 import debounce from 'debounce';
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from 'components/GameCard.module.scss';
 import { Game } from 'utils/types';
 import InfoList from 'components/InfoList';
@@ -26,7 +27,7 @@ function GameCard({
 
     useEffect(() => {
         const handleResize = debounce(() => {
-            const height = imageRef.current?.height;
+            const height = imageRef.current?.getBoundingClientRect()?.height;
             setMediaHeight(height ? `${height}px` : 'auto');
         }, 10);
 
@@ -38,7 +39,7 @@ function GameCard({
 
     function startVideo() {
         setShowVideo(true);
-        const height = imageRef.current?.height;
+        const height = imageRef.current?.getBoundingClientRect()?.height;
         setMediaHeight(height ? `${height}px` : 'auto');
     }
 
@@ -79,12 +80,16 @@ function GameCard({
                             muted
                         />
                     ) : imageUrl && (
-                        <img
-                            ref={imageRef}
-                            className={styles.image}
-                            src={imageUrl}
-                            alt={name}
-                        />
+                        <div ref={imageRef}>
+                            <Image
+                                className={styles.image}
+                                height={400}
+                                width={600}
+                                layout="responsive"
+                                src={imageUrl}
+                                alt={name}
+                            />
+                        </div>
                     )}
                 </DivButton>
                 <div className={styles.content}>
