@@ -34,6 +34,10 @@ export interface Movie {
     }
 }
 
+export interface Screenshot {
+    image: string;
+}
+
 export interface NextPageContextWithID extends NextPageContext {
     params: { id: string }
 }

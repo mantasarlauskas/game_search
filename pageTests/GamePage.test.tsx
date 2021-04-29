@@ -15,10 +15,12 @@ jest.mock('next/router', () => ({
 }));
 
 describe('<GamePage />', () => {
+    const games = getGames();
     const props = {
-        game: getGames()[0],
+        game: games[0],
         movie: 'https://media.rawg.io/media/stories-640/fde/fde8aaeeab956f6b705bbb4161b09004.mp4',
-        suggestedGames: [getGames()[1]],
+        seriesGames: [games[1]],
+        screenshots: [{ image: '/imageUrl' }],
     };
 
     it('matches snapshot', () => {
@@ -44,15 +46,17 @@ describe('<GamePage />', () => {
             expect(res).toEqual({
                 props: {
                     movie: null,
-                    game: expect.objectContaining({ results: getGames() }),
-                    suggestedGames: getGames(),
-                    suggestedGamesNextPage: '2',
+                    game: expect.objectContaining({ results: games }),
+                    seriesGames: games,
+                    screenshots: games,
+                    seriesGamesNextPage: '2',
                 },
             });
 
-            expect(fetchData).toBeCalledTimes(3);
+            expect(fetchData).toBeCalledTimes(4);
             expect(fetchData).toBeCalledWith('games/123');
             expect(fetchData).toBeCalledWith('games/123/movies');
+            expect(fetchData).toBeCalledWith('games/123/screenshots');
             expect(fetchData).toBeCalledWith('games/123/game-series', {
                 page: 1,
                 page_size: 6,

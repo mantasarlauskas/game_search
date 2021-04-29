@@ -16,8 +16,10 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-query": "^3.13.5",
+    "react-slick": "^0.28.1",
     "react-tiny-popover": "^6.0.4",
-    "sass": "^1.32.7"
+    "sass": "^1.32.7",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@svgr/webpack": "^5.5.0",
@@ -32,6 +34,7 @@
     "@types/node": "^14.14.27",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.2",
+    "@types/react-slick": "^0.23.4",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.0",
     "babel-jest": "^26.6.3",
@@ -58,7 +61,7 @@
       "."
     ],
     "moduleNameMapper": {
-      "\\.scss": "identity-obj-proxy",
+      "\\.(scss|css)": "identity-obj-proxy",
       "\\.svg": "<rootDir>/testing/svgMock.tsx"
     }
   }

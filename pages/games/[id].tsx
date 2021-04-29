@@ -1,16 +1,24 @@
+import Image from 'next/image';
+import Slider from 'react-slick';
 import { ApiPath, fetchData } from 'utils/fetch';
 import styles from 'pageStyles/GamePage.module.scss';
 import useBackgroundImage from 'hooks/useBackgroundImage';
 import { roundNumber } from 'utils/number';
 import GameDescription from 'components/GameDescription';
 import GameMetaInfo from 'components/GameMetaInfo';
-import { Game, NextPageContextWithID } from 'utils/types';
+import { Game, NextPageContextWithID, Screenshot } from 'utils/types';
 import SeriesGames, { seriesGamesPageSize } from 'components/SeriesGames';
 import { Route } from 'utils/routes';
 import PageHead from 'components/PageHead';
 import { getMovieUrl } from 'utils/media';
 
-function GamePage({ game, suggestedGames, suggestedGamesNextPage, movie }: GamePageProps) {
+function GamePage({
+    game,
+    seriesGames,
+    seriesGamesNextPage,
+    movie,
+    screenshots,
+}: GamePageProps) {
     const {
         background_image,
         released,
@@ -76,10 +84,30 @@ function GamePage({ game, suggestedGames, suggestedGamesNextPage, movie }: GameP
             <div className={styles.metaInfo}>
                 <GameMetaInfo game={game} />
             </div>
+            <div className={styles.screenshots}>
+                <div className={styles.section}>
+                    Screenshots
+                </div>
+                <div className={styles.carousel}>
+                    <Slider speed={1000}>
+                        {screenshots.map(({ image }, idx) => (
+                            <Image
+                                key={image}
+                                className={styles.image}
+                                layout="responsive"
+                                width={350}
+                                height={200}
+                                src={image}
+                                priority={!idx}
+                            />
+                        ))}
+                    </Slider>
+                </div>
+            </div>
             <SeriesGames
                 slug={slug}
-                games={suggestedGames}
-                nextPage={suggestedGamesNextPage}
+                games={seriesGames}
+                nextPage={seriesGamesNextPage}
             />
         </div>
     );
@@ -88,14 +116,16 @@ function GamePage({ game, suggestedGames, suggestedGamesNextPage, movie }: GameP
 interface GamePageProps {
     game: Game;
     movie?: string,
-    suggestedGames: Game[];
-    suggestedGamesNextPage?: string;
+    seriesGames: Game[];
+    seriesGamesNextPage?: string;
+    screenshots: Screenshot[];
 }
 
 export async function getServerSideProps({ params: { id } }: NextPageContextWithID) {
-    const [game, movies, suggestedGames] = await Promise.all([
+    const [game, movies, screenshots, seriesGames] = await Promise.all([
         fetchData(`${ApiPath.GAMES}/${id}`),
         fetchData(`${ApiPath.GAMES}/${id}/movies`),
+        fetchData(`${ApiPath.GAMES}/${id}/screenshots`),
         fetchData(`${ApiPath.GAMES}/${id}/game-series`, {
             page: 1,
             page_size: seriesGamesPageSize,
@@ -115,8 +145,9 @@ export async function getServerSideProps({ params: { id } }: NextPageContextWith
         props: {
             game,
             movie: getMovieUrl(movies?.results || []),
-            suggestedGames: suggestedGames?.results || [],
-            suggestedGamesNextPage: suggestedGames?.next || null,
+            seriesGames: seriesGames?.results || [],
+            screenshots: screenshots?.results || [],
+            seriesGamesNextPage: seriesGames?.next || null,
         },
     };
 }

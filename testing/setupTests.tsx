@@ -1,5 +1,6 @@
 import { LinkProps } from 'next/dist/client/link';
-import { PropsWithChildren, ImgHTMLAttributes } from 'react';
+import { ImageProps } from 'next/image';
+import { PropsWithChildren } from 'react';
 import IntersectionObserver from 'testing/intersectionObserverMock';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -7,6 +8,14 @@ delete (window as any).location;
 (window as any).location = {
     href: '',
 };
+
+const matchMedia = () => ({
+    matches: false,
+    addListener: jest.fn(),
+    removeListener: jest.fn(),
+});
+
+window.matchMedia = window.matchMedia || matchMedia;
 
 const mockLocation = (window as any).location;
 jest.mock('next/link', () => ({ children, href }: PropsWithChildren<LinkProps>) => (
@@ -21,8 +30,8 @@ jest.mock('next/link', () => ({ children, href }: PropsWithChildren<LinkProps>) 
     </div>
 ));
 
-// eslint-disable-next-line jsx-a11y/alt-text
-jest.mock('next/image', () => (props: ImgHTMLAttributes<HTMLImageElement>) => <img {...props} />);
+// eslint-disable-next-line jsx-a11y/alt-text,@typescript-eslint/no-unused-vars
+jest.mock('next/image', () => ({ priority, ...props }: ImageProps) => <img {...props} />);
 
 Object.defineProperty(HTMLMediaElement.prototype, 'muted', {
     set: () => {},
