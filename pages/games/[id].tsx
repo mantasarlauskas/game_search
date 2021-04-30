@@ -90,7 +90,7 @@ function GamePage({
                 </div>
                 <div className={styles.carousel}>
                     <Slider speed={1000}>
-                        {screenshots.map(({ image }, idx) => (
+                        {screenshots.map(({ image }) => (
                             <Image
                                 key={image}
                                 className={styles.image}
@@ -98,7 +98,6 @@ function GamePage({
                                 width={350}
                                 height={200}
                                 src={image}
-                                priority={!idx}
                             />
                         ))}
                     </Slider>

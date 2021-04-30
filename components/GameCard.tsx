@@ -88,7 +88,6 @@ function GameCard({
                                 layout="responsive"
                                 src={imageUrl}
                                 alt={name}
-                                priority
                             />
                         </div>
                     )}

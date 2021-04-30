@@ -30,7 +30,6 @@ function MenuItemList({ items, visibleCount = 5, expandedCount, route }: MenuIte
                                 width={32}
                                 src={getCroppedImageUrl(image_background)}
                                 alt={name}
-                                priority
                             />
                             <div className={styles.name}>
                                 {name}
