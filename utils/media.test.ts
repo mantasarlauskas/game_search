@@ -1,4 +1,4 @@
-import { getCroppedImageUrl, getMovieUrl } from 'utils/media';
+import { getCroppedImageUrl, getMovieData } from 'utils/media';
 
 describe('media', () => {
     describe('getCroppedImageUrl', () => {
@@ -18,10 +18,13 @@ describe('media', () => {
         });
     });
 
-    describe('getMovieUrl', () => {
-        it('returns movie url', () => {
-            expect(getMovieUrl([])).toBeNull();
-            expect(getMovieUrl([{ data: { 480: '480', max: 'max' } }])).toEqual('480');
+    describe('getMovieData', () => {
+        it('returns movie data', () => {
+            expect(getMovieData([])).toEqual({ preview: null, url: null });
+            expect(getMovieData([{
+                preview: 'preview',
+                data: { 480: '480', max: 'max' },
+            }])).toEqual({ url: '480', preview: 'preview' });
         });
     });
 });

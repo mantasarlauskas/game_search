@@ -82,11 +82,11 @@ exports[`<GamePage /> matches snapshot 1`] = `
         </div>
       </div>
       <video
-        autoplay=""
         class="video"
         controls=""
         loop=""
         playsinline=""
+        preload="none"
         src="https://media.rawg.io/media/stories-640/fde/fde8aaeeab956f6b705bbb4161b09004.mp4"
       />
     </div>

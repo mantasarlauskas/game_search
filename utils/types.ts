@@ -28,6 +28,7 @@ export interface Game {
 }
 
 export interface Movie {
+    preview: string;
     data: {
         480: string,
         max: string,

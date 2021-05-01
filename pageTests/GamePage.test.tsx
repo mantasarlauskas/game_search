@@ -18,7 +18,7 @@ describe('<GamePage />', () => {
     const games = getGames();
     const props = {
         game: games[0],
-        movie: 'https://media.rawg.io/media/stories-640/fde/fde8aaeeab956f6b705bbb4161b09004.mp4',
+        movieUrl: 'https://media.rawg.io/media/stories-640/fde/fde8aaeeab956f6b705bbb4161b09004.mp4',
         seriesGames: [games[1]],
         screenshots: [{ image: '/imageUrl' }],
     };
@@ -45,7 +45,8 @@ describe('<GamePage />', () => {
             const res = await getServerSideProps({ params: { id: '123' } } as NextPageContextWithID);
             expect(res).toEqual({
                 props: {
-                    movie: null,
+                    movieUrl: null,
+                    moviePreview: null,
                     game: expect.objectContaining({ results: games }),
                     seriesGames: games,
                     screenshots: games,

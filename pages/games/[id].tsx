@@ -10,13 +10,14 @@ import { Game, NextPageContextWithID, Screenshot } from 'utils/types';
 import SeriesGames, { seriesGamesPageSize } from 'components/SeriesGames';
 import { Route } from 'utils/routes';
 import PageHead from 'components/PageHead';
-import { getMovieUrl } from 'utils/media';
+import { getMovieData } from 'utils/media';
 
 function GamePage({
     game,
     seriesGames,
     seriesGamesNextPage,
-    movie,
+    movieUrl,
+    moviePreview,
     screenshots,
 }: GamePageProps) {
     const {
@@ -61,14 +62,15 @@ function GamePage({
                         </div>
                     </div>
                 </div>
-                {!!movie && (
+                {!!movieUrl && (
                     <video
                         className={styles.video}
-                        src={movie}
+                        poster={moviePreview}
+                        src={movieUrl}
                         controls
                         loop
                         playsInline
-                        autoPlay
+                        preload="none"
                         muted
                     />
                 )}
@@ -114,7 +116,8 @@ function GamePage({
 
 interface GamePageProps {
     game: Game;
-    movie?: string,
+    movieUrl?: string,
+    moviePreview?: string,
     seriesGames: Game[];
     seriesGamesNextPage?: string;
     screenshots: Screenshot[];
@@ -140,10 +143,12 @@ export async function getServerSideProps({ params: { id } }: NextPageContextWith
         };
     }
 
+    const movie = getMovieData(movies?.results || []);
     return {
         props: {
             game,
-            movie: getMovieUrl(movies?.results || []),
+            movieUrl: movie.url,
+            moviePreview: movie.preview,
             seriesGames: seriesGames?.results || [],
             screenshots: screenshots?.results || [],
             seriesGamesNextPage: seriesGames?.next || null,
