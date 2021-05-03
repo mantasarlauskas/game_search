@@ -107,10 +107,8 @@ function GameCard({
                         <div className={styles.platforms}>
                             {'Platforms: '}
                             <InfoList
-                                list={platforms.map(({ platform }) => ({
-                                    ...platform,
-                                    url: `${Route.PLATFORMS}/${platform.id}`,
-                                }))}
+                                route={Route.PLATFORMS}
+                                list={platforms.map(({ platform }) => platform)}
                             />
                         </div>
                     )}

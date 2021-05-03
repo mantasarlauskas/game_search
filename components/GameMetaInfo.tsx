@@ -24,10 +24,8 @@ function GameMetaInfo({
                 <div className={styles.item}>
                     <GameMetaBlock title="Platforms">
                         <InfoList
-                            list={platforms.map(({ platform }) => ({
-                                ...platform,
-                                url: `${Route.PLATFORMS}/${platform.id}`,
-                            }))}
+                            route={Route.PLATFORMS}
+                            list={platforms.map(({ platform }) => platform)}
                         />
                     </GameMetaBlock>
                 </div>
@@ -45,10 +43,8 @@ function GameMetaInfo({
                 <div className={styles.item}>
                     <GameMetaBlock title="Genres">
                         <InfoList
-                            list={genres.map((genre) => ({
-                                ...genre,
-                                url: `${Route.GENRES}/${genre.id}`,
-                            }))}
+                            route={Route.GENRES}
+                            list={genres}
                         />
                     </GameMetaBlock>
                 </div>
@@ -63,14 +59,20 @@ function GameMetaInfo({
             {developers?.length > 0 && (
                 <div className={styles.item}>
                     <GameMetaBlock title="Developers">
-                        <InfoList list={developers} />
+                        <InfoList
+                            list={developers}
+                            route={Route.DEVELOPERS}
+                        />
                     </GameMetaBlock>
                 </div>
             )}
             {publishers?.length > 0 && (
                 <div className={styles.item}>
                     <GameMetaBlock title="Publishers">
-                        <InfoList list={publishers} />
+                        <InfoList
+                            list={publishers}
+                            route={Route.PUBLISHERS}
+                        />
                     </GameMetaBlock>
                 </div>
             )}
@@ -78,10 +80,8 @@ function GameMetaInfo({
                 <div className={styles.item}>
                     <GameMetaBlock title="Tags">
                         <InfoList
-                            list={tags.map((tag) => ({
-                                ...tag,
-                                url: `${Route.TAGS}/${tag.id}`,
-                            }))}
+                            route={Route.TAGS}
+                            list={tags}
                         />
                     </GameMetaBlock>
                 </div>

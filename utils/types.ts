@@ -3,7 +3,6 @@ import { NextPageContext } from 'next';
 export interface Info {
     id: number;
     name: string;
-    url?: string;
 }
 
 export interface Game {
