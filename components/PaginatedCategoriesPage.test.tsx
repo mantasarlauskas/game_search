@@ -23,7 +23,9 @@ describe('<PaginatedCategoriesPage />', () => {
         expect(screen.getByText('Developers')).toBeInTheDocument();
         expect(screen.getByText('Feral Interactive')).toBeInTheDocument();
         expect(screen.getByText('Rise of the Tomb Raider')).toBeInTheDocument();
-        expect(screen.getByText('Middle-earth: Shadow of Mordor')).toBeInTheDocument();
+        expect(
+            screen.getByText('Middle-earth: Shadow of Mordor')
+        ).toBeInTheDocument();
         expect(screen.getByText('Hitman')).toBeInTheDocument();
         expect(screen.getByText('Ubisoft')).toBeInTheDocument();
         expect(screen.getByText('Far Cry 3')).toBeInTheDocument();

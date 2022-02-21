@@ -20,11 +20,12 @@ function SearchBar() {
     const [isOpen, setIsOpen] = useState(false);
     const { data, isLoading } = useQuery<{ results: Game[] }>(
         ['search', debouncedValue],
-        () => fetchData(ApiPath.GAMES, {
-            search: value,
-            page: 1,
-            page_size: 5,
-        }),
+        () =>
+            fetchData(ApiPath.GAMES, {
+                search: value,
+                page: 1,
+                page_size: 5,
+            })
     );
 
     useEffect(() => {
@@ -68,31 +69,41 @@ function SearchBar() {
                     placeholder="Search games"
                 />
                 <SearchIcon className={styles.icon} />
-                <div className={styles.enter}>
-                    &#9166;
-                </div>
+                <div className={styles.enter}>&#9166;</div>
             </div>
             {(isLoading || results.length > 0) && isOpen && (
                 <div className={styles.results}>
-                    {isLoading ? <Spinner /> : results.map(({
-                        name,
-                        slug,
-                        background_image,
-                        rating,
-                    }) => (
-                        <Link key={slug} href={`${Route.GAMES}/${slug}`}>
-                            <div className={styles.result}>
-                                <div
-                                    className={styles.image}
-                                    style={{ backgroundImage: `url(${getCroppedImageUrl(background_image)})` }}
-                                />
-                                <div>
-                                    <div className={styles.name}>{name}</div>
-                                    <div className={styles.rating}>{roundNumber(rating)}</div>
-                                </div>
-                            </div>
-                        </Link>
-                    ))}
+                    {isLoading ? (
+                        <Spinner />
+                    ) : (
+                        results.map(
+                            ({ name, slug, background_image, rating }) => (
+                                <Link
+                                    key={slug}
+                                    href={`${Route.GAMES}/${slug}`}
+                                >
+                                    <div className={styles.result}>
+                                        <div
+                                            className={styles.image}
+                                            style={{
+                                                backgroundImage: `url(${getCroppedImageUrl(
+                                                    background_image
+                                                )})`,
+                                            }}
+                                        />
+                                        <div>
+                                            <div className={styles.name}>
+                                                {name}
+                                            </div>
+                                            <div className={styles.rating}>
+                                                {roundNumber(rating)}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Link>
+                            )
+                        )
+                    )}
                 </div>
             )}
         </div>

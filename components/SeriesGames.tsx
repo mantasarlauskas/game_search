@@ -8,12 +8,10 @@ import { ApiPath } from 'utils/fetch';
 export const seriesGamesPageSize = 6;
 
 function SeriesGames({ games, slug, nextPage }: SeriesGamesProps) {
-    const {
-        data,
-        isFetching,
-        fetchNextPage,
-        hasNextPage,
-    } = usePaginatedQuery<Game, HTMLButtonElement>({
+    const { data, isFetching, fetchNextPage, hasNextPage } = usePaginatedQuery<
+        Game,
+        HTMLButtonElement
+    >({
         initialData: games,
         initialNextPage: nextPage,
         path: `${ApiPath.GAMES}/${slug}/game-series`,
@@ -26,9 +24,7 @@ function SeriesGames({ games, slug, nextPage }: SeriesGamesProps) {
 
     return (
         <div className={styles.root}>
-            <div className={styles.title}>
-                Games from the same series
-            </div>
+            <div className={styles.title}>Games from the same series</div>
             <div className={styles.cards}>
                 {data.map((game) => (
                     <GameCard key={game.slug} game={game} />

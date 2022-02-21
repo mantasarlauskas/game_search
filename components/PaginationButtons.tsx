@@ -17,9 +17,7 @@ function PaginationButtons({
                 isVisible={hasNextPage}
                 onClick={onClick}
             />
-            <BackToTopButton
-                isEnabled={hasPreviousPage}
-            />
+            <BackToTopButton isEnabled={hasPreviousPage} />
         </>
     );
 }

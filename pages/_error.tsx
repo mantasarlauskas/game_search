@@ -2,13 +2,13 @@ import styles from 'pageStyles/ErrorPage.module.scss';
 import { NextPageContext } from 'next';
 
 function ErrorPage({ statusCode }: ErrorPageProps) {
-    const text = statusCode ? 'Server side error' : 'This page could not be found';
+    const text = statusCode
+        ? 'Server side error'
+        : 'This page could not be found';
     const status = statusCode || 404;
     return (
         <div className={styles.root}>
-            <div className={styles.statusCode}>
-                {status}
-            </div>
+            <div className={styles.statusCode}>{status}</div>
             {text}
         </div>
     );

@@ -4,12 +4,7 @@ import { useAppContext } from 'pages/_app';
 
 function StoresPage() {
     const { stores } = useAppContext();
-    return (
-        <CategoriesPage
-            categories={stores}
-            route={Route.STORES}
-        />
-    );
+    return <CategoriesPage categories={stores} route={Route.STORES} />;
 }
 
 export default StoresPage;

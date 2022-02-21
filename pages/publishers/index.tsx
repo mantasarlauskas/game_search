@@ -15,7 +15,9 @@ function PublishersPage({ categories, nextPage }: CategoriesPageProps) {
     );
 }
 
-export async function getServerSideProps(): Promise<{ props: CategoriesPageProps }> {
+export async function getServerSideProps(): Promise<{
+    props: CategoriesPageProps;
+}> {
     return getCategoriesPageServerSideProps(ApiPath.PUBLISHERS);
 }
 

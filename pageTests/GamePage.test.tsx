@@ -18,7 +18,8 @@ describe('<GamePage />', () => {
     const games = getGames();
     const props = {
         game: games[0],
-        movieUrl: 'https://media.rawg.io/media/stories-640/fde/fde8aaeeab956f6b705bbb4161b09004.mp4',
+        movieUrl:
+            'https://media.rawg.io/media/stories-640/fde/fde8aaeeab956f6b705bbb4161b09004.mp4',
         seriesGames: [games[1]],
         screenshots: [{ image: '/imageUrl' }],
     };
@@ -37,12 +38,17 @@ describe('<GamePage />', () => {
         expect(screen.getByText('Puzzle')).toBeInTheDocument();
         expect(screen.getByText('Singleplayer')).toBeInTheDocument();
         expect(screen.getByText('Everyone 10+')).toBeInTheDocument();
-        expect(screen.getByText('Games from the same series')).toBeInTheDocument();
+        expect(
+            screen.getByText('Games from the same series')
+        ).toBeInTheDocument();
     });
 
     describe('getServerSideProps', () => {
         it('returns server side props', async () => {
-            const res = await getServerSideProps({ params: { id: '123' } } as NextPageContextWithID);
+            const res = await getServerSideProps({
+                params: { id: '123' },
+            } as NextPageContextWithID);
+
             expect(res).toEqual({
                 props: {
                     movieUrl: null,

@@ -9,7 +9,7 @@ export enum SortMode {
     NAME = 'name',
     DATE_ADDED = 'added',
     RELEASE_DATE = '-released',
-    RATING = '-rating'
+    RATING = '-rating',
 }
 
 const titles = {
@@ -55,9 +55,7 @@ function GameSort() {
             onClick={() => setIsOpen(!isOpen)}
         >
             Order by:
-            <div className={styles.title}>
-                {titles[ordering]}
-            </div>
+            <div className={styles.title}>{titles[ordering]}</div>
         </button>
     );
 
@@ -72,7 +70,7 @@ function GameSort() {
             positions={['bottom']}
             align="start"
             onClickOutside={() => setIsOpen(false)}
-            content={(
+            content={
                 <div className={styles.options}>
                     {sortOptions.map((value) => (
                         <button
@@ -85,7 +83,7 @@ function GameSort() {
                         </button>
                     ))}
                 </div>
-            )}
+            }
         >
             {button}
         </Popover>

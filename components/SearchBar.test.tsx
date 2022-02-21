@@ -32,13 +32,17 @@ describe('<SearchBar />', () => {
     it('updates input value on change', () => {
         render(<SearchBar />);
         userEvent.type(screen.getByPlaceholderText('Search games'), 'text');
-        expect((screen.getByRole('textbox') as HTMLInputElement).value).toEqual('text');
+        expect((screen.getByRole('textbox') as HTMLInputElement).value).toEqual(
+            'text'
+        );
     });
 
     it('shows games on input click and hides them on outside click', () => {
         render(<SearchBar />);
         expect(screen.queryByText('Portal 2')).not.toBeInTheDocument();
-        expect(screen.queryByText('Tomb Raider (2013)')).not.toBeInTheDocument();
+        expect(
+            screen.queryByText('Tomb Raider (2013)')
+        ).not.toBeInTheDocument();
 
         userEvent.click(screen.getByRole('textbox'));
         expect(screen.getByText('Portal 2')).toBeInTheDocument();
@@ -46,7 +50,9 @@ describe('<SearchBar />', () => {
 
         userEvent.click(document.body);
         expect(screen.queryByText('Portal 2')).not.toBeInTheDocument();
-        expect(screen.queryByText('Tomb Raider (2013)')).not.toBeInTheDocument();
+        expect(
+            screen.queryByText('Tomb Raider (2013)')
+        ).not.toBeInTheDocument();
     });
 
     it('on game click goes to game page', () => {

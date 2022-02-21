@@ -25,7 +25,13 @@ const AppContext = createContext<AppContextTypes>({
 
 const queryClient = new QueryClient();
 
-function App({ Component, pageProps, genres, platforms, stores }: AppProps & AppContextTypes) {
+function App({
+    Component,
+    pageProps,
+    genres,
+    platforms,
+    stores,
+}: AppProps & AppContextTypes) {
     return (
         <div className={styles.root}>
             <PageHead />

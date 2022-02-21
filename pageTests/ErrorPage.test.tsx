@@ -10,7 +10,9 @@ describe('<ErrorPage />', () => {
 
     it('returns client side error', () => {
         render(<ErrorPage />);
-        expect(screen.getByText('This page could not be found')).toBeInTheDocument();
+        expect(
+            screen.getByText('This page could not be found')
+        ).toBeInTheDocument();
         expect(screen.getByText('404')).toBeInTheDocument();
     });
 });

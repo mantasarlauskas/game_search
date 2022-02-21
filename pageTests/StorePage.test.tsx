@@ -38,7 +38,9 @@ describe('<StorePage />', () => {
 
     it('shows content', () => {
         render(<StorePage {...props} />);
-        expect(screen.getByText('Games available on Feral Interactive')).toBeInTheDocument();
+        expect(
+            screen.getByText('Games available on Feral Interactive')
+        ).toBeInTheDocument();
         expect(screen.getByText('Tomb Raider (2013)')).toBeInTheDocument();
         expect(screen.getByText('Portal 2')).toBeInTheDocument();
         expect(screen.getByText('Total 100 games')).toBeInTheDocument();
@@ -46,7 +48,10 @@ describe('<StorePage />', () => {
 
     describe('getServerSideProps', () => {
         it('returns server side props', async () => {
-            const res = await getServerSideProps({ params: { id: '123' } } as NextPageContextWithID);
+            const res = await getServerSideProps({
+                params: { id: '123' },
+            } as NextPageContextWithID);
+
             expect(res).toEqual({
                 props: {
                     id: '123',
@@ -57,9 +62,12 @@ describe('<StorePage />', () => {
             });
 
             expect(fetchData).toBeCalledTimes(1);
-            expect(fetchData).toBeCalledWith('games', expect.objectContaining({
-                stores: '123',
-            }));
+            expect(fetchData).toBeCalledWith(
+                'games',
+                expect.objectContaining({
+                    stores: '123',
+                })
+            );
         });
     });
 });

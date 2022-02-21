@@ -4,12 +4,7 @@ import { Route } from 'utils/routes';
 
 function GenresPage() {
     const { genres } = useAppContext();
-    return (
-        <CategoriesPage
-            categories={genres}
-            route={Route.GENRES}
-        />
-    );
+    return <CategoriesPage categories={genres} route={Route.GENRES} />;
 }
 
 export default GenresPage;

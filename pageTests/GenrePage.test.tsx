@@ -46,7 +46,9 @@ describe('<GenrePage />', () => {
 
     describe('getServerSideProps', () => {
         it('returns server side props', async () => {
-            const res = await getServerSideProps({ params: { id: '123' } } as NextPageContextWithID);
+            const res = await getServerSideProps({
+                params: { id: '123' },
+            } as NextPageContextWithID);
             expect(res).toEqual({
                 props: {
                     id: '123',
@@ -57,9 +59,12 @@ describe('<GenrePage />', () => {
             });
 
             expect(fetchData).toBeCalledTimes(1);
-            expect(fetchData).toBeCalledWith('games', expect.objectContaining({
-                genres: '123',
-            }));
+            expect(fetchData).toBeCalledWith(
+                'games',
+                expect.objectContaining({
+                    genres: '123',
+                })
+            );
         });
     });
 });

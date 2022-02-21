@@ -38,7 +38,10 @@ function HomePage({ games, nextPage }: HomePageProps) {
                     <Spinner />
                 </div>
             )}
-            <div className={styles.content} style={{ display: isLoading ? 'none' : 'flex' }}>
+            <div
+                className={styles.content}
+                style={{ display: isLoading ? 'none' : 'flex' }}
+            >
                 <div className={styles.cards}>
                     {data.map((game) => (
                         <GameCard key={game.name} game={game} />
@@ -60,15 +63,14 @@ interface HomePageProps {
     nextPage?: string;
 }
 
-export async function getServerSideProps({ query }: NextPageContext): Promise<{ props: HomePageProps }> {
-    const data = await fetchData(
-        ApiPath.GAMES,
-        {
-            page: 1,
-            page_size: DEFAULT_PAGE_SIZE,
-            ordering: getOrdering(query),
-        },
-    );
+export async function getServerSideProps({
+    query,
+}: NextPageContext): Promise<{ props: HomePageProps }> {
+    const data = await fetchData(ApiPath.GAMES, {
+        page: 1,
+        page_size: DEFAULT_PAGE_SIZE,
+        ordering: getOrdering(query),
+    });
 
     return {
         props: {

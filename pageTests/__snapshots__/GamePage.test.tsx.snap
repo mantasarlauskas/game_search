@@ -252,6 +252,7 @@ exports[`<GamePage /> matches snapshot 1`] = `
                     class="image"
                     height="200"
                     layout="responsive"
+                    quality="50"
                     src="/imageUrl"
                     style="width: 100%; display: inline-block;"
                     tabindex="-1"
@@ -293,6 +294,7 @@ exports[`<GamePage /> matches snapshot 1`] = `
                   class="image"
                   height="400"
                   layout="responsive"
+                  quality="50"
                   src="https://media.rawg.io/media/crop/600/400/games/ad2/ad2ffdf80ba993654f31da045bc02456.jpg"
                   width="600"
                 />

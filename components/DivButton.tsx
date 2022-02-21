@@ -1,7 +1,10 @@
 import { ReactNode, AllHTMLAttributes, forwardRef, RefObject } from 'react';
 import { onEnter, ElementEvent } from 'utils/events';
 
-function DivButton({ children, onClick, ...props }: DivButtonProps, ref: RefObject<HTMLDivElement>) {
+function DivButton(
+    { children, onClick, ...props }: DivButtonProps,
+    ref: RefObject<HTMLDivElement>
+) {
     return (
         <div
             ref={ref}

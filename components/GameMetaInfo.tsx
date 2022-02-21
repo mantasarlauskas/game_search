@@ -33,19 +33,14 @@ function GameMetaInfo({
             {typeof metacritic === 'number' && (
                 <div className={styles.item}>
                     <GameMetaBlock title="Metascore">
-                        <div className={styles.score}>
-                            {metacritic}
-                        </div>
+                        <div className={styles.score}>{metacritic}</div>
                     </GameMetaBlock>
                 </div>
             )}
             {genres?.length > 0 && (
                 <div className={styles.item}>
                     <GameMetaBlock title="Genres">
-                        <InfoList
-                            route={Route.GENRES}
-                            list={genres}
-                        />
+                        <InfoList route={Route.GENRES} list={genres} />
                     </GameMetaBlock>
                 </div>
             )}
@@ -59,30 +54,21 @@ function GameMetaInfo({
             {developers?.length > 0 && (
                 <div className={styles.item}>
                     <GameMetaBlock title="Developers">
-                        <InfoList
-                            list={developers}
-                            route={Route.DEVELOPERS}
-                        />
+                        <InfoList list={developers} route={Route.DEVELOPERS} />
                     </GameMetaBlock>
                 </div>
             )}
             {publishers?.length > 0 && (
                 <div className={styles.item}>
                     <GameMetaBlock title="Publishers">
-                        <InfoList
-                            list={publishers}
-                            route={Route.PUBLISHERS}
-                        />
+                        <InfoList list={publishers} route={Route.PUBLISHERS} />
                     </GameMetaBlock>
                 </div>
             )}
             {tags?.length > 0 && (
                 <div className={styles.item}>
                     <GameMetaBlock title="Tags">
-                        <InfoList
-                            route={Route.TAGS}
-                            list={tags}
-                        />
+                        <InfoList route={Route.TAGS} list={tags} />
                     </GameMetaBlock>
                 </div>
             )}

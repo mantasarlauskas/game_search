@@ -3,7 +3,13 @@ import CategoryPage from 'components/CategoryPage';
 import { getCategoryAndGamesServerSideProps } from 'utils/categories';
 import { ApiPath } from 'utils/fetch';
 
-function DeveloperPage({ games, count, id, name, nextPage }: CategoryPageWithNameProps) {
+function DeveloperPage({
+    games,
+    count,
+    id,
+    name,
+    nextPage,
+}: CategoryPageWithNameProps) {
     return (
         <CategoryPage
             name={name}
@@ -16,8 +22,13 @@ function DeveloperPage({ games, count, id, name, nextPage }: CategoryPageWithNam
     );
 }
 
-export async function getServerSideProps({ params: { id }, query }: NextPageContextWithID) {
-    return getCategoryAndGamesServerSideProps(query, ApiPath.DEVELOPERS, id, { developers: id });
+export async function getServerSideProps({
+    params: { id },
+    query,
+}: NextPageContextWithID) {
+    return getCategoryAndGamesServerSideProps(query, ApiPath.DEVELOPERS, id, {
+        developers: id,
+    });
 }
 
 export default DeveloperPage;

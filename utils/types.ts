@@ -14,7 +14,7 @@ export interface Game {
     platforms?: { platform: Info }[];
     genres: Info[];
     rating: number;
-    ratings: { title: string, count: number }[];
+    ratings: { title: string; count: number }[];
     description?: string;
     background_image_additional?: string;
     ratings_count: number;
@@ -29,9 +29,9 @@ export interface Game {
 export interface Movie {
     preview: string;
     data: {
-        480: string,
-        max: string,
-    }
+        480: string;
+        max: string;
+    };
 }
 
 export interface Screenshot {
@@ -39,7 +39,7 @@ export interface Screenshot {
 }
 
 export interface NextPageContextWithID extends NextPageContext {
-    params: { id: string }
+    params: { id: string };
 }
 
 export interface Category {
@@ -48,7 +48,7 @@ export interface Category {
     slug: string;
     image_background: string;
     games_count: number;
-    games: { name: string; slug: string; }[];
+    games: { name: string; slug: string }[];
 }
 
 export interface CategoriesPageProps {

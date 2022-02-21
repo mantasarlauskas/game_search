@@ -11,14 +11,7 @@ import { getCroppedImageUrl } from 'utils/media';
 import { roundNumber } from 'utils/number';
 
 function GameCard({
-    game: {
-        slug,
-        name,
-        background_image,
-        clip,
-        platforms,
-        rating,
-    },
+    game: { slug, name, background_image, clip, platforms, rating },
 }: GameCardProps) {
     const imageUrl = getCroppedImageUrl(background_image);
     const [showVideo, setShowVideo] = useState(false);
@@ -79,24 +72,25 @@ function GameCard({
                             autoPlay
                             muted
                         />
-                    ) : imageUrl && (
-                        <div ref={imageRef}>
-                            <Image
-                                className={styles.image}
-                                height={400}
-                                width={600}
-                                layout="responsive"
-                                src={imageUrl}
-                                alt={name}
-                            />
-                        </div>
+                    ) : (
+                        imageUrl && (
+                            <div ref={imageRef}>
+                                <Image
+                                    className={styles.image}
+                                    height={400}
+                                    width={600}
+                                    layout="responsive"
+                                    src={imageUrl}
+                                    alt={name}
+                                    quality={50}
+                                />
+                            </div>
+                        )
                     )}
                 </DivButton>
                 <div className={styles.content}>
                     <div className={styles.header}>
-                        <div className={styles.title}>
-                            {name}
-                        </div>
+                        <div className={styles.title}>{name}</div>
                         {!!rating && (
                             <div className={styles.score}>
                                 {roundNumber(rating)}

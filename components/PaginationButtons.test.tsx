@@ -18,7 +18,11 @@ describe('<PaginationButtons />', () => {
 
     it('shows both buttons', () => {
         render(<PaginationButtons {...props} />);
-        expect(screen.getByRole('button', { name: 'Load more' })).toBeInTheDocument();
-        expect(screen.getByRole('button', { name: 'Back to top' })).toBeInTheDocument();
+        expect(
+            screen.getByRole('button', { name: 'Load more' })
+        ).toBeInTheDocument();
+        expect(
+            screen.getByRole('button', { name: 'Back to top' })
+        ).toBeInTheDocument();
     });
 });

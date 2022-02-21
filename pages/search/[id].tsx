@@ -13,25 +13,18 @@ import GameSort from 'components/GameSort';
 function SearchPage({ initialResults, count, id, nextPage }: SearchPageProps) {
     const router = useRouter();
     const ordering = getOrdering(router.query);
-    const {
-        data,
-        isFetching,
-        paginatorRef,
-        hasNextPage,
-        hasPreviousPage,
-    } = usePaginatedQuery<Game, HTMLButtonElement>({
-        initialData: initialResults,
-        initialNextPage: nextPage,
-        path: ApiPath.GAMES,
-        queryParams: { search: id, ordering },
-    });
+    const { data, isFetching, paginatorRef, hasNextPage, hasPreviousPage } =
+        usePaginatedQuery<Game, HTMLButtonElement>({
+            initialData: initialResults,
+            initialNextPage: nextPage,
+            path: ApiPath.GAMES,
+            queryParams: { search: id, ordering },
+        });
 
     return (
         <div className={styles.root}>
             <PageHead title="Game search" />
-            <div className={styles.info}>
-                {`${count} games found`}
-            </div>
+            <div className={styles.info}>{`${count} games found`}</div>
             <div className={styles.sort}>
                 <GameSort />
             </div>
@@ -60,7 +53,8 @@ interface SearchPageProps {
 }
 
 export async function getServerSideProps({
-    params: { id }, query,
+    params: { id },
+    query,
 }: NextPageContextWithID): Promise<{ props: SearchPageProps }> {
     const data = await fetchData(ApiPath.GAMES, {
         search: id,

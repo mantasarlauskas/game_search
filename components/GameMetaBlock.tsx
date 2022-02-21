@@ -4,9 +4,7 @@ import styles from 'components/GameMetaBlock.module.scss';
 function GameMetaBlock({ title, children }: GameMetaBlockProps) {
     return (
         <div className={styles.root}>
-            <div className={styles.title}>
-                {title}
-            </div>
+            <div className={styles.title}>{title}</div>
             {children}
         </div>
     );

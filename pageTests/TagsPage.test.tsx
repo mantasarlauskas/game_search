@@ -35,7 +35,10 @@ describe('<TagsPage />', () => {
             });
 
             expect(fetchData).toBeCalledTimes(1);
-            expect(fetchData).toBeCalledWith('tags', { page: 1, page_size: 20 });
+            expect(fetchData).toBeCalledWith('tags', {
+                page: 1,
+                page_size: 20,
+            });
         });
     });
 });

@@ -34,11 +34,7 @@ function GamePage({
     return (
         <div className={styles.root}>
             <PageHead title={name} />
-            {released && (
-                <div className={styles.releaseDate}>
-                    {released}
-                </div>
-            )}
+            {released && <div className={styles.releaseDate}>{released}</div>}
             <h1 className={styles.title}>{name}</h1>
             <div className={styles.main}>
                 <div className={styles.info}>
@@ -49,16 +45,12 @@ function GamePage({
                         {ratings.map(({ title, count }) => (
                             <div key={title} className={styles.rating}>
                                 {`${title}:`}
-                                <div className={styles.count}>
-                                    {count}
-                                </div>
+                                <div className={styles.count}>{count}</div>
                             </div>
                         ))}
                         <div className={styles.rating}>
                             Total ratings:
-                            <div className={styles.count}>
-                                {ratings_count}
-                            </div>
+                            <div className={styles.count}>{ratings_count}</div>
                         </div>
                     </div>
                 </div>
@@ -77,9 +69,7 @@ function GamePage({
             </div>
             {description && (
                 <>
-                    <div className={styles.about}>
-                        About
-                    </div>
+                    <div className={styles.about}>About</div>
                     <GameDescription slug={slug} description={description} />
                 </>
             )}
@@ -87,9 +77,7 @@ function GamePage({
                 <GameMetaInfo game={game} />
             </div>
             <div className={styles.screenshots}>
-                <div className={styles.section}>
-                    Screenshots
-                </div>
+                <div className={styles.section}>Screenshots</div>
                 <div className={styles.carousel}>
                     <Slider speed={1000}>
                         {screenshots.map(({ image }) => (
@@ -100,6 +88,7 @@ function GamePage({
                                 width={350}
                                 height={200}
                                 src={image}
+                                quality={50}
                             />
                         ))}
                     </Slider>
@@ -116,14 +105,16 @@ function GamePage({
 
 interface GamePageProps {
     game: Game;
-    movieUrl?: string,
-    moviePreview?: string,
+    movieUrl?: string;
+    moviePreview?: string;
     seriesGames: Game[];
     seriesGamesNextPage?: string;
     screenshots: Screenshot[];
 }
 
-export async function getServerSideProps({ params: { id } }: NextPageContextWithID) {
+export async function getServerSideProps({
+    params: { id },
+}: NextPageContextWithID) {
     const [game, movies, screenshots, seriesGames] = await Promise.all([
         fetchData(`${ApiPath.GAMES}/${id}`),
         fetchData(`${ApiPath.GAMES}/${id}/movies`),

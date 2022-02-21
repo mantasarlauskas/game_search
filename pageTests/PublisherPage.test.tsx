@@ -38,7 +38,10 @@ describe('<PublisherPage />', () => {
 
     describe('getServerSideProps', () => {
         it('returns server side props', async () => {
-            const res = await getServerSideProps({ params: { id: '123' } } as NextPageContextWithID);
+            const res = await getServerSideProps({
+                params: { id: '123' },
+            } as NextPageContextWithID);
+
             expect(res).toEqual({
                 props: {
                     id: '123',
@@ -51,9 +54,12 @@ describe('<PublisherPage />', () => {
 
             expect(fetchData).toBeCalledTimes(2);
             expect(fetchData).toBeCalledWith('publishers/123');
-            expect(fetchData).toBeCalledWith('games', expect.objectContaining({
-                publishers: '123',
-            }));
+            expect(fetchData).toBeCalledWith(
+                'games',
+                expect.objectContaining({
+                    publishers: '123',
+                })
+            );
         });
     });
 });

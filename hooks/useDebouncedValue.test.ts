@@ -12,7 +12,10 @@ describe('useDebouncedValue', () => {
 
     it('only shows update value after timer has passed', () => {
         let value = 'a';
-        const { rerender, result } = renderHook(() => useDebouncedValue(value, 300));
+        const { rerender, result } = renderHook(() =>
+            useDebouncedValue(value, 300)
+        );
+
         value = 'b';
         rerender();
 
@@ -31,7 +34,10 @@ describe('useDebouncedValue', () => {
 
     it('clears old timeout when value changes multiple times', () => {
         let value = 'a';
-        const { rerender, result } = renderHook(() => useDebouncedValue(value, 300));
+        const { rerender, result } = renderHook(() =>
+            useDebouncedValue(value, 300)
+        );
+
         value = 'b';
         rerender();
 

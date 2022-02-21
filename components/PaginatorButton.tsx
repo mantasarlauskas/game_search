@@ -2,7 +2,10 @@ import { forwardRef, RefObject } from 'react';
 import styles from 'components/PaginatorButton.module.scss';
 import Spinner from 'components/Spinner';
 
-function PaginatorButton({ isFetching, isVisible, onClick }: PaginatorButtonProps, ref: RefObject<HTMLButtonElement>) {
+function PaginatorButton(
+    { isFetching, isVisible, onClick }: PaginatorButtonProps,
+    ref: RefObject<HTMLButtonElement>
+) {
     if (!isVisible) {
         return null;
     }

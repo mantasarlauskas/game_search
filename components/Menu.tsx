@@ -34,16 +34,11 @@ function Menu() {
         <>
             {menuRoutes.map((route) => (
                 <Link key={route} href={route}>
-                    <div className={styles.item}>
-                        {PageTitle[route]}
-                    </div>
+                    <div className={styles.item}>{PageTitle[route]}</div>
                 </Link>
             ))}
             <div className={styles.list}>
-                <MenuItemList
-                    items={genres}
-                    route={Route.GENRES}
-                />
+                <MenuItemList items={genres} route={Route.GENRES} />
             </div>
             <div className={styles.list}>
                 <MenuItemList
@@ -53,10 +48,7 @@ function Menu() {
                 />
             </div>
             <div className={styles.list}>
-                <MenuItemList
-                    items={stores}
-                    route={Route.STORES}
-                />
+                <MenuItemList items={stores} route={Route.STORES} />
             </div>
         </>
     );
@@ -70,7 +62,7 @@ function Menu() {
                 />
                 {menu}
             </div>,
-            document.body,
+            document.body
         );
     }
 
@@ -80,9 +72,7 @@ function Menu() {
                 onClick={() => setFullscreenVisible(true)}
                 className={styles.icon}
             />
-            <div className={styles.content}>
-                {menu}
-            </div>
+            <div className={styles.content}>{menu}</div>
         </div>
     );
 }

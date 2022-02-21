@@ -23,7 +23,9 @@ describe('<CategoryCard />', () => {
         render(<CategoryCard {...props} />);
         expect(screen.getByText('Feral Interactive')).toBeInTheDocument();
         expect(screen.getByText('Rise of the Tomb Raider')).toBeInTheDocument();
-        expect(screen.getByText('Middle-earth: Shadow of Mordor')).toBeInTheDocument();
+        expect(
+            screen.getByText('Middle-earth: Shadow of Mordor')
+        ).toBeInTheDocument();
         expect(screen.getByText('Hitman')).toBeInTheDocument();
     });
 

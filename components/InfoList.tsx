@@ -10,9 +10,7 @@ function InfoList({ list, route }: InfoListProps) {
                 const content = idx < list.length - 1 ? `${name}, ` : name;
                 return (
                     <Link key={id} href={`${route}/${id}`}>
-                        <span className={styles.item}>
-                            {content}
-                        </span>
+                        <span className={styles.item}>{content}</span>
                     </Link>
                 );
             })}

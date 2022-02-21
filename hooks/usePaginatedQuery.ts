@@ -13,30 +13,51 @@ function usePaginatedQuery<T, P extends HTMLElement>({
     pageSize = DEFAULT_PAGE_SIZE,
 }: UsePaginatedQueryProps<T>) {
     const query = useInfiniteQuery<{
-        results: T[],
-        previous?: string,
-        next?: string,
-    }>([path, queryParams], ({
-        pageParam = getFetchUrl(path, { page: initialPageNumber, page_size: pageSize, ...queryParams }),
-    }) => handleServerResponse(fetch(pageParam)), {
-        refetchOnMount: false,
-        refetchOnWindowFocus: false,
-        getPreviousPageParam: (firstPage, allPages) => allPages[allPages.length - 1]?.previous ?? undefined,
-        getNextPageParam: (lastPage) => lastPage?.next ?? undefined,
-        initialData: {
-            pageParams: [getFetchUrl(path, { page: initialPageNumber, page_size: pageSize, ...queryParams })],
-            pages: [{
-                results: initialData,
-                next: initialNextPage,
-            }],
-        },
-    });
+        results: T[];
+        previous?: string;
+        next?: string;
+    }>(
+        [path, queryParams],
+        ({
+            pageParam = getFetchUrl(path, {
+                page: initialPageNumber,
+                page_size: pageSize,
+                ...queryParams,
+            }),
+        }) => handleServerResponse(fetch(pageParam)),
+        {
+            refetchOnMount: false,
+            refetchOnWindowFocus: false,
+            getPreviousPageParam: (firstPage, allPages) =>
+                allPages[allPages.length - 1]?.previous ?? undefined,
+            getNextPageParam: (lastPage) => lastPage?.next ?? undefined,
+            initialData: {
+                pageParams: [
+                    getFetchUrl(path, {
+                        page: initialPageNumber,
+                        page_size: pageSize,
+                        ...queryParams,
+                    }),
+                ],
+                pages: [
+                    {
+                        results: initialData,
+                        next: initialNextPage,
+                    },
+                ],
+            },
+        }
+    );
 
     const paginatorRef = useIntersectionObserver<P>(query.fetchNextPage);
-    const data = useMemo(() => query.data?.pages?.reduce((arr, response) => [
-        ...arr,
-        ...(response?.results || []),
-    ], []) || [], [query.data]);
+    const data = useMemo(
+        () =>
+            query.data?.pages?.reduce(
+                (arr, response) => [...arr, ...(response?.results || [])],
+                []
+            ) || [],
+        [query.data]
+    );
 
     return {
         ...query,

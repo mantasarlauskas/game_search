@@ -29,13 +29,15 @@ export function getFetchUrl(path: string, query?: QueryParams) {
 }
 
 export function handleServerResponse(response: Promise<Response>) {
-    return response.then((res) => {
-        if (!res.ok) {
-            return null;
-        }
+    return response
+        .then((res) => {
+            if (!res.ok) {
+                return null;
+            }
 
-        return res.json();
-    }).catch(() => null);
+            return res.json();
+        })
+        .catch(() => null);
 }
 
 export function fetchData(path: string, query?: QueryParams) {
@@ -47,7 +49,12 @@ export function getQueryParams(query?: QueryParams) {
         return '';
     }
 
-    return Object.keys(query).reduce((params, key: keyof QueryParams) => (
-        query[key] ? (params + (!params ? `${key}=${query[key]}` : `&${key}=${query[key]}`)) : params
-    ), '');
+    return Object.keys(query).reduce(
+        (params, key: keyof QueryParams) =>
+            query[key]
+                ? params +
+                  (!params ? `${key}=${query[key]}` : `&${key}=${query[key]}`)
+                : params,
+        ''
+    );
 }

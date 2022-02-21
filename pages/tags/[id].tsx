@@ -3,7 +3,13 @@ import CategoryPage from 'components/CategoryPage';
 import { ApiPath } from 'utils/fetch';
 import { getCategoryAndGamesServerSideProps } from 'utils/categories';
 
-function TagPage({ games, count, id, name, nextPage }: CategoryPageWithNameProps) {
+function TagPage({
+    games,
+    count,
+    id,
+    name,
+    nextPage,
+}: CategoryPageWithNameProps) {
     return (
         <CategoryPage
             name={name}
@@ -16,8 +22,13 @@ function TagPage({ games, count, id, name, nextPage }: CategoryPageWithNameProps
     );
 }
 
-export async function getServerSideProps({ params: { id }, query }: NextPageContextWithID) {
-    return getCategoryAndGamesServerSideProps(query, ApiPath.TAGS, id, { tags: id });
+export async function getServerSideProps({
+    params: { id },
+    query,
+}: NextPageContextWithID) {
+    return getCategoryAndGamesServerSideProps(query, ApiPath.TAGS, id, {
+        tags: id,
+    });
 }
 
 export default TagPage;

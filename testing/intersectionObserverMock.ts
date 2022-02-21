@@ -9,9 +9,7 @@ class IntersectionObserver {
         this.cb([{ isIntersecting: true }]);
     }
 
-    disconnect() {
-
-    }
+    disconnect() {}
 }
 
 export default IntersectionObserver;

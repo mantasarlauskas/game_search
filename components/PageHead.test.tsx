@@ -1,7 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import PageHead from 'components/PageHead';
 
-jest.mock('next/head', () => ({ children }: any) => children);
+jest.mock(
+    'next/head',
+    () =>
+        ({ children }: any) =>
+            children
+);
+
 jest.mock('next/router', () => ({
     useRouter() {
         return {

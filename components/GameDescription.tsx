@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import styles from 'components/GameDescription.module.scss';
 
-function GameDescription({ description, slug, letterCount = 500 }: GameDescriptionProps) {
+function GameDescription({
+    description,
+    slug,
+    letterCount = 500,
+}: GameDescriptionProps) {
     const [expanded, setExpanded] = useState(false);
     const isOverLimit = description.length > letterCount;
 
@@ -11,8 +15,13 @@ function GameDescription({ description, slug, letterCount = 500 }: GameDescripti
 
     return (
         <div className={styles.root}>
-            <div dangerouslySetInnerHTML={{ __html: isOverLimit && !expanded
-                ? `${description.substring(0, letterCount)}...` : description }}
+            <div
+                dangerouslySetInnerHTML={{
+                    __html:
+                        isOverLimit && !expanded
+                            ? `${description.substring(0, letterCount)}...`
+                            : description,
+                }}
             />
             {isOverLimit && (
                 <button
@@ -29,7 +38,7 @@ function GameDescription({ description, slug, letterCount = 500 }: GameDescripti
 
 interface GameDescriptionProps {
     description: string;
-    letterCount?: number
+    letterCount?: number;
     slug: string;
 }
 

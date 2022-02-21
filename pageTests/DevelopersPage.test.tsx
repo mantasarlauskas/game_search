@@ -35,7 +35,10 @@ describe('<DevelopersPage />', () => {
             });
 
             expect(fetchData).toBeCalledTimes(1);
-            expect(fetchData).toBeCalledWith('developers', { page: 1, page_size: 20 });
+            expect(fetchData).toBeCalledWith('developers', {
+                page: 1,
+                page_size: 20,
+            });
         });
     });
 });

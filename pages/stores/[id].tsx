@@ -1,6 +1,9 @@
 import { CategoryPageProps, NextPageContextWithID } from 'utils/types';
 import CategoryPage from 'components/CategoryPage';
-import { getCategoryName, getCategoryPageServerSideProps } from 'utils/categories';
+import {
+    getCategoryName,
+    getCategoryPageServerSideProps,
+} from 'utils/categories';
 import { useAppContext } from 'pages/_app';
 
 function StorePage({ games, count, id, nextPage }: CategoryPageProps) {
@@ -18,7 +21,10 @@ function StorePage({ games, count, id, nextPage }: CategoryPageProps) {
     );
 }
 
-export async function getServerSideProps({ params: { id }, query }: NextPageContextWithID) {
+export async function getServerSideProps({
+    params: { id },
+    query,
+}: NextPageContextWithID) {
     return getCategoryPageServerSideProps(query, id, { stores: id });
 }
 

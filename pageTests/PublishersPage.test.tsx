@@ -35,7 +35,10 @@ describe('<PublishersPage />', () => {
             });
 
             expect(fetchData).toBeCalledTimes(1);
-            expect(fetchData).toBeCalledWith('publishers', { page: 1, page_size: 20 });
+            expect(fetchData).toBeCalledWith('publishers', {
+                page: 1,
+                page_size: 20,
+            });
         });
     });
 });
